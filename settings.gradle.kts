@@ -26,5 +26,5 @@ buildscript {
 }
 
 
-rootProject.name = "Team1TrackerAndroid"
+rootProject.name = "team_1__treacker_android"
 include(":app")
