@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.detekt)
     id("kotlin-kapt")
+    id ("org.jetbrains.kotlin.kapt")
 }
 
 android {
@@ -42,7 +43,7 @@ android {
 detekt {
     ignoreFailures = true
     toolVersion = "1.23.1"
-    config = files("detekt.yml")
+    config.setFrom("detekt.yml")
     buildUponDefaultConfig = true
     ignoreFailures = false
 }
@@ -68,7 +69,8 @@ dependencies {
 
     // Glide for image loading
     implementation("com.github.bumptech.glide:glide:4.14.2")
-    annotationProcessor("com.github.bumptech.glide:compiler:4.14.2")
+    kapt ("com.github.bumptech.glide:compiler:4.14.2")
+
 
     // Gson for JSON parsing
     implementation("com.google.code.gson:gson:2.10.1")

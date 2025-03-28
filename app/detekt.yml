@@ -125,13 +125,13 @@ complexity:
     ignoredLabels: []
   LargeClass:
     active: true
-    threshold: 600
+    threshold: 300
   LongMethod:
     active: true
-    threshold: 60
+    threshold: 35
   LongParameterList:
     active: true
-    functionThreshold: 6
+    functionThreshold: 5
     constructorThreshold: 7
     ignoreDefaultParameters: false
     ignoreDataClasses: true
