@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.Team1TrackerAndroid"
+    namespace = "com.example.team_1__treacker_android"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.Team1TrackerAndroid"
+        applicationId = "com.example.team_1__treacker_android"
         minSdk = 21
         targetSdk = 35
         versionCode = 1
