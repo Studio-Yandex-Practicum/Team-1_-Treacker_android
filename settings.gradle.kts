@@ -11,6 +11,7 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -18,6 +19,12 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
 
-rootProject.name = "Team-1_-Treacker_android"
+
+rootProject.name = "Team1TrackerAndroid"
 include(":app")
