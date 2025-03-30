@@ -50,7 +50,7 @@ val detektFormat by tasks.register<Detekt>("detektFormat") {
     autoCorrect = true
 
     // Configuration
-    config.setFrom(files(project.rootDir.resolve("detekt.yml")))
+    config.setFrom(files(project.rootDir.resolve("conf/detekt.yml")))
 }
 
 val detektProjectBaseline by tasks.register<DetektCreateBaselineTask>("detektProjectBaseline") {
@@ -74,7 +74,7 @@ val detektProjectBaseline by tasks.register<DetektCreateBaselineTask>("detektPro
     }
 
     // Configuration
-    config.setFrom(files(project.rootDir.resolve("detekt.yml")))
+    config.setFrom(files(project.rootDir.resolve("conf/detekt.yml")))
 }
 
 // workaround for https://github.com/gradle/gradle/issues/15383
