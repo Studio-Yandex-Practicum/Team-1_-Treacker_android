@@ -1,3 +1,4 @@
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 pluginManagement {
     repositories {
         google {
@@ -26,5 +27,7 @@ buildscript {
 }
 
 
-rootProject.name = "team_1__treacker_android"
+rootProject.name = "tracker-android"
+includeBuild("build-logic")
 include(":app")
+

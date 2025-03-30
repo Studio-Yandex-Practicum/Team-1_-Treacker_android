@@ -40,7 +40,7 @@ val detektAll by tasks.register<Detekt>("detektAll") {
     setupCommonDetektSettings()
 
     // Configuration
-    config.setFrom(files(project.rootDir.resolve("detekt.yml")))
+    config.setFrom(files(project.rootDir.resolve("conf/detekt.yml")))
 }
 
 val detektFormat by tasks.register<Detekt>("detektFormat") {

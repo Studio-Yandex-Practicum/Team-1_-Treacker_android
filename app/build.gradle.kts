@@ -1,17 +1,16 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.detekt)
     id("kotlin-kapt")
     id ("org.jetbrains.kotlin.kapt")
 }
 
 android {
-    namespace = "com.example.team_1__treacker_android"
+    namespace = "com.example.tracker"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.team_1__treacker_android"
+        applicationId = "com.example.tracker"
         minSdk = 21
         targetSdk = 35
         versionCode = 1
@@ -39,13 +38,6 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-}
-detekt {
-    ignoreFailures = true
-    toolVersion = "1.23.1"
-    config.setFrom("detekt.yml")
-    buildUponDefaultConfig = true
-    ignoreFailures = false
 }
 dependencies {
     // Core Android libraries
