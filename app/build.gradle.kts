@@ -45,44 +45,31 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.activity:activity:1.9.3")
-
     // Material Design Components
     implementation("com.google.android.material:material:1.12.0")
-
     // Navigation Component
     implementation("androidx.navigation:navigation-fragment-ktx:2.8.3")
     implementation("androidx.navigation:navigation-ui-ktx:2.8.3")
-
-
     // Testing libraries
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
-
     // Glide for image loading
     implementation("com.github.bumptech.glide:glide:4.14.2")
     kapt("com.github.bumptech.glide:compiler:4.14.2")
-
-
     // Gson for JSON parsing
     implementation("com.google.code.gson:gson:2.10.1")
-
     // Retrofit for networking
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-
     // Dependency Injection with Koin
     implementation("io.insert-koin:koin-android:3.3.0")
-
     // Fragment utilities
     implementation("androidx.fragment:fragment-ktx:1.8.4")
-
     // ViewPager2 for swipeable views
     implementation("androidx.viewpager2:viewpager2:1.1.0")
-
     // Kotlin Coroutines for asynchronous programming
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
-
     // Room for database management
     implementation("androidx.room:room-runtime:2.6.1")
     kapt("androidx.room:room-compiler:2.6.1")
