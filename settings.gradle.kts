@@ -26,8 +26,6 @@ buildscript {
     }
 }
 
-
 rootProject.name = "tracker-android"
 includeBuild("build-logic")
 include(":app")
-
