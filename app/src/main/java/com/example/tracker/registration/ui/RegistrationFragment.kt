@@ -122,7 +122,7 @@ class RegistrationFragment : Fragment() {
 
     private fun checkingInput() {
         binding.btApply.isEnabled =
-            emal.isNotBlank() && passFirst.length >= 6 && passSecond.length >= 6 && passFirst == passSecond
+            emal.isNotBlank() && passFirst.length >= 7 && passSecond.length >= 7 && passFirst == passSecond
     }
 
     private fun setupObservers() {
