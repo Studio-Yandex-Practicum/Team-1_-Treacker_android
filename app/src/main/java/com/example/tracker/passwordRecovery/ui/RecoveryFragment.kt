@@ -1,4 +1,4 @@
-package com.example.tracker.password_recovery.ui
+package com.example.tracker.passwordRecovery.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
