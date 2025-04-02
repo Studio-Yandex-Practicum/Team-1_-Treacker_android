@@ -13,7 +13,7 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.tracker.databinding.RegistrationFragmentBinding
+
 import com.example.tracker.util.RegistrationState
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -86,7 +86,7 @@ class RegistrationFragment : Fragment() {
                 } else {
                     hideError(binding.errorPass)
                 }
-                if (binding.etEmail.length() < 1){
+                if (binding.etEmail.length() < 1) {
                     showError(binding.errorEmail, emailErrorMessage)
                 }
                 checkingInput()
@@ -109,7 +109,7 @@ class RegistrationFragment : Fragment() {
                 } else {
                     hideError(binding.errorPass2)
                 }
-                if (binding.etEmail.length() < 1){
+                if (binding.etEmail.length() < 1) {
                     showError(binding.errorEmail, emailErrorMessage)
                 }
                 checkingInput()
