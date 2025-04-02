@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.tracker.registration.data.dto.RegistrationRequest
 import com.example.tracker.registration.data.dto.RegistrationResponse
 import com.example.tracker.registration.data.network.NetworkClient
+import com.example.tracker.registration.domain.model.Registration
 import com.example.tracker.registration.domain.repository.RegistrationRepository
 import com.example.tracker.util.Resource
 import kotlinx.coroutines.flow.Flow
@@ -42,10 +43,10 @@ class RegistrationRepositoryImpl(
 
     private fun RegistrationResponse.toRegistration(): Registration {
         return Registration(
-            user_id = this.userId ?: throw IllegalArgumentException("user_id не может быть null"),
-            access_token = this.accessToken
+            userId = this.userId ?: throw IllegalArgumentException("user_id не может быть null"),
+            accessToken = this.accessToken
                 ?: throw IllegalArgumentException("access_token не может быть null"),
-            refresh_token = this.refreshToken
+            refreshToken = this.refreshToken
                 ?: throw IllegalArgumentException("refresh_token не может быть null")
         )
     }

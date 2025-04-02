@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.tracker.databinding.RegistrationFragmentBinding
 
 import com.example.tracker.util.RegistrationState
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -55,8 +56,8 @@ class RegistrationFragment : Fragment() {
     }
 
     private fun setupTextWatcher() {
-        val emailErrorMessage = "Введите Email"
-        val passwordLengthErrorMessage = "Длинна пароля 6 символов"
+        val emailErrorMessage = "Пожалуйста, введите корректный Email"
+        val passwordLengthErrorMessage = "Пароль должен содержать не менее 6 символов"
         val passwordMismatchErrorMessage = "Пароли не совпадают"
 
         val emailTextWatcher = object : TextWatcher {
