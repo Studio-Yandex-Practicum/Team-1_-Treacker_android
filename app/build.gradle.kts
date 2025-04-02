@@ -69,9 +69,11 @@ dependencies {
     // ViewPager2 for swipeable views
     implementation("androidx.viewpager2:viewpager2:1.1.0")
     // Kotlin Coroutines for asynchronous programming
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     // Room for database management
     implementation("androidx.room:room-runtime:2.6.1")
     kapt("androidx.room:room-compiler:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
+    implementation ("com.squareup.okhttp3:logging-interceptor:3.9.0")
 }
