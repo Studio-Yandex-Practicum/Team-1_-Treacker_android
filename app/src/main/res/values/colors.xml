@@ -2,4 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="error">#FF4F4F</color>
+    <color name="primaryDark">#1B1B1B</color>
+    <color name="secondary">#898989</color>
+    <color name="accent">#2B61EC</color>
+    <color name="accent_disabled">#802B61EC</color>
+    <color name="secondaryLight">#F4F4F5</color>
+    <color name="backgroud">#F5F5F5</color>
+    <color name="backgroud_tv">#EBEBEB</color>
+    <color name="backgroud_et">#FEFEFE</color>
+    <color name="extended">#64748B</color>
 </resources>

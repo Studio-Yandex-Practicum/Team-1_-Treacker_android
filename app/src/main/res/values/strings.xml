@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">Team-1_-Treacker_android</string>
+    <string name="Welcome">Добро пожаловать</string>
+    <string name="addEmailPass">Введите почту и пароль для входа в приложение</string>
+    <string name="Email">Email</string>
+    <string name="Pass">Пароль</string>
+    <string name="Pass_2">Повторите пароль</string>
+    <string name="forgot">Забыли пароль?</string>
+    <string name="Apply">Войти</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="restoring">Восстановление доступа</string>
+    <string name="restoringInfo">Введите почту, на которую отправим вам код</string>
+    <string name="sendCode">Подтвердить</string>
+    <string name="registration">Регистрация</string>
+    <string name="nav_main">Главная</string>
+    <string name="nav_analytics">Аналитика</string>
+    <string name="nav_history">История</string>
+    <string name="nav_other">Еще</string>
+    <string name="analytics">Аналитика</string>
+    <string name="period">Период</string>
+    <string name="or">или</string>
+    <string name="google">Google</string>
+    <string name="apple">Apple</string>
+    <string name="noAccount">Нет аккаунта?</string>
 </resources>
