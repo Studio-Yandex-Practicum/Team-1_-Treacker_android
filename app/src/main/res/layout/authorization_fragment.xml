@@ -178,6 +178,7 @@
         app:layout_constraintStart_toStartOf="@id/bt_apply"
         android:layout_marginTop="@dimen/dim20"
         android:gravity="center"
+        android:textColor="@color/secondary"
         android:text="@string/or"
         />
     <View
