@@ -57,15 +57,15 @@ class RegistrationFragment : Fragment() {
 
     private fun setupTextWatcher() {
         val emailErrorMessage = "Пожалуйста, введите корректный Email"
-        val passwordLengthErrorMessage = "Пароль должен содержать не менее 6 символов"
+        val passwordLengthErrorMessage = "Пароль должен содержать не менее 7 символов"
         val passwordMismatchErrorMessage = "Пароли не совпадают"
 
-        val emailTextWatcher = object : TextWatcher {
+        binding.etEmail.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val email = s.toString()
-                if (email.isBlank()) {
+                emal = s.toString()
+                if (emal.isBlank()) {
                     showError(binding.errorEmail, emailErrorMessage)
                 } else {
                     hideError(binding.errorEmail)
@@ -74,51 +74,41 @@ class RegistrationFragment : Fragment() {
             }
 
             override fun afterTextChanged(s: Editable?) {}
-        }
-        binding.etEmail.addTextChangedListener(emailTextWatcher)
+        })
 
-        val passwordTextWatcher = object : TextWatcher {
+        binding.etPass.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val password = binding.etPass.text.toString()
-                if (password.length < 6) {
+                passFirst = s.toString()
+                if (passFirst.length < 7) {
                     showError(binding.errorPass, passwordLengthErrorMessage)
                 } else {
                     hideError(binding.errorPass)
                 }
-                if (binding.etEmail.length() < 1) {
-                    showError(binding.errorEmail, emailErrorMessage)
-                }
                 checkingInput()
             }
 
             override fun afterTextChanged(s: Editable?) {}
-        }
-        binding.etPass.addTextChangedListener(passwordTextWatcher)
+        })
 
-        val ConfirmTextWatcher = object : TextWatcher {
+        binding.etPass2.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val password = binding.etPass.text.toString()
-                val confirmPassword = s.toString()
-                if (confirmPassword.length < 6) {
+                passSecond = s.toString()
+                if (passSecond.length < 7) {
                     showError(binding.errorPass2, passwordLengthErrorMessage)
-                } else if (password != confirmPassword) {
+                } else if (passSecond != passFirst) {
                     showError(binding.errorPass2, passwordMismatchErrorMessage)
                 } else {
                     hideError(binding.errorPass2)
                 }
-                if (binding.etEmail.length() < 1) {
-                    showError(binding.errorEmail, emailErrorMessage)
-                }
                 checkingInput()
             }
 
             override fun afterTextChanged(s: Editable?) {}
-        }
-        binding.etPass2.addTextChangedListener(ConfirmTextWatcher)
+        })
     }
 
     private fun showError(view: TextView, message: String) {
@@ -132,7 +122,7 @@ class RegistrationFragment : Fragment() {
 
     private fun checkingInput() {
         binding.btApply.isEnabled =
-            emal.isNotBlank() && passFirst.length > 6 && passSecond.length > 6 && passFirst == passSecond
+            emal.isNotBlank() && passFirst.length >= 6 && passSecond.length >= 6 && passFirst == passSecond
     }
 
     private fun setupObservers() {
