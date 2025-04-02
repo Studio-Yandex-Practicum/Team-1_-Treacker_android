@@ -1,4 +1,4 @@
-package com.example.tracker.passwordRecovery.ui
+package com.example.tracker.password_recovery.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -24,7 +24,7 @@ class RecoveryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.backArrow.setOnClickListener{
+        binding.backArrow.setOnClickListener {
             findNavController().popBackStack()
         }
     }

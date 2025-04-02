@@ -1,7 +1,9 @@
 package com.example.tracker.registration.domain.model
 
+import com.google.gson.annotations.SerializedName
+
 data class Registration(
-    val user_id: Int,
-    val access_token: String,
-    val refresh_token: String
+    @SerializedName("user_id") val userId: Int,
+    @SerializedName("access_token") val accessToken: String,
+    @SerializedName("refresh_token") val refreshToken: String
 )

@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/recoveryFragment"
-        android:name="com.example.tracker.passwordRecovery.ui.RecoveryFragment"
+        android:name="com.example.tracker.password_recovery.ui.RecoveryFragment"
         android:label="RecoveryFragment" />
     <fragment
         android:id="@+id/registrationFragment"
