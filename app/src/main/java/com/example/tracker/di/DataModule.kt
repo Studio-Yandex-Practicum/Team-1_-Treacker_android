@@ -1,5 +1,8 @@
 package com.example.tracker.di
 
+import com.example.tracker.authorization.data.network.ApiClientAuthorization
+import com.example.tracker.authorization.data.network.NetworkClientAuthorization
+import com.example.tracker.authorization.data.network.RetrofitClientAuthorization
 import com.example.tracker.registration.data.network.ApiClient
 import com.example.tracker.registration.data.network.NetworkClient
 import com.example.tracker.registration.data.network.RetrofitClient
@@ -21,6 +24,17 @@ val dataModule = module {
     }
     single<NetworkClient> {
         RetrofitClient(get())
+    }
+    single<ApiClientAuthorization> {
+        Retrofit.Builder()
+            .baseUrl("http://130.193.44.66:8080/")
+            .client(get<OkHttpClient>())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiClientAuthorization::class.java)
+    }
+    single<NetworkClientAuthorization> {
+        RetrofitClientAuthorization(get())
     }
 
     single {

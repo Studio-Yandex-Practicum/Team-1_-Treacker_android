@@ -87,7 +87,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title_email"
         android:layout_marginHorizontal="@dimen/dim20"
-        android:layout_marginTop="@dimen/dim20"
+        android:layout_marginTop="@dimen/dim24"
         android:paddingTop="0dp"
         android:paddingBottom="0dp"
         android:paddingHorizontal="@dimen/dim16"
@@ -136,7 +136,7 @@
         android:textSize="@dimen/text14"
         android:fontFamily="@font/regular"
         android:textColor="@color/accent"
-        android:layout_marginTop="@dimen/dim12"
+        android:layout_marginTop="@dimen/dim16"
         android:layout_marginStart="@dimen/dim20"
         />
     <android.widget.Button
