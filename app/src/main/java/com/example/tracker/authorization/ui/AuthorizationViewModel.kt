@@ -73,7 +73,7 @@ class AuthorizationViewModel(
         }
     }
     private fun processLoginError(message: String) {
-        state.postValue(AuthorizationState.Error(message))
+        loginState.postValue(LoginState.Error(message))
     }
 
 }

@@ -1,6 +1,7 @@
 package com.example.tracker.authorization.domain.interactor
 
 import com.example.tracker.authorization.data.AuthorizationInteractor
+import com.example.tracker.authorization.data.dto.LoginRequest
 import com.example.tracker.authorization.domain.model.Authorization
 import com.example.tracker.authorization.domain.model.Login
 import com.example.tracker.authorization.domain.repository.AuthorizationRepository
@@ -21,6 +22,14 @@ class AuthorizationInteractorImpl(
     }
 
     override suspend fun login(accessToken: String): Flow<Resource<Login>> = flow {
-       repository.login(accessToken)
+        try {
+            val request = LoginRequest(accessToken)
+            repository.login(request.accessToken).collect{result ->
+                emit(result)
+            }
+
+        } catch (e: Exception) {
+            emit(Resource.Error(e.localizedMessage ?: "Unknown error"))
+        }
     }
 }

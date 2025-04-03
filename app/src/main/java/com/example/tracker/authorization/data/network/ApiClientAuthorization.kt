@@ -8,11 +8,14 @@ import com.example.tracker.registration.data.dto.RegistrationRequest
 import com.example.tracker.registration.data.dto.RegistrationResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface ApiClientAuthorization {
     @POST("/auth/login")
     suspend fun authorization(@Body authorizationRequest: AuthorizationRequest): retrofit2.Response<AuthorizationResponse>
     @GET("/auth/check")
-    suspend fun login(@Body loginRequest: LoginRequest): retrofit2.Response<LoginResponse>
+    suspend fun login(
+        @Header("Authorization") token: String
+    ): retrofit2.Response<LoginResponse>
 }

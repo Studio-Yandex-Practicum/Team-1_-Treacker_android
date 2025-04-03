@@ -11,7 +11,8 @@ class RetrofitClientAuthorization(private val apiClientAuthorization: ApiClientA
         return apiClientAuthorization.authorization(request)
     }
     override suspend fun login(request: LoginRequest): Response<LoginResponse> {
-        return apiClientAuthorization.login(request)
+        val bearerToken = "Bearer ${request.accessToken}"
+        return apiClientAuthorization.login(bearerToken)
     }
-
 }
+
