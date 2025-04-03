@@ -87,7 +87,8 @@ class AuthorizationRepositoryImpl(
     }
     private fun LoginResponse.toLogin(): Login {
         return Login(
-            isValid = this.isValid
+            isValid = this.isValid,
+            success = this.success
         )
     }
 }

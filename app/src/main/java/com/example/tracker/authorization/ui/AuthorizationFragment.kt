@@ -24,7 +24,6 @@ class AuthorizationFragment : Fragment() {
     private val viewModel by viewModel<AuthorizationViewModel>()
     private var emal = ""
     private var pass = ""
-    private var token = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,7 +47,6 @@ class AuthorizationFragment : Fragment() {
         }
         binding.btApply.setOnClickListener {
             viewModel.loadData(emal, pass)
-            viewModel.login(token)
         }
     }
 
@@ -117,7 +115,7 @@ class AuthorizationFragment : Fragment() {
                 is AuthorizationState.Content -> {
                     state.data?.let {
                         Log.e("authorization", "успех: ${it}")
-                        token = state.data.accessToken
+                        viewModel.login(state.data.accessToken)
                     }
                 }
             }
