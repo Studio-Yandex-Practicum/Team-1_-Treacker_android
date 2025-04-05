@@ -1,5 +1,7 @@
     package com.example.tracker.authorization.ui
 
+    import android.content.Context
+    import android.content.SharedPreferences
     import android.os.Bundle
     import android.text.Editable
     import android.text.TextWatcher
@@ -15,6 +17,7 @@
     import com.example.tracker.databinding.AuthorizationFragmentBinding
     import com.example.tracker.util.AuthorizationState
     import com.example.tracker.util.LoginState
+    import com.example.tracker.util.RefreshState
     import org.koin.androidx.viewmodel.ext.android.viewModel
 
     class AuthorizationFragment : Fragment() {
@@ -24,6 +27,9 @@
         private val viewModel by viewModel<AuthorizationViewModel>()
         private var emal = ""
         private var pass = ""
+        private var refreshToken = ""
+        lateinit var sharedPreferences:SharedPreferences
+        lateinit var editor: SharedPreferences.Editor
 
         override fun onCreateView(
             inflater: LayoutInflater,
@@ -36,8 +42,11 @@
 
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
+            sharedPreferences = requireContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+            editor = sharedPreferences.edit()
             setupTextWatcher()
             setupObservers()
+            checkLogin()
 
             binding.forgotPass.setOnClickListener {
                 findNavController().navigate(R.id.action_authorizationFragment_to_recoveryFragment)
@@ -110,6 +119,9 @@
 
                     is AuthorizationState.Error -> {
                         Log.e("authorization", "Ошибка: ${state.message}")
+                        if (state.message.equals(" 401 - ")){
+                            viewModel.refresh(refreshToken)
+                        }
                     }
 
                     is AuthorizationState.Content -> {
@@ -128,6 +140,9 @@
 
                     is LoginState.Error -> {
                         Log.e("login", "Ошибка: ${state.message}")
+                        if (state.message.equals("401")){
+                            viewModel.refresh(refreshToken)
+                        }
                     }
 
                     is LoginState.Content -> {
@@ -136,6 +151,35 @@
                         }
                     }
                 }
+            }
+            viewModel.getRefreshState().observe(viewLifecycleOwner) { state ->
+                when (state) {
+                    is RefreshState.Empty -> {
+                        Log.d("refresh", "Пустой список данных")
+                    }
+
+                    is RefreshState.Error -> {
+                        if (state.message.equals("401 - ")){
+                            Log.d("refresh", "Авторизуйтесь")
+                        }
+                    }
+
+                    is RefreshState.Content -> {
+                        state.data?.let {
+                            Log.e("refresh", "успех: ${it}")
+                            viewModel.login(state.data.accessToken)
+                        }
+                    }
+                }
+            }
+        }
+        private fun checkLogin(){
+            val accessToken = sharedPreferences.getString("access_token", null) ?: ""
+            Log.e("check","token= $accessToken")
+            if (!accessToken.isNullOrBlank()) {
+                viewModel.login(accessToken)
+            } else {
+                Log.d("checkLogin", "Токен отсутствует. Требуется авторизация.")
             }
         }
 

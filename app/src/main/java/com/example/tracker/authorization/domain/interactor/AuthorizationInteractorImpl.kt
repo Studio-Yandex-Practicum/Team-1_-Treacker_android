@@ -4,6 +4,7 @@ import com.example.tracker.authorization.data.AuthorizationInteractor
 import com.example.tracker.authorization.data.dto.LoginRequest
 import com.example.tracker.authorization.domain.model.Authorization
 import com.example.tracker.authorization.domain.model.Login
+import com.example.tracker.authorization.domain.model.Refresh
 import com.example.tracker.authorization.domain.repository.AuthorizationRepository
 import com.example.tracker.util.Resource
 import kotlinx.coroutines.flow.Flow
@@ -17,6 +18,12 @@ class AuthorizationInteractorImpl(
         password: String
     ): Flow<Resource<Authorization>> = flow {
         repository.authorization(email, password).collect { result ->
+            emit(result)
+        }
+    }
+
+    override suspend fun refresh(refreshToken: String): Flow<Resource<Refresh>> = flow {
+        repository.refresh(refreshToken).collect{ result ->
             emit(result)
         }
     }

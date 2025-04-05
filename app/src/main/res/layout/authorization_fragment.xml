@@ -15,7 +15,7 @@
         android:textSize="@dimen/text24"
         android:fontFamily="@font/bold"
         android:textColor="@color/primaryDark"
-        android:layout_marginTop="@dimen/dim60"
+        android:layout_marginTop="@dimen/dim64"
         android:layout_marginHorizontal="@dimen/dim20"
         />
     <TextView
@@ -26,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/hello"
         android:text="@string/addEmailPass"
-        android:textSize="@dimen/text16"
+        android:textSize="@dimen/text14"
         android:fontFamily="@font/regular"
         android:textColor="@color/secondary"
         android:layout_marginTop="@dimen/dim8"
@@ -47,7 +47,6 @@
         android:paddingHorizontal="@dimen/dim16"
         app:hintTextColor="@color/color_et"
         app:errorTextColor="@color/error"
-        app:endIconTint="@color/secondary"
         android:gravity="center_vertical"
         style="@style/MyEditTextStyle"
         >
@@ -63,7 +62,8 @@
             android:singleLine="true"
             android:inputType="textEmailAddress"
             android:background="@drawable/et_shape"
-            android:fontFamily="@font/regular"
+            android:fontFamily="@font/medium"
+            android:textSize="@dimen/text14"
             style="@style/MyEditTextStyle"/>
     </com.google.android.material.textfield.TextInputLayout>
     <TextView
@@ -75,8 +75,8 @@
         android:layout_marginTop="@dimen/dim4"
         android:layout_marginBottom="@dimen/dim4"
         android:textColor="@color/error"
-        android:textSize="@dimen/text12"
-        android:fontFamily="@font/regular"
+        android:textSize="@dimen/text10"
+        android:fontFamily="@font/medium"
         android:visibility="gone"/>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -87,7 +87,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title_email"
         android:layout_marginHorizontal="@dimen/dim20"
-        android:layout_marginTop="@dimen/dim24"
+        android:layout_marginTop="@dimen/dim26"
         android:paddingTop="0dp"
         android:paddingBottom="0dp"
         android:paddingHorizontal="@dimen/dim16"
@@ -112,7 +112,8 @@
             android:singleLine="true"
             android:inputType="textPassword"
             android:background="@drawable/et_shape"
-            android:fontFamily="@font/regular"
+            android:textSize="@dimen/text14"
+            android:fontFamily="@font/medium"
             style="@style/MyEditTextStyle"/>
     </com.google.android.material.textfield.TextInputLayout>
     <TextView
@@ -124,7 +125,7 @@
         android:layout_marginTop="@dimen/dim4"
         android:textColor="@color/error"
         android:textSize="@dimen/text12"
-        android:fontFamily="@font/regular"
+        android:fontFamily="@font/medium"
         android:visibility="gone"/>
     <TextView
         android:id="@+id/forgotPass"
@@ -136,7 +137,7 @@
         android:textSize="@dimen/text14"
         android:fontFamily="@font/regular"
         android:textColor="@color/accent"
-        android:layout_marginTop="@dimen/dim16"
+        android:layout_marginTop="@dimen/dim26"
         android:layout_marginStart="@dimen/dim20"
         />
     <android.widget.Button
@@ -147,14 +148,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/forgotPass"
         android:layout_marginHorizontal="@dimen/dim20"
-        android:layout_marginTop="@dimen/dim20"
+        android:layout_marginTop="@dimen/dim24"
         android:background="@drawable/b_apply_shape"
         android:enabled="false"
         android:textColor="@color/white"
         android:textAllCaps="false"
         android:text="@string/Apply"
-        android:textSize="@dimen/text16"
-        android:fontFamily="@font/regular"
+        android:textSize="@dimen/text14"
+        android:fontFamily="@font/medium"
         />
     <View
         android:id="@+id/line_start"
@@ -176,7 +177,7 @@
         app:layout_constraintTop_toBottomOf="@id/bt_apply"
         app:layout_constraintEnd_toEndOf="@id/bt_apply"
         app:layout_constraintStart_toStartOf="@id/bt_apply"
-        android:layout_marginTop="@dimen/dim20"
+        android:layout_marginTop="@dimen/dim24"
         android:gravity="center"
         android:textColor="@color/secondary"
         android:text="@string/or"
@@ -202,7 +203,7 @@
         app:layout_constraintEnd_toStartOf="@id/b_registration_apple"
         app:layout_constraintTop_toBottomOf="@id/line_start"
         android:layout_marginStart="@dimen/dim20"
-        android:layout_marginTop="@dimen/dim20"
+        android:layout_marginTop="@dimen/dim24"
         android:background="@drawable/et_shape"
         android:textColor="@color/extended"
         android:textAllCaps="false"
@@ -213,7 +214,7 @@
         android:gravity="start"
         android:paddingLeft="@dimen/dim50"
         android:drawablePadding= "@dimen/dim8"
-        android:fontFamily="@font/regular"
+        android:fontFamily="@font/medium"
         />
     <android.widget.Button
         android:id="@+id/b_registration_apple"
@@ -235,7 +236,7 @@
         android:gravity="start"
         android:paddingLeft="@dimen/dim55"
         android:drawablePadding= "@dimen/dim8"
-        android:fontFamily="@font/regular"
+        android:fontFamily="@font/medium"
         />
     <TextView
         android:id="@+id/registration"
@@ -258,7 +259,7 @@
         app:layout_constraintEnd_toEndOf="@id/registration"
         app:layout_constraintBottom_toTopOf="@id/registration"
         android:text="@string/noAccount"
-        android:textColor="@color/primaryDark"
+        android:textColor="@color/secondary"
         android:textSize="@dimen/text14"
         android:fontFamily="@font/regular"
         />

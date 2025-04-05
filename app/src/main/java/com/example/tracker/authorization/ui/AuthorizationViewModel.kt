@@ -7,8 +7,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.tracker.authorization.data.AuthorizationInteractor
 import com.example.tracker.authorization.domain.model.Authorization
 import com.example.tracker.authorization.domain.model.Login
+import com.example.tracker.authorization.domain.model.Refresh
 import com.example.tracker.util.AuthorizationState
 import com.example.tracker.util.LoginState
+import com.example.tracker.util.RefreshState
 import com.example.tracker.util.Resource
 import kotlinx.coroutines.launch
 
@@ -20,6 +22,9 @@ class AuthorizationViewModel(
 
     private val loginState = MutableLiveData<LoginState>()
     fun getLoginState(): LiveData<LoginState> = loginState
+
+    private val refreshState = MutableLiveData<RefreshState>()
+    fun getRefreshState(): LiveData<RefreshState> = refreshState
 
     fun loadData(email: String, password: String) {
         viewModelScope.launch {
@@ -74,6 +79,32 @@ class AuthorizationViewModel(
     }
     private fun processLoginError(message: String) {
         loginState.postValue(LoginState.Error(message))
+    }
+    fun refresh(refreshToken: String){
+        viewModelScope.launch {
+            authorizationInteractor
+                .refresh(refreshToken)
+                .collect { resource ->
+                    when (resource) {
+                        is Resource.Success -> {
+                            processRefresh(resource.data)
+                        }
+                        is Resource.Error -> {
+                            processRefreshError(resource.message.toString())
+                        }
+                    }
+                }
+        }
+    }
+    private fun processRefresh(data: Refresh?) {
+        if (data == null) {
+            refreshState.postValue(RefreshState.Error("Получены пустые данные"))
+        } else {
+            refreshState.postValue(RefreshState.Content(data))
+        }
+    }
+    private fun processRefreshError(message: String) {
+        refreshState.postValue(RefreshState.Error(message))
     }
 
 }
