@@ -12,9 +12,6 @@ import com.example.tracker.authorization.domain.model.Authorization
 import com.example.tracker.authorization.domain.model.Login
 import com.example.tracker.authorization.domain.model.Refresh
 import com.example.tracker.authorization.domain.repository.AuthorizationRepository
-import com.example.tracker.registration.data.dto.RegistrationRequest
-import com.example.tracker.registration.data.dto.RegistrationResponse
-import com.example.tracker.registration.domain.model.Registration
 import com.example.tracker.util.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
