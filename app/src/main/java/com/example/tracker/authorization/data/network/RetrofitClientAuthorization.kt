@@ -1,5 +1,6 @@
 package com.example.tracker.authorization.data.network
 
+import android.content.SharedPreferences
 import com.example.tracker.authorization.data.dto.AuthorizationRequest
 import com.example.tracker.authorization.data.dto.AuthorizationResponse
 import com.example.tracker.authorization.data.dto.LoginRequest
@@ -8,7 +9,9 @@ import com.example.tracker.authorization.data.dto.RefreshRequest
 import com.example.tracker.authorization.data.dto.RefreshResponse
 import retrofit2.Response
 
-class RetrofitClientAuthorization(private val apiClientAuthorization: ApiClientAuthorization) :
+class RetrofitClientAuthorization(
+    private val apiClientAuthorization: ApiClientAuthorization
+) :
     NetworkClientAuthorization {
     override suspend fun doRequest(
         request: AuthorizationRequest

@@ -1,5 +1,7 @@
 package com.example.tracker.di
 
+import android.content.Context
+import android.content.SharedPreferences
 import com.example.tracker.authorization.data.network.ApiClientAuthorization
 import com.example.tracker.authorization.data.network.NetworkClientAuthorization
 import com.example.tracker.authorization.data.network.RetrofitClientAuthorization
@@ -49,6 +51,9 @@ val dataModule = module {
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .build()
+    }
+    single<SharedPreferences> {
+        get<Context>().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
     }
 
 }

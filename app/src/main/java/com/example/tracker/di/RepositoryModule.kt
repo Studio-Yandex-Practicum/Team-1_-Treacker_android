@@ -11,6 +11,6 @@ val repositoryModule = module {
         RegistrationRepositoryImpl(get())
     }
     single<AuthorizationRepository> {
-        AuthorizationRepositoryImpl(get())
+        AuthorizationRepositoryImpl(get(),get(),get())
     }
 }

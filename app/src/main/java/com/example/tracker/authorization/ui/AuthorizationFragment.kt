@@ -121,8 +121,9 @@ class AuthorizationFragment : Fragment() {
                 }
 
                 is AuthorizationState.Error -> {
-                    Log.e("authorization", "Ошибка: ${state.message}")
-                    if (state.message.equals(" 401 - ")) {
+                    Log.e("authorization", "${state.message}")
+                    if (state.message.equals("Ошибка: 401 - ")) {
+                        refreshToken = sharedPreferences.getString("refresh_token", null) ?: ""
                         viewModel.refresh(refreshToken)
                     }
                 }
@@ -145,7 +146,7 @@ class AuthorizationFragment : Fragment() {
                 }
 
                 is RefreshState.Error -> {
-                    if (state.message.equals("401 - ")) {
+                    if (state.message.equals("Ошибка: 401 - ")) {
                         Log.d("refresh", "Авторизуйтесь")
                     }
                 }
@@ -169,8 +170,9 @@ class AuthorizationFragment : Fragment() {
                 }
 
                 is LoginState.Error -> {
-                    Log.e("login", "Ошибка: ${state.message}")
-                    if (state.message.equals("401")) {
+                    Log.e("login", "${state.message}")
+                    if (state.message.equals("Ошибка: 401 - ")) {
+                        refreshToken = sharedPreferences.getString("refresh_token", null) ?: ""
                         viewModel.refresh(refreshToken)
                     }
                 }
