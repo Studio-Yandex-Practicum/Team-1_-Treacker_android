@@ -49,7 +49,7 @@ class AuthorizationRepositoryImpl(
         }
     }
 
-    override suspend fun refresh(refreshToken: String): Flow<Resource<Refresh>> = flow{
+    override suspend fun refresh(refreshToken: String): Flow<Resource<Refresh>> = flow {
         try {
             if (refreshToken.isEmpty()) {
                 emit(Resource.Error("Token обновления не может быть пустым"))
@@ -112,6 +112,7 @@ class AuthorizationRepositoryImpl(
                 ?: throw IllegalArgumentException("refresh_token не может быть null")
         )
     }
+
     private fun RefreshResponse.toRefresh(): Refresh {
         return Refresh(
             accessToken = this.accessToken
@@ -120,6 +121,7 @@ class AuthorizationRepositoryImpl(
                 ?: throw IllegalArgumentException("refresh_token не может быть null")
         )
     }
+
     private fun LoginResponse.toLogin(): Login {
         return Login(
             isValid = this.isValid,

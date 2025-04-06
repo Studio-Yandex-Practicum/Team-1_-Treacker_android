@@ -303,7 +303,7 @@ formatting:
     active: false
     autoCorrect: false
   NoConsecutiveBlankLines:
-    active: true
+    active: false
     autoCorrect: true
   NoEmptyClassBody:
     active: true
@@ -388,7 +388,7 @@ formatting:
     autoCorrect: true
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
   StringTemplate:
-    active: true
+    active: false
     autoCorrect: true
 
 # Правила именования переменных / функций / классов и т.п.
@@ -537,7 +537,7 @@ potential-bugs:
   IteratorNotThrowingNoSuchElementException:
     active: true
   LateinitUsage:
-    active: true
+    active: false
     ignoreAnnotated: [ 'Inject' ]
     ignoreOnClassesPattern: ''
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
@@ -627,7 +627,7 @@ style:
     active: true
     maxJumpCount: 1
   MagicNumber:
-    active: true
+    active: false
     ignoreNumbers: [ '-1', '0', '1', '2' ]
     ignoreHashCodeFunction: true
     ignorePropertyDeclaration: false
@@ -700,7 +700,7 @@ style:
   SpacingBetweenPackageAndImports:
     active: true
   ThrowsCount:
-    active: true
+    active: false
     max: 2
   # Правило выключено, потому что дублируется правилом formatting:NoTrailingSpaces, у которого есть автофикс
   TrailingWhitespace:

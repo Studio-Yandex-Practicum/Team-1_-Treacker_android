@@ -8,18 +8,24 @@ import com.example.tracker.authorization.data.dto.RefreshRequest
 import com.example.tracker.authorization.data.dto.RefreshResponse
 import retrofit2.Response
 
-class RetrofitClientAuthorization(private val apiClientAuthorization: ApiClientAuthorization) : NetworkClientAuthorization {
-    override suspend fun doRequest(request: AuthorizationRequest): Response<AuthorizationResponse> {
+class RetrofitClientAuthorization(private val apiClientAuthorization: ApiClientAuthorization) :
+    NetworkClientAuthorization {
+    override suspend fun doRequest(
+        request: AuthorizationRequest
+    ): Response<AuthorizationResponse> {
         return apiClientAuthorization.authorization(request)
     }
 
-    override suspend fun refresh(refreshRequest: RefreshRequest): Response<RefreshResponse> {
+    override suspend fun refresh(
+        refreshRequest: RefreshRequest
+    ): Response<RefreshResponse> {
         return apiClientAuthorization.refresh(refreshRequest)
     }
 
-    override suspend fun login(request: LoginRequest): Response<LoginResponse> {
+    override suspend fun login(
+        request: LoginRequest
+    ): Response<LoginResponse> {
         val bearerToken = "Bearer ${request.accessToken}"
         return apiClientAuthorization.login(bearerToken)
     }
 }
-

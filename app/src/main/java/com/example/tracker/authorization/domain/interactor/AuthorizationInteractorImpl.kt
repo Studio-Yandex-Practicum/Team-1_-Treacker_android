@@ -23,7 +23,7 @@ class AuthorizationInteractorImpl(
     }
 
     override suspend fun refresh(refreshToken: String): Flow<Resource<Refresh>> = flow {
-        repository.refresh(refreshToken).collect{ result ->
+        repository.refresh(refreshToken).collect { result ->
             emit(result)
         }
     }
@@ -31,7 +31,7 @@ class AuthorizationInteractorImpl(
     override suspend fun login(accessToken: String): Flow<Resource<Login>> = flow {
         try {
             val request = LoginRequest(accessToken)
-            repository.login(request.accessToken).collect{result ->
+            repository.login(request.accessToken).collect { result ->
                 emit(result)
             }
 

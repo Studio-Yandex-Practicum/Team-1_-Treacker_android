@@ -11,6 +11,4 @@ interface NetworkClientAuthorization {
     suspend fun doRequest(request: AuthorizationRequest): retrofit2.Response<AuthorizationResponse>
     suspend fun refresh(refreshRequest: RefreshRequest): retrofit2.Response<RefreshResponse>
     suspend fun login(request: LoginRequest): retrofit2.Response<LoginResponse>
-
-
 }
