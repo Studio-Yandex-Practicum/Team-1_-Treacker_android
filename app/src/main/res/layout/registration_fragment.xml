@@ -11,7 +11,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/back_arrow"
-        android:layout_marginTop="@dimen/dim60"
+        android:layout_marginTop="@dimen/dim78"
         android:layout_marginStart="@dimen/dim20"
         android:paddingVertical="@dimen/dim12"
         android:paddingEnd="@dimen/dim32"
@@ -60,7 +60,7 @@
             android:inputType="textEmailAddress"
             android:background="@drawable/et_shape"
             android:textSize="@dimen/text14"
-            android:fontFamily="@font/regular"
+            android:fontFamily="@font/medium"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,7 +72,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title_email"
         android:layout_marginHorizontal="@dimen/dim20"
-        android:layout_marginTop="@dimen/dim24"
+        android:layout_marginTop="@dimen/dim26"
         android:paddingTop="0dp"
         android:paddingBottom="0dp"
         android:paddingHorizontal="@dimen/dim16"
@@ -96,7 +96,8 @@
             android:singleLine="true"
             android:inputType="textPassword"
             android:background="@drawable/et_shape"
-            android:fontFamily="@font/regular"
+            android:fontFamily="@font/medium"
+            android:textSize="@dimen/text14"
             app:errorEnabled="false"
             style="@style/MyEditTextStyle"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -108,7 +109,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title_pass"
         android:layout_marginHorizontal="@dimen/dim24"
-        android:layout_marginTop="@dimen/dim24"
+        android:layout_marginTop="@dimen/dim26"
         android:paddingTop="0dp"
         android:paddingBottom="0dp"
         android:paddingHorizontal="@dimen/dim20"
@@ -132,7 +133,8 @@
             android:singleLine="true"
             android:inputType="textPassword"
             android:background="@drawable/et_shape"
-            android:fontFamily="@font/regular"
+            android:textSize="@dimen/text14"
+            android:fontFamily="@font/medium"
             app:errorEnabled="false"
             style="@style/MyEditTextStyle"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -145,7 +147,7 @@
         android:paddingTop="@dimen/dim4"
         android:paddingBottom="@dimen/dim4"
         android:textColor="@color/error"
-        android:textSize="@dimen/text12"
+        android:textSize="@dimen/text10"
         android:fontFamily="@font/regular"
         android:visibility="gone"
         />
@@ -158,7 +160,7 @@
         android:layout_marginTop="@dimen/dim4"
         android:layout_marginBottom="@dimen/dim4"
         android:textColor="@color/error"
-        android:textSize="@dimen/text12"
+        android:textSize="@dimen/text10"
         android:fontFamily="@font/regular"
         android:visibility="gone"
         />
@@ -171,7 +173,7 @@
         android:layout_marginTop="@dimen/dim4"
         android:layout_marginBottom="@dimen/dim4"
         android:textColor="@color/error"
-        android:textSize="@dimen/text12"
+        android:textSize="@dimen/text10"
         android:fontFamily="@font/regular"
         android:visibility="gone"
         />
@@ -184,14 +186,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title_pass_2"
         android:layout_marginHorizontal="@dimen/dim20"
-        android:layout_marginTop="@dimen/dim24"
+        android:layout_marginTop="@dimen/dim38"
         android:background="@drawable/b_apply_shape"
         android:enabled="false"
         android:textColor="@color/white"
         android:textAllCaps="false"
         android:text="@string/register"
         android:textSize="@dimen/text14"
-        android:fontFamily="@font/regular"
+        android:fontFamily="@font/medium"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
