@@ -132,6 +132,10 @@ class AuthorizationFragment : Fragment() {
                     state.data?.let {
                         Log.e("authorization", "успех: ${it}")
                         viewModel.login(state.data.accessToken)
+                        editor.putString("access_token", it.accessToken)
+                        editor.putString("refresh_token", it.refreshToken)
+                        editor.putString("user_id", it.userId.toString())
+                        editor.apply()
                     }
                 }
             }
