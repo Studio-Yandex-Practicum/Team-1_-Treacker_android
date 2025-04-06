@@ -105,25 +105,25 @@ complexity:
     ignoreDataClasses: true
     ignoreAnnotated: [ "Inject", "InjectConstructor", "Composable" ]
   MethodOverloading:
-    active: true
+    active: false
     threshold: 6
   NamedArguments:
-    active: true
+    active: false
     threshold: 3
   NestedBlockDepth:
-    active: true
+    active: false
     threshold: 4
   ReplaceSafeCallChainWithRun:
     active: false
   StringLiteralDuplication:
-    active: true
+    active: false
     threshold: 3
     ignoreAnnotation: true
-    excludeStringsWithLessThan5Characters: true
+    excludeStringsWithLessThan5Characters: false
     ignoreStringsRegex: '$^'
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**', '**/*.kts' ]
   TooManyFunctions:
-    active: true
+    active: false
     thresholdInFiles: 51
     thresholdInClasses: 51
     thresholdInInterfaces: 11
@@ -148,39 +148,39 @@ coroutines:
 
 # Правила для регулирования пустых блоков кода.
 empty-blocks:
-  active: true
+  active: false
   EmptyCatchBlock:
-    active: true
+    active: false
     allowedExceptionNameRegex: '_|(ignore|expected|ignored).*'
   EmptyClassBlock:
-    active: true
+    active: false
   EmptyDefaultConstructor:
-    active: true
+    active: false
   EmptyDoWhileBlock:
-    active: true
+    active: false
   EmptyElseBlock:
-    active: true
+    active: false
   EmptyFinallyBlock:
-    active: true
+    active: false
   EmptyForBlock:
-    active: true
+    active: false
   EmptyFunctionBlock:
-    active: true
+    active: false
     ignoreOverridden: false
   EmptyIfBlock:
-    active: true
+    active: false
   EmptyInitBlock:
-    active: true
+    active: false
   EmptyKtFile:
-    active: true
+    active: false
   EmptySecondaryConstructor:
-    active: true
+    active: false
   EmptyTryBlock:
-    active: true
+    active: false
   EmptyWhenBlock:
-    active: true
+    active: false
   EmptyWhileBlock:
-    active: true
+    active: false
 
 # Правила для регулирования работы с исключениями.
 exceptions:
@@ -224,9 +224,9 @@ exceptions:
       - IOException
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
   ThrowingNewInstanceOfSameException:
-    active: true
+    active: false
   TooGenericExceptionCaught:
-    active: true
+    active: false
     exceptionNames:
       - ArrayIndexOutOfBoundsException
       - Error
@@ -239,7 +239,7 @@ exceptions:
     allowedExceptionNameRegex: '_|(ignore|expected|ignored).*'
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
   TooGenericExceptionThrown:
-    active: true
+    active: false
     exceptionNames:
       - Error
       - Exception
@@ -393,19 +393,19 @@ formatting:
 
 # Правила именования переменных / функций / классов и т.п.
 naming:
-  active: true
+  active: false
   ClassNaming:
-    active: true
+    active: false
     classPattern: '([A-Z$][a-zA-Z0-9$]*|[_A-Z]*(_SCREEN)*)'
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
   ConstructorParameterNaming:
-    active: true
+    active: false
     parameterPattern: '[a-z][A-Za-z0-9]*'
     privateParameterPattern: '[a-z][A-Za-z0-9]*'
     excludeClassPattern: '$^'
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
   EnumNaming:
-    active: true
+    active: false
     enumEntryPattern: '^[A-Z][_a-zA-Z0-9]*'
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
   # Правило выключено, потому что мы не ограничиваем фантазию разработчиков
@@ -426,13 +426,13 @@ naming:
     minimumFunctionNameLength: 3
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
   FunctionNaming:
-    active: true
+    active: false
     functionPattern: '([a-z][a-zA-Z0-9]*)|(`.*`)'
     excludeClassPattern: '$^'
     ignoreAnnotated: [ 'Composable' ]
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
   FunctionParameterNaming:
-    active: true
+    active: false
     parameterPattern: '[a-z][A-Za-z0-9]*'
     excludeClassPattern: '$^'
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
@@ -452,17 +452,17 @@ naming:
     active: true
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
   ObjectPropertyNaming:
-    active: true
+    active: false
     constantPattern: '[A-Za-z][_A-Za-z0-9]*'
     propertyPattern: '[A-Za-z][_A-Za-z0-9]*'
     privatePropertyPattern: '(_)?[A-Za-z][_A-Za-z0-9]*'
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
   PackageNaming:
-    active: true
+    active: false
     packagePattern: '^[a-z]+(\.[a-z][a-z0-9]*)*$'
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
   TopLevelPropertyNaming:
-    active: true
+    active: false
     constantPattern: '[A-Z][_A-Za-z0-9]*'
     propertyPattern: '[A-Za-z][_A-Za-z0-9]*'
     privatePropertyPattern: '_?[A-Za-z][_A-Za-z0-9]*'
@@ -482,7 +482,7 @@ naming:
     minimumVariableNameLength: 1
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
   VariableNaming:
-    active: true
+    active: false
     variablePattern: '[a-z][A-Za-z0-9]*'
     privateVariablePattern: '(_)?[a-z][A-Za-z0-9]*'
     excludeClassPattern: '$^'

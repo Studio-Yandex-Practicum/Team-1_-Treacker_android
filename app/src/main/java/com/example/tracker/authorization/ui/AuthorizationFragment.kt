@@ -48,6 +48,7 @@ class AuthorizationFragment : Fragment() {
         setupObserveCheck()
         setupTextWatcher()
         setupObservers()
+        setupObserveLogin()
         checkLogin()
 
         binding.forgotPass.setOnClickListener {
@@ -134,26 +135,6 @@ class AuthorizationFragment : Fragment() {
                 }
             }
         }
-        viewModel.getLoginState().observe(viewLifecycleOwner) { state ->
-            when (state) {
-                is LoginState.Empty -> {
-                    Log.d("login", "Пустой список данных")
-                }
-
-                is LoginState.Error -> {
-                    Log.e("login", "Ошибка: ${state.message}")
-                    if (state.message.equals("401")) {
-                        viewModel.refresh(refreshToken)
-                    }
-                }
-
-                is LoginState.Content -> {
-                    state.data?.let {
-                        Log.e("login", "успех: ${it}")
-                    }
-                }
-            }
-        }
     }
 
     private fun setupObserveCheck() {
@@ -178,6 +159,29 @@ class AuthorizationFragment : Fragment() {
             }
         }
 
+    }
+
+    private fun setupObserveLogin() {
+        viewModel.getLoginState().observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is LoginState.Empty -> {
+                    Log.d("login", "Пустой список данных")
+                }
+
+                is LoginState.Error -> {
+                    Log.e("login", "Ошибка: ${state.message}")
+                    if (state.message.equals("401")) {
+                        viewModel.refresh(refreshToken)
+                    }
+                }
+
+                is LoginState.Content -> {
+                    state.data?.let {
+                        Log.e("login", "успех: ${it}")
+                    }
+                }
+            }
+        }
     }
 
     private fun checkLogin() {

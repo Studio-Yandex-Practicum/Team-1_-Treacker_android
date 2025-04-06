@@ -35,6 +35,7 @@ class AuthorizationViewModel(
                         is Resource.Success -> {
                             processResult(resource.data)
                         }
+
                         is Resource.Error -> {
                             processError(resource.message.toString())
                         }
@@ -42,6 +43,7 @@ class AuthorizationViewModel(
                 }
         }
     }
+
     private fun processResult(data: Authorization?) {
         if (data == null) {
             state.postValue(AuthorizationState.Error("Получены пустые данные"))
@@ -54,7 +56,7 @@ class AuthorizationViewModel(
         state.postValue(AuthorizationState.Error(message))
     }
 
-    fun login(accessToken: String){
+    fun login(accessToken: String) {
         viewModelScope.launch {
             authorizationInteractor
                 .login(accessToken)
@@ -63,6 +65,7 @@ class AuthorizationViewModel(
                         is Resource.Success -> {
                             processLogin(resource.data)
                         }
+
                         is Resource.Error -> {
                             processLoginError(resource.message.toString())
                         }
@@ -70,6 +73,7 @@ class AuthorizationViewModel(
                 }
         }
     }
+
     private fun processLogin(data: Login?) {
         if (data == null) {
             loginState.postValue(LoginState.Error("Получены пустые данные"))
@@ -77,10 +81,12 @@ class AuthorizationViewModel(
             loginState.postValue(LoginState.Content(data))
         }
     }
+
     private fun processLoginError(message: String) {
         loginState.postValue(LoginState.Error(message))
     }
-    fun refresh(refreshToken: String){
+
+    fun refresh(refreshToken: String) {
         viewModelScope.launch {
             authorizationInteractor
                 .refresh(refreshToken)
@@ -89,6 +95,7 @@ class AuthorizationViewModel(
                         is Resource.Success -> {
                             processRefresh(resource.data)
                         }
+
                         is Resource.Error -> {
                             processRefreshError(resource.message.toString())
                         }
@@ -96,6 +103,7 @@ class AuthorizationViewModel(
                 }
         }
     }
+
     private fun processRefresh(data: Refresh?) {
         if (data == null) {
             refreshState.postValue(RefreshState.Error("Получены пустые данные"))
@@ -103,6 +111,7 @@ class AuthorizationViewModel(
             refreshState.postValue(RefreshState.Content(data))
         }
     }
+
     private fun processRefreshError(message: String) {
         refreshState.postValue(RefreshState.Error(message))
     }
