@@ -62,7 +62,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_email"
             android:layout_width="match_parent"
-            android:layout_height="57dp"
+            android:layout_height="@dimen/dim60"
             android:hint="@string/Email"
             android:textColorHint="@color/secondary"
             android:gravity="center_vertical"

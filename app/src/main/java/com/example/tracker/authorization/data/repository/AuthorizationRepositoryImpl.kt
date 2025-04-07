@@ -15,13 +15,16 @@ import com.example.tracker.authorization.domain.model.Login
 import com.example.tracker.authorization.domain.model.Refresh
 import com.example.tracker.authorization.domain.repository.AuthorizationRepository
 import com.example.tracker.util.Resource
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.launch
 
 class AuthorizationRepositoryImpl(
     private val networkClientAuthorization: NetworkClientAuthorization,
-    private var sharedPreferences: SharedPreferences,
-    private val context: Context
+    private var sharedPreferences: SharedPreferences
 ) : AuthorizationRepository {
     override suspend fun authorization(
         email: String,
@@ -100,9 +103,9 @@ class AuthorizationRepositoryImpl(
                     emit(Resource.Error("Пустое тело ответа"))
                 }
             } else if (response.code() == 401) {
-                val newAccessToken = refreshAccessToken()
-                if (newAccessToken != null) {
-                    val newRequest = LoginRequest(newAccessToken)
+                val refreshToken = sharedPreferences.getString("refresh_token", "")
+                if (refreshToken != null) {
+                    val newRequest = LoginRequest(refreshToken)
                     val newResponse = networkClientAuthorization.login(newRequest)
 
                     if (newResponse.isSuccessful) {
@@ -126,39 +129,6 @@ class AuthorizationRepositoryImpl(
             Log.e("Registration", "Ошибка при выполнении запроса: ${e.message}", e)
             emit(Resource.Error("Сетевая ошибка: ${e.message}"))
         }
-    }
-
-    private suspend fun refreshAccessToken(): String? {
-        try {
-            val refreshToken = sharedPreferences.getString("refresh_token", null)
-
-            if (refreshToken.isNullOrEmpty()) {
-                Log.e("TokenRefresh", "Refresh token is null or empty")
-                return null
-            }
-
-            val refreshRequest = RefreshRequest(refreshToken)
-            val response = networkClientAuthorization.refresh(refreshRequest)
-
-            if (response.isSuccessful) {
-                val newTokens = response.body()
-                if (newTokens != null) {
-                    with(sharedPreferences.edit()) {
-                        putString("access_token", newTokens.accessToken)
-                        putString("refresh_token", newTokens.refreshToken) // если нужно
-                        apply()
-                    }
-                    return newTokens.accessToken
-                } else {
-                    Log.e("TokenRefresh", "Response body is null")
-                }
-            } else {
-                Log.e("TokenRefresh", "Ошибка обновления токена: ${response.code()} - ${response.message()}")
-            }
-        } catch (e: Exception) {
-            Log.e("TokenRefresh", "Ошибка при обновлении токена: ${e.message}", e)
-        }
-        return null
     }
 
 

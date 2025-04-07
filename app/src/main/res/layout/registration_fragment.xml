@@ -50,7 +50,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_email"
             android:layout_width="match_parent"
-            android:layout_height="57dp"
+            android:layout_height="@dimen/dim60"
             android:hint="@string/Email"
             android:textColorHint="@color/secondary"
             android:gravity="center_vertical"
@@ -87,7 +87,7 @@
         <EditText
             android:id="@+id/et_pass"
             android:layout_width="match_parent"
-            android:layout_height="57dp"
+            android:layout_height="@dimen/dim60"
             android:hint="@string/Pass"
             android:textColorHint="@color/secondary"
             android:gravity="center_vertical"
@@ -124,7 +124,7 @@
         <EditText
             android:id="@+id/et_pass_2"
             android:layout_width="match_parent"
-            android:layout_height="57dp"
+            android:layout_height="@dimen/dim60"
             android:hint="@string/Pass_2"
             android:textColorHint="@color/secondary"
             android:gravity="center_vertical"
