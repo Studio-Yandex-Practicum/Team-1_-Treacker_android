@@ -28,8 +28,6 @@ class AuthorizationFragment : Fragment() {
     private var emal = ""
     private var pass = ""
     private var refreshToken = ""
-    lateinit var sharedPreferences: SharedPreferences
-    lateinit var editor: SharedPreferences.Editor
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,9 +40,6 @@ class AuthorizationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sharedPreferences =
-            requireContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
-        editor = sharedPreferences.edit()
         setupObserveCheck()
         setupTextWatcher()
         setupObservers()
@@ -123,7 +118,7 @@ class AuthorizationFragment : Fragment() {
                 is AuthorizationState.Error -> {
                     Log.e("authorization", "${state.message}")
                     if (state.message.equals("Ошибка: 401 - ")) {
-                        refreshToken = sharedPreferences.getString("refresh_token", null) ?: ""
+                        refreshToken = viewModel.getRefreshToken()
                         viewModel.refresh(refreshToken)
                     }
                 }
@@ -132,10 +127,6 @@ class AuthorizationFragment : Fragment() {
                     state.data?.let {
                         Log.e("authorization", "успех: ${it}")
                         viewModel.login(state.data.accessToken)
-                        editor.putString("access_token", it.accessToken)
-                        editor.putString("refresh_token", it.refreshToken)
-                        editor.putString("user_id", it.userId.toString())
-                        editor.apply()
                     }
                 }
             }
@@ -176,7 +167,7 @@ class AuthorizationFragment : Fragment() {
                 is LoginState.Error -> {
                     Log.e("login", "${state.message}")
                     if (state.message.equals("Ошибка: 401 - ")) {
-                        refreshToken = sharedPreferences.getString("refresh_token", null) ?: ""
+                        refreshToken = viewModel.getRefreshToken()
                         viewModel.refresh(refreshToken)
                     } else if (state.message.equals("Сетевая ошибка: Failed to connect to /130.193.44.66:8080")) {
                         Log.e("login", "вход без проверки")
@@ -193,7 +184,7 @@ class AuthorizationFragment : Fragment() {
     }
 
     private fun checkLogin() {
-        val accessToken = sharedPreferences.getString("access_token", null) ?: ""
+        val accessToken = viewModel.getAccessToken()
         Log.e("check", "token= $accessToken")
         if (!accessToken.isNullOrBlank()) {
             viewModel.login(accessToken)

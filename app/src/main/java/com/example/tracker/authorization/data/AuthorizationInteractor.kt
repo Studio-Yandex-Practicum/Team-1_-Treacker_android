@@ -10,4 +10,6 @@ interface AuthorizationInteractor {
     suspend fun authorization(email: String, password: String): Flow<Resource<Authorization>>
     suspend fun refresh(refreshToken: String): Flow<Resource<Refresh>>
     suspend fun login(accessToken: String): Flow<Resource<Login>>
+    fun getAccessToken(): String
+    fun getRefreshToken(): String
 }

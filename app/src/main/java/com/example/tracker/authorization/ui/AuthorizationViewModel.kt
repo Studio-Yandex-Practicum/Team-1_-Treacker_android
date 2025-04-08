@@ -116,4 +116,11 @@ class AuthorizationViewModel(
         refreshState.postValue(RefreshState.Error(message))
     }
 
+    fun getAccessToken(): String {
+        return authorizationInteractor.getAccessToken()
+    }
+
+    fun getRefreshToken(): String {
+        return authorizationInteractor.getRefreshToken()
+    }
 }

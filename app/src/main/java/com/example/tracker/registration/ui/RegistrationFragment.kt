@@ -25,8 +25,6 @@ class RegistrationFragment : Fragment() {
     private var emal = ""
     private var passFirst = ""
     private var passSecond = ""
-    private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var editor: SharedPreferences.Editor
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,10 +37,6 @@ class RegistrationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        sharedPreferences =
-            requireContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
-        editor = sharedPreferences.edit()
 
         setupTextWatcher()
         setupObservers()
@@ -139,10 +133,9 @@ class RegistrationFragment : Fragment() {
                 is RegistrationState.Content -> {
                     state.data?.let {
                         Log.e("login", "успех: ${it}")
-                        editor.putString("access_token", it.accessToken)
-                        editor.putString("refresh_token", it.refreshToken)
-                        editor.putString("user_id", it.userId.toString())
-                        editor.apply()
+                        viewModel.setAccessToken(it.accessToken)
+                        viewModel.setRefreshToken(it.refreshToken)
+                        viewModel.setIdToken(it.userId)
                     }
                 }
             }

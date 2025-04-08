@@ -39,4 +39,12 @@ class AuthorizationInteractorImpl(
             emit(Resource.Error(e.localizedMessage ?: "Unknown error"))
         }
     }
+
+    override fun getAccessToken(): String {
+        return repository.getAccessToken()
+    }
+
+    override fun getRefreshToken(): String {
+        return repository.getRefreshToken()
+    }
 }

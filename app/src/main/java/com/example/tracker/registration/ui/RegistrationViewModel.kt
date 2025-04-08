@@ -25,6 +25,7 @@ class RegistrationViewModel(
                         is Resource.Success -> {
                             processResult(resource.data)
                         }
+
                         is Resource.Error -> {
                             processError(resource.message.toString())
                         }
@@ -43,5 +44,17 @@ class RegistrationViewModel(
 
     private fun processError(message: String) {
         state.postValue(RegistrationState.Error(message))
+    }
+
+    fun setAccessToken(accessToken: String) {
+        registrationInteractor.setAccessToken(accessToken)
+    }
+
+    fun setRefreshToken(refreshToken: String) {
+        registrationInteractor.setRefreshToken(refreshToken)
+    }
+
+    fun setIdToken(idToken: Int) {
+        registrationInteractor.setIdToken(idToken)
     }
 }

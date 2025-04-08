@@ -2,6 +2,7 @@ package com.example.tracker.authorization.data.repository
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.SharedPreferences.Editor
 import android.util.Log
 import com.example.tracker.authorization.data.dto.AuthorizationRequest
 import com.example.tracker.authorization.data.dto.AuthorizationResponse
@@ -37,6 +38,7 @@ class AuthorizationRepositoryImpl(
             }
             val request = AuthorizationRequest(email, password)
             val response = networkClientAuthorization.doRequest(request)
+            val editor = sharedPreferences.edit()
 
             if (response.isSuccessful) {
                 val loginResponse = response.body()
@@ -44,6 +46,10 @@ class AuthorizationRepositoryImpl(
                 if (loginResponse != null) {
                     val authorization = loginResponse.toAuthorization()
                     emit(Resource.Success(authorization))
+                    editor.putString("access_token", authorization.accessToken)
+                    editor.putString("refresh_token", authorization.refreshToken)
+                    editor.putString("user_id", authorization.userId.toString())
+                    editor.apply()
                 } else {
                     emit(Resource.Error("Пустое тело ответа"))
                 }
@@ -131,6 +137,15 @@ class AuthorizationRepositoryImpl(
         }
     }
 
+    override fun getAccessToken(): String {
+        val accessToken = sharedPreferences.getString("access_token", "") ?: ""
+        return accessToken
+    }
+
+    override fun getRefreshToken(): String {
+        val refreshToken = sharedPreferences.getString("refresh_token", "") ?: ""
+        return refreshToken
+    }
 
     private fun AuthorizationResponse.toAuthorization(): Authorization {
         return Authorization(
