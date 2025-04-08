@@ -178,7 +178,7 @@ class AuthorizationFragment : Fragment() {
                     if (state.message.equals("Ошибка: 401 - ")) {
                         refreshToken = sharedPreferences.getString("refresh_token", null) ?: ""
                         viewModel.refresh(refreshToken)
-                    } else if (state.message.equals("Сетевая ошибка: Failed to connect to /130.193.44.66:8080")){
+                    } else if (state.message.equals("Сетевая ошибка: Failed to connect to /130.193.44.66:8080")) {
                         Log.e("login", "вход без проверки")
                     }
                 }
