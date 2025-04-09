@@ -2,8 +2,19 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Team1TrackerAndroid" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-    </style>
 
+        <!-- Цвет кнопок -->
+        <item name="colorPrimary">@color/text_primary_light</item>
+
+        <!-- Цвета фонов -->
+        <item name="colorOnPrimary">@color/bg_primary_light</item>
+        <item name="android:windowBackground">@color/bg_secondary_light</item>
+        <item name="android:statusBarColor">@color/bg_secondary_light</item>
+
+        <!-- Цвет текста по-умолчанию -->
+        <item name="android:textColor">@color/text_primary_light</item>
+        <item name="android:textColorHint">@color/text_secondary_light_dark</item>
+
+    </style>
     <style name="Theme.Team1TrackerAndroid" parent="Base.Theme.Team1TrackerAndroid" />
 </resources>

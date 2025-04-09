@@ -1,8 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("kotlin-kapt")
-    id("org.jetbrains.kotlin.kapt")
+    alias(libs.plugins.google.devtools.ksp)
 }
 
 android {
@@ -56,7 +55,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
     // Glide for image loading
     implementation("com.github.bumptech.glide:glide:4.14.2")
-    kapt("com.github.bumptech.glide:compiler:4.14.2")
+    ksp("com.github.bumptech.glide:compiler:4.14.2")
     // Gson for JSON parsing
     implementation("com.google.code.gson:gson:2.10.1")
     // Retrofit for networking
@@ -73,7 +72,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     // Room for database management
     implementation("androidx.room:room-runtime:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
     implementation("com.squareup.okhttp3:logging-interceptor:3.9.0")
 }
