@@ -1,4 +1,4 @@
-package com.example.tracker.addExpense.domain.models
+package com.example.tracker.expense.domain.models
 
 import java.util.Date
 

@@ -4,6 +4,10 @@ import com.example.tracker.authorization.data.AuthorizationInteractor
 import com.example.tracker.authorization.domain.interactor.AuthorizationInteractorImpl
 import com.example.tracker.registration.data.RegistrationInteractor
 import com.example.tracker.registration.domain.interactor.RegistrationInteractorImpl
+import com.example.tracker.core.domain.PrepopulateCategoryUseCase
+import com.example.tracker.core.domain.PrepopulateCategoryUseCaseImpl
+import com.example.tracker.expense.domain.GetAllCategoriesUseCase
+import com.example.tracker.expense.domain.GetAllCategoriesUseCaseImpl
 import org.koin.dsl.module
 
 val interactorModule = module {
@@ -12,5 +16,11 @@ val interactorModule = module {
     }
     single<AuthorizationInteractor> {
         AuthorizationInteractorImpl(get())
+    }
+    single<PrepopulateCategoryUseCase> {
+        PrepopulateCategoryUseCaseImpl(get())
+    }
+    single<GetAllCategoriesUseCase> {
+        GetAllCategoriesUseCaseImpl(get())
     }
 }

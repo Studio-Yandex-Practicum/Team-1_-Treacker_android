@@ -1,10 +1,10 @@
-package core.db.entity
+package com.example.tracker.core.db.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import core.db.dao.OperationDao
+import com.example.tracker.core.db.dao.OperationDao
 
 @Entity(
     tableName = OperationDao.TABLE_NAME,

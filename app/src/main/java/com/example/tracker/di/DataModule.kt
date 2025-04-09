@@ -7,7 +7,7 @@ import com.example.tracker.authorization.data.network.RetrofitClientAuthorizatio
 import com.example.tracker.registration.data.network.ApiClient
 import com.example.tracker.registration.data.network.NetworkClient
 import com.example.tracker.registration.data.network.RetrofitClient
-import core.db.AppDatabase
+import com.example.tracker.core.db.AppDatabase
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
