@@ -24,4 +24,17 @@
     <color name="bg_primary_dark">#2C2C2C</color>
     <color name="bg_secondary_dark">#1C1C1D</color>
 
+    <!--    category icon color-->
+    <color name="ic_blue_primary">#0083D4</color>
+    <color name="ic_dark_blue_primary">#1676E4</color>
+    <color name="ic_purple_primary">#EB2688</color>
+    <color name="ic_violet_primary">#9440DE</color>
+    <color name="ic_yellow_primary">#E0AF00</color>
+    <color name="ic_green_primary">#009F31</color>
+    <color name="ic_light_green_primary">#5B9800</color>
+    <color name="ic_orange_primary">#E88800</color>
+    <color name="ic_red_primary">#EC3B3B</color>
+    <color name="ic_light_blue_primary">#0395BE</color>
+    <color name="ic_gray_primary">#626262</color>
+
 </resources>
