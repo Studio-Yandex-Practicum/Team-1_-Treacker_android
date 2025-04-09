@@ -2,14 +2,17 @@ package com.example.tracker.di
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.room.Room
 import com.example.tracker.authorization.data.network.ApiClientAuthorization
 import com.example.tracker.authorization.data.network.NetworkClientAuthorization
 import com.example.tracker.authorization.data.network.RetrofitClientAuthorization
 import com.example.tracker.registration.data.network.ApiClient
 import com.example.tracker.registration.data.network.NetworkClient
 import com.example.tracker.registration.data.network.RetrofitClient
+import core.db.AppDatabase
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -54,6 +57,12 @@ val dataModule = module {
     }
     single<SharedPreferences> {
         get<Context>().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+    }
+
+    single {
+        Room
+            .databaseBuilder(androidContext(), AppDatabase::class.java, "tracker.db")
+            .build()
     }
 
 }
