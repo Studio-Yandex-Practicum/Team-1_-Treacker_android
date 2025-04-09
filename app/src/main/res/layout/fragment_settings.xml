@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="@dimen/dim20">
+
+    <!-- Назад -->
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/back"
+        android:src="@drawable/ic_back_arrow"
+        app:tint="?attr/colorPrimary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Заголовок -->
+    <TextView
+        android:id="@+id/settingsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="@string/settings"
+        android:textSize="@dimen/text16"
+        android:fontFamily="@font/bold"
+        android:textFontWeight="500"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Темная тема -->
+    <LinearLayout
+        android:id="@+id/darkThemeCard"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dim60"
+        android:layout_marginTop="@dimen/dim24"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/dim12"
+        android:background="@drawable/bg_rounded_primary"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/settingsTitle" >
+
+            <TextView
+                android:id="@+id/darkThemeText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Тёмная тема"
+                android:textSize="@dimen/text14"
+                android:fontFamily="@font/bold" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/themeSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:thumb="@drawable/sw_thumb"
+                app:track="@drawable/sw_track"
+                app:thumbTint="@color/sw_thumb_tint"
+                app:trackTint="@color/sw_track_tint"
+                 />
+    </LinearLayout>
+
+    <!-- Напоминания -->
+    <LinearLayout
+        android:id="@+id/reminderCard"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dim60"
+        android:layout_marginTop="@dimen/dim8"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/dim12"
+        android:background="@drawable/bg_rounded_primary"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/darkThemeCard">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Напоминания"
+                android:textSize="@dimen/text14"
+                android:fontFamily="@font/bold"
+                android:textFontWeight="500" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Будем напоминать фиксировать расходы"
+                android:textSize="@dimen/text12"
+                android:fontFamily="@font/regular"
+                android:textFontWeight="400" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_forward"
+            app:tint="?attr/colorPrimary" />
+    </LinearLayout>
+
+    <!-- Экспорт -->
+    <LinearLayout
+        android:id="@+id/exportCard"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dim60"
+        android:layout_marginTop="@dimen/dim8"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/dim12"
+        android:background="@drawable/bg_rounded_primary"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/reminderCard">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Экспорт расходов"
+                android:textSize="@dimen/text14"
+                android:fontFamily="@font/bold"
+                android:textFontWeight="500" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="CSV"
+                android:textSize="@dimen/text12"
+                android:fontFamily="@font/regular"
+                android:textFontWeight="400" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_download"
+            app:tint="?attr/colorPrimary" />
+    </LinearLayout>
+
+    <!-- Валюта -->
+    <LinearLayout
+        android:id="@+id/exchangeCard"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dim60"
+        android:layout_marginTop="@dimen/dim8"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/dim12"
+        android:background="@drawable/bg_rounded_primary"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/exportCard">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Валюта"
+                android:textSize="@dimen/text14"
+                android:fontFamily="@font/bold"
+                android:textFontWeight="500" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="RUB"
+                android:textSize="@dimen/text12"
+                android:fontFamily="@font/regular"
+                android:textFontWeight="400" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_forward"
+            app:tint="?attr/colorPrimary" />
+    </LinearLayout>
+
+    <!-- Выход -->
+    <LinearLayout
+        android:id="@+id/exitCard"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dim60"
+        android:layout_marginTop="@dimen/dim8"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/dim12"
+        android:background="@drawable/bg_rounded_primary"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/exchangeCard" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Выйти из аккаунта"
+            android:textSize="@dimen/text14"
+            android:fontFamily="@font/bold"
+            android:textColor="@color/error"
+            android:textFontWeight="500" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_exit" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,17 @@
     <color name="backgroud_et">#FEFEFE</color>
     <color name="extended">#64748B</color>
 
+    <!-- Цвета темы из макета -->
+    <color name="text_primary_light">#1B1B1B</color>
+    <color name="text_primary_dark">#FFFFFF</color>
+    <color name="text_secondary_light_dark">#898989</color>
+    <color name="primary_light">#FFFFFF</color>
+    <color name="primary_dark">#1B1B1B</color>
+    <color name="bg_primary_light">#F4F4F4</color>
+    <color name="bg_secondary_light">#FFFFFF</color>
+    <color name="bg_primary_dark">#2C2C2C</color>
+    <color name="bg_secondary_dark">#1C1C1D</color>
+
     <!--    category icon color-->
     <color name="ic_blue_primary">#0083D4</color>
     <color name="ic_dark_blue_primary">#1676E4</color>
