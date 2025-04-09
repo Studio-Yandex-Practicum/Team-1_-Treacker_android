@@ -1,8 +1,6 @@
 package com.example.tracker.authorization.data.repository
 
-import android.content.Context
 import android.content.SharedPreferences
-import android.content.SharedPreferences.Editor
 import android.util.Log
 import com.example.tracker.authorization.data.dto.AuthorizationRequest
 import com.example.tracker.authorization.data.dto.AuthorizationResponse
@@ -16,12 +14,9 @@ import com.example.tracker.authorization.domain.model.Login
 import com.example.tracker.authorization.domain.model.Refresh
 import com.example.tracker.authorization.domain.repository.AuthorizationRepository
 import com.example.tracker.util.Resource
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.launch
+import retrofit2.Response
 
 class AuthorizationRepositoryImpl(
     private val networkClientAuthorization: NetworkClientAuthorization,
@@ -96,44 +91,46 @@ class AuthorizationRepositoryImpl(
                 return@flow
             }
 
-            val request = LoginRequest(accessToken)
-            val response = networkClientAuthorization.login(request)
+            emit(handleLoginRequest(accessToken))
 
-            if (response.isSuccessful) {
-                val loginResponse = response.body()
-                Log.d("123", "$loginResponse")
-                if (loginResponse != null) {
-                    val login = loginResponse.toLogin()
-                    emit(Resource.Success(login))
-                } else {
-                    emit(Resource.Error("Пустое тело ответа"))
-                }
-            } else if (response.code() == 401) {
-                val refreshToken = sharedPreferences.getString("refresh_token", "")
-                if (refreshToken != null) {
-                    val newRequest = LoginRequest(refreshToken)
-                    val newResponse = networkClientAuthorization.login(newRequest)
-
-                    if (newResponse.isSuccessful) {
-                        val newLoginResponse = newResponse.body()
-                        if (newLoginResponse != null) {
-                            val newLogin = newLoginResponse.toLogin()
-                            emit(Resource.Success(newLogin))
-                        } else {
-                            emit(Resource.Error("Пустое тело ответа"))
-                        }
-                    } else {
-                        emit(Resource.Error("Ошибка: ${newResponse.code()} - ${newResponse.message()}"))
-                    }
-                } else {
-                    emit(Resource.Error("Не удалось обновить токен"))
-                }
-            } else {
-                emit(Resource.Error("Ошибка: ${response.code()} - ${response.message()}"))
-            }
         } catch (e: Exception) {
             Log.e("Registration", "Ошибка при выполнении запроса: ${e.message}", e)
             emit(Resource.Error("Сетевая ошибка: ${e.message}"))
+        }
+    }
+
+    private suspend fun handleLoginRequest(token: String): Resource<Login> {
+        val request = LoginRequest(token)
+        val response = networkClientAuthorization.login(request)
+
+        return if (response.isSuccessful) {
+            response.body()?.let { loginResponse ->
+                Resource.Success(loginResponse.toLogin())
+            } ?: Resource.Error("Пустое тело ответа")
+        } else {
+            handleLoginError(response)
+        }
+    }
+
+    private suspend fun handleLoginError(response: Response<LoginResponse>): Resource<Login> {
+        return when (response.code()) {
+            401 -> {
+                val refreshToken = sharedPreferences.getString("refresh_token", null)
+                if (refreshToken != null) {
+                    val newRequest = LoginRequest(refreshToken)
+                    val newResponse = networkClientAuthorization.login(newRequest)
+                    if (newResponse.isSuccessful) {
+                        newResponse.body()?.let { newLoginResponse ->
+                            Resource.Success(newLoginResponse.toLogin())
+                        } ?: Resource.Error("Пустое тело ответа")
+                    } else {
+                        Resource.Error("Ошибка: ${newResponse.code()} - ${newResponse.message()}")
+                    }
+                } else {
+                    Resource.Error("Не удалось обновить токен")
+                }
+            }
+            else -> Resource.Error("Ошибка: ${response.code()} - ${response.message()}")
         }
     }
 

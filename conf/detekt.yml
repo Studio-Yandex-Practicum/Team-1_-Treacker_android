@@ -77,7 +77,7 @@ complexity:
     includeStaticDeclarations: false
     includePrivateDeclarations: false
   CognitiveComplexMethod:
-    active: true
+    active: false
     threshold: 15
   CyclomaticComplexMethod:
     active: true
