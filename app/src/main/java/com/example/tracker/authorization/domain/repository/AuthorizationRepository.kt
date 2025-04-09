@@ -7,9 +7,9 @@ import com.example.tracker.util.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface AuthorizationRepository {
-    suspend fun authorization(email: String, password: String): Flow<Resource<Authorization>>
-    suspend fun refresh(refreshToken: String): Flow<Resource<Refresh>>
-    suspend fun login(accessToken: String): Flow<Resource<Login>>
-    fun getAccessToken(): String
-    fun getRefreshToken(): String
+    fun authorization(email: String, password: String): Flow<Resource<Authorization>>
+    fun refresh(refreshToken: String): Flow<Resource<Refresh>>
+    fun login(accessToken: String): Flow<Resource<Login>>
+    suspend fun getAccessToken(): String
+    suspend fun getRefreshToken(): String
 }

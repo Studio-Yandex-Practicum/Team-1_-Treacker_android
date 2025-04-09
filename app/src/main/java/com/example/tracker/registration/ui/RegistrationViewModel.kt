@@ -46,15 +46,15 @@ class RegistrationViewModel(
         state.postValue(RegistrationState.Error(message))
     }
 
-    fun setAccessToken(accessToken: String) {
+    suspend fun setAccessToken(accessToken: String) {
         registrationInteractor.setAccessToken(accessToken)
     }
 
-    fun setRefreshToken(refreshToken: String) {
+    suspend fun setRefreshToken(refreshToken: String) {
         registrationInteractor.setRefreshToken(refreshToken)
     }
 
-    fun setIdToken(idToken: Int) {
+    suspend fun setIdToken(idToken: Int) {
         registrationInteractor.setIdToken(idToken)
     }
 }

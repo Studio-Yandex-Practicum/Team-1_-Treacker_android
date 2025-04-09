@@ -12,10 +12,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.tracker.databinding.RegistrationFragmentBinding
 
 import com.example.tracker.util.RegistrationState
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegistrationFragment : Fragment() {
@@ -132,10 +134,12 @@ class RegistrationFragment : Fragment() {
 
                 is RegistrationState.Content -> {
                     state.data?.let {
-                        Log.e("login", "успех: ${it}")
-                        viewModel.setAccessToken(it.accessToken)
-                        viewModel.setRefreshToken(it.refreshToken)
-                        viewModel.setIdToken(it.userId)
+                        lifecycleScope.launch {
+                            Log.e("login", "успех: ${it}")
+                            viewModel.setAccessToken(it.accessToken)
+                            viewModel.setRefreshToken(it.refreshToken)
+                            viewModel.setIdToken(it.userId)
+                        }
                     }
                 }
             }

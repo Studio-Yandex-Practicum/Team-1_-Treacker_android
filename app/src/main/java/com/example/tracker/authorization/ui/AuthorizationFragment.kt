@@ -12,12 +12,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.tracker.R
 import com.example.tracker.databinding.AuthorizationFragmentBinding
 import com.example.tracker.util.AuthorizationState
 import com.example.tracker.util.LoginState
 import com.example.tracker.util.RefreshState
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AuthorizationFragment : Fragment() {
@@ -118,8 +120,14 @@ class AuthorizationFragment : Fragment() {
                 is AuthorizationState.Error -> {
                     Log.e("authorization", "${state.message}")
                     if (state.message.equals("Ошибка: 401 - ")) {
-                        refreshToken = viewModel.getRefreshToken()
-                        viewModel.refresh(refreshToken)
+                        lifecycleScope.launch {
+                            try {
+                                val refreshToken = viewModel.getRefreshToken()
+                                viewModel.refresh(refreshToken)
+                            } catch (e: Exception) {
+                                Log.e("authorization", "Не удалось обновить токен: ${e.message}")
+                            }
+                        }
                     }
                 }
 
@@ -167,11 +175,14 @@ class AuthorizationFragment : Fragment() {
                 is LoginState.Error -> {
                     Log.e("login", "${state.message}")
                     if (state.message.equals("Ошибка: 401 - ")) {
-                        refreshToken = viewModel.getRefreshToken()
-                        viewModel.refresh(refreshToken)
-                    } else if (state.message.equals("Сетевая ошибка: Failed to connect to /130.193.44.66:8080")) {
-                        Log.e("login", "вход без проверки")
-                    }
+                        lifecycleScope.launch {
+                            refreshToken = viewModel.getRefreshToken()
+                            viewModel.refresh(refreshToken)
+                        }
+                        } else if (state.message.equals("Сетевая ошибка: Failed to connect to /130.193.44.66:8080")) {
+                            Log.e("login", "вход без проверки")
+                        }
+
                 }
 
                 is LoginState.Content -> {
@@ -184,12 +195,15 @@ class AuthorizationFragment : Fragment() {
     }
 
     private fun checkLogin() {
-        val accessToken = viewModel.getAccessToken()
-        Log.e("check", "token= $accessToken")
-        if (!accessToken.isNullOrBlank()) {
-            viewModel.login(accessToken)
-        } else {
-            Log.d("checkLogin", "Токен отсутствует. Требуется авторизация.")
+        lifecycleScope.launch {
+            val accessToken = viewModel.getAccessToken()
+            Log.e("check", "token= $accessToken")
+
+            if (!accessToken.isNullOrBlank()) {
+                viewModel.login(accessToken)
+            } else {
+                Log.d("checkLogin", "Токен отсутствует. Требуется авторизация.")
+            }
         }
     }
 

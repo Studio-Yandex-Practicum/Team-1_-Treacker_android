@@ -16,7 +16,7 @@ class RegistrationRepositoryImpl(
     sharedPreferences: SharedPreferences
 ) : RegistrationRepository {
     val editor = sharedPreferences.edit()
-    override suspend fun registration(
+    override fun registration(
         email: String,
         password: String
     ): Flow<Resource<Registration>> = flow {
@@ -46,17 +46,17 @@ class RegistrationRepositoryImpl(
         }
     }
 
-    override fun setAccessToken(accessToken: String) {
+    override suspend fun setAccessToken(accessToken: String) {
         editor.putString("access_token", accessToken)
         editor.apply()
     }
 
-    override fun setRefreshToken(refreshToken: String) {
+    override suspend fun setRefreshToken(refreshToken: String) {
         editor.putString("refresh_token", refreshToken)
         editor.apply()
     }
 
-    override fun setIdToken(idToken: Int) {
+    override suspend fun setIdToken(idToken: Int) {
         editor.putString("user_id", idToken.toString())
         editor.apply()
     }

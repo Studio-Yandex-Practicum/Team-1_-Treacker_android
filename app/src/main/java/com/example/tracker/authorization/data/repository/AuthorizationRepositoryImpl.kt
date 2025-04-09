@@ -27,7 +27,7 @@ class AuthorizationRepositoryImpl(
     private val networkClientAuthorization: NetworkClientAuthorization,
     private var sharedPreferences: SharedPreferences
 ) : AuthorizationRepository {
-    override suspend fun authorization(
+    override fun authorization(
         email: String,
         password: String
     ): Flow<Resource<Authorization>> = flow {
@@ -62,7 +62,7 @@ class AuthorizationRepositoryImpl(
         }
     }
 
-    override suspend fun refresh(refreshToken: String): Flow<Resource<Refresh>> = flow {
+    override fun refresh(refreshToken: String): Flow<Resource<Refresh>> = flow {
         try {
             if (refreshToken.isEmpty()) {
                 emit(Resource.Error("Token обновления не может быть пустым"))
@@ -89,7 +89,7 @@ class AuthorizationRepositoryImpl(
         }
     }
 
-    override suspend fun login(accessToken: String): Flow<Resource<Login>> = flow {
+    override fun login(accessToken: String): Flow<Resource<Login>> = flow {
         try {
             if (accessToken.isEmpty()) {
                 emit(Resource.Error("Токен не может быть пустым"))
@@ -137,12 +137,12 @@ class AuthorizationRepositoryImpl(
         }
     }
 
-    override fun getAccessToken(): String {
+    override suspend fun getAccessToken(): String {
         val accessToken = sharedPreferences.getString("access_token", "") ?: ""
         return accessToken
     }
 
-    override fun getRefreshToken(): String {
+    override suspend fun getRefreshToken(): String {
         val refreshToken = sharedPreferences.getString("refresh_token", "") ?: ""
         return refreshToken
     }

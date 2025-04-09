@@ -12,7 +12,9 @@ import com.example.tracker.util.AuthorizationState
 import com.example.tracker.util.LoginState
 import com.example.tracker.util.RefreshState
 import com.example.tracker.util.Resource
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class AuthorizationViewModel(
     private val authorizationInteractor: AuthorizationInteractor
@@ -115,12 +117,14 @@ class AuthorizationViewModel(
     private fun processRefreshError(message: String) {
         refreshState.postValue(RefreshState.Error(message))
     }
-
-    fun getAccessToken(): String {
-        return authorizationInteractor.getAccessToken()
+    suspend fun getAccessToken(): String {
+        return withContext(Dispatchers.IO) {
+            authorizationInteractor.getAccessToken()
+        }
     }
-
-    fun getRefreshToken(): String {
-        return authorizationInteractor.getRefreshToken()
+    suspend fun getRefreshToken(): String {
+        return withContext(Dispatchers.IO) {
+            authorizationInteractor.getRefreshToken()
+        }
     }
 }

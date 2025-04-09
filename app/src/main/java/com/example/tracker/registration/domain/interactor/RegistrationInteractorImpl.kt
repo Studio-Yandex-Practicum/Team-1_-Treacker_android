@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.flow
 
 class RegistrationInteractorImpl(private val repository: RegistrationRepository) :
     RegistrationInteractor {
-    override suspend fun registration(
+    override fun registration(
         email: String,
         password: String
     ): Flow<Resource<Registration>> = flow {
@@ -18,15 +18,15 @@ class RegistrationInteractorImpl(private val repository: RegistrationRepository)
         }
     }
 
-    override fun setAccessToken(accessToken: String) {
+    override suspend fun setAccessToken(accessToken: String) {
         repository.setAccessToken(accessToken)
     }
 
-    override fun setRefreshToken(refreshToken: String) {
+    override suspend fun setRefreshToken(refreshToken: String) {
         repository.setRefreshToken(refreshToken)
     }
 
-    override fun setIdToken(idToken: Int) {
+    override suspend fun setIdToken(idToken: Int) {
         repository.setIdToken(idToken)
     }
 }
