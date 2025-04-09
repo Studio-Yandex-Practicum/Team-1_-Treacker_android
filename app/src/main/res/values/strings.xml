@@ -22,4 +22,7 @@
     <string name="google">Google</string>
     <string name="apple">Apple</string>
     <string name="noAccount">Нет аккаунта?</string>
+    <string name="add_expense">Добавление расхода</string>
+    <string name="sum">Сумма, ₽</string>
+    <string name="add">Добавить</string>
 </resources>
