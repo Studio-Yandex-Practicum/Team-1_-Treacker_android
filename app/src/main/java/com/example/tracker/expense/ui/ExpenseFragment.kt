@@ -1,4 +1,4 @@
-package com.example.tracker.addExpense.ui
+package com.example.tracker.expense.ui
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
@@ -8,13 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.tracker.R
 
-class AddExpenseFragment : Fragment() {
+class ExpenseFragment : Fragment() {
 
     companion object {
-        fun newInstance() = AddExpenseFragment()
+        fun newInstance() = ExpenseFragment()
     }
 
-    private val viewModel: AddExpenseViewModel by viewModels()
+    private val viewModel: ExpenseViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +26,6 @@ class AddExpenseFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_add_expense, container, false)
+        return inflater.inflate(R.layout.fragment_expense, container, false)
     }
 }

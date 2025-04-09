@@ -9,6 +9,7 @@ import com.example.tracker.authorization.data.network.RetrofitClientAuthorizatio
 import com.example.tracker.registration.data.network.ApiClient
 import com.example.tracker.registration.data.network.NetworkClient
 import com.example.tracker.registration.data.network.RetrofitClient
+import com.example.tracker.core.db.AppDatabase
 import com.example.tracker.settings.data.api.SettingsStorage
 import com.google.gson.Gson
 import core.db.AppDatabase
@@ -57,7 +58,7 @@ val dataModule = module {
             .readTimeout(30, TimeUnit.SECONDS)
             .build()
     }
-    
+
     single {
         Room
             .databaseBuilder(androidContext(), AppDatabase::class.java, "tracker.db")

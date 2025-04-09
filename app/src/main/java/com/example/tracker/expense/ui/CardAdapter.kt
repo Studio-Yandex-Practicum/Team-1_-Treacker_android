@@ -1,4 +1,4 @@
-package com.example.tracker.addExpense.ui
+package com.example.tracker.expense.ui
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import com.example.tracker.R
-import com.example.tracker.addExpense.domain.models.Category
+import com.example.tracker.expense.domain.models.Category
 
 class CardAdapter(
     private val categories: List<Category>,
