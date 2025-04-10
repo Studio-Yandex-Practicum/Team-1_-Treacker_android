@@ -134,8 +134,8 @@ class RegistrationFragment : Fragment() {
 
                 is RegistrationState.Content -> {
                     state.data?.let {
-                            Log.e("login", "успех: ${it}")
-                            viewModel.fetchSetToken(it.accessToken, it.refreshToken, it.userId)
+                        Log.e("login", "успех: ${it}")
+                        viewModel.fetchSetToken(it.accessToken, it.refreshToken, it.userId)
                     }
                 }
             }
