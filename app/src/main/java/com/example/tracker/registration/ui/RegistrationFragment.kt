@@ -134,12 +134,8 @@ class RegistrationFragment : Fragment() {
 
                 is RegistrationState.Content -> {
                     state.data?.let {
-                        lifecycleScope.launch {
                             Log.e("login", "успех: ${it}")
-                            viewModel.setAccessToken(it.accessToken)
-                            viewModel.setRefreshToken(it.refreshToken)
-                            viewModel.setIdToken(it.userId)
-                        }
+                            viewModel.fetchSetToken(it.accessToken, it.refreshToken, it.userId)
                     }
                 }
             }

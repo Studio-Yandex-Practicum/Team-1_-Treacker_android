@@ -1,5 +1,6 @@
 package com.example.tracker.registration.ui
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -56,5 +57,16 @@ class RegistrationViewModel(
 
     suspend fun setIdToken(idToken: Int) {
         registrationInteractor.setIdToken(idToken)
+    }
+    fun fetchSetToken(accessToken: String, refreshToken: String, idToken: Int) {
+        viewModelScope.launch {
+            try {
+                setAccessToken(accessToken)
+                setRefreshToken(refreshToken)
+                setIdToken(idToken)
+            } catch (e: Exception) {
+                Log.e("MyViewModel", "Ошибка при добавлении Sp ${e.message}")
+            }
+        }
     }
 }

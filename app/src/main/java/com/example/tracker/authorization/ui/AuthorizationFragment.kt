@@ -1,7 +1,5 @@
 package com.example.tracker.authorization.ui
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -29,7 +27,6 @@ class AuthorizationFragment : Fragment() {
     private val viewModel by viewModel<AuthorizationViewModel>()
     private var emal = ""
     private var pass = ""
-    private var refreshToken = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -120,13 +117,10 @@ class AuthorizationFragment : Fragment() {
                 is AuthorizationState.Error -> {
                     Log.e("authorization", "${state.message}")
                     if (state.message.equals("Ошибка: 401 - ")) {
-                        lifecycleScope.launch {
-                            try {
-                                val refreshToken = viewModel.getRefreshToken()
-                                viewModel.refresh(refreshToken)
-                            } catch (e: Exception) {
-                                Log.e("authorization", "Не удалось обновить токен: ${e.message}")
-                            }
+                        try {
+                            viewModel.fetchRefreshToken()
+                        } catch (e: Exception) {
+                            Log.e("authorization", "Не удалось обновить токен: ${e.message}")
                         }
                     }
                 }
@@ -175,10 +169,7 @@ class AuthorizationFragment : Fragment() {
                 is LoginState.Error -> {
                     Log.e("login", "${state.message}")
                     if (state.message.equals("Ошибка: 401 - ")) {
-                        lifecycleScope.launch {
-                            refreshToken = viewModel.getRefreshToken()
-                            viewModel.refresh(refreshToken)
-                        }
+                        viewModel.fetchRefreshToken()
                     } else if (state.message.equals("Сетевая ошибка: Failed to connect to /130.193.44.66:8080")) {
                         Log.e("login", "вход без проверки")
                     }
