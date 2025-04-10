@@ -1,8 +1,9 @@
 package com.example.tracker.settings.domain.model
 
+@Suppress("DataClassShouldBeImmutable")
 data class Settings(
     var darkTheme: Boolean = false,
-    var notifications: Notifications = Notifications(),
+    val notifications: Notifications = Notifications(),
     var currency: Currency = Currency.RUB
 ) {
     companion object {
