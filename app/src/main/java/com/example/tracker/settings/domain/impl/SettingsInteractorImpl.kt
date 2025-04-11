@@ -14,4 +14,13 @@ class SettingsInteractorImpl(
     override fun updateSettings(settings: Settings) {
         settingsRepository.updateSettings(settings)
     }
+
+    override fun getThemeSettings(): Boolean {
+        val settings = getSavedSettings()
+        return settings.darkTheme
+    }
+    override fun setThemeSettings(darkTheme: Boolean) {
+        val settings = getSavedSettings()
+        updateSettings(settings.copy(darkTheme = darkTheme))
+    }
 }
