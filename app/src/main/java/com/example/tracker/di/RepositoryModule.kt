@@ -4,6 +4,8 @@ import com.example.tracker.authorization.data.repository.AuthorizationRepository
 import com.example.tracker.authorization.domain.repository.AuthorizationRepository
 import com.example.tracker.registration.data.repository.RegistrationRepositoryImpl
 import com.example.tracker.registration.domain.repository.RegistrationRepository
+import com.example.tracker.settings.data.impl.SettingsRepositoryImpl
+import com.example.tracker.settings.domain.api.SettingsRepository
 import org.koin.dsl.module
 
 val repositoryModule = module {
@@ -12,5 +14,9 @@ val repositoryModule = module {
     }
     single<AuthorizationRepository> {
         AuthorizationRepositoryImpl(get(), get())
+    }
+
+    single<SettingsRepository> {
+        SettingsRepositoryImpl(get(), get())
     }
 }
