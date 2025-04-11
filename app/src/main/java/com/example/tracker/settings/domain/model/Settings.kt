@@ -1,10 +1,9 @@
 package com.example.tracker.settings.domain.model
 
-@Suppress("DataClassShouldBeImmutable")
 data class Settings(
-    var darkTheme: Boolean = false,
+    val darkTheme: Boolean = false,
     val notifications: Notifications = Notifications(),
-    var currency: Currency = Currency.RUB
+    val currency: Currency = Currency.RUB
 ) {
     companion object {
         const val DARK_THEME = "dark_theme"
@@ -12,9 +11,9 @@ data class Settings(
 }
 
 data class Notifications(
-    var active: Boolean = false,
-    var time: String = "12:00",
-    var message: String = "Не забудьте внести расходы"
+    val active: Boolean = false,
+    val time: String = "12:00",
+    val message: String = "Не забудьте внести расходы"
 )
 
 sealed interface Currency {
