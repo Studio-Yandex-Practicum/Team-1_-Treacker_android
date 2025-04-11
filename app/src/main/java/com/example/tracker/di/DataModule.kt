@@ -68,14 +68,10 @@ val dataModule = module {
         androidContext().getSharedPreferences("LocalStorage", MODE_PRIVATE)
     }
 
-    single<SharedPreferences> {
-        androidContext().getSharedPreferences("SettingsStorage", MODE_PRIVATE)
-    }
-
     factory { Gson() }
 
     single {
-        SettingsStorage(get())
+        SettingsStorage(androidContext().getSharedPreferences("SettingsStorage", MODE_PRIVATE))
     }
 
 }

@@ -49,6 +49,9 @@ class App : Application() {
     }
 
     private fun getSettingsRepository(context: Context): SettingsRepository {
-        return SettingsRepositoryImpl(SettingsStorage(context.getSharedPreferences("SettingsStorage", MODE_PRIVATE)), Gson())
+        return SettingsRepositoryImpl(
+            SettingsStorage(context.getSharedPreferences("SettingsStorage", MODE_PRIVATE)),
+            Gson()
+        )
     }
 }
