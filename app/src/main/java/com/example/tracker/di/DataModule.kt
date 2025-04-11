@@ -1,5 +1,7 @@
 package com.example.tracker.di
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.room.Room
 import com.example.tracker.authorization.data.network.ApiClientAuthorization
 import com.example.tracker.authorization.data.network.NetworkClientAuthorization
@@ -52,6 +54,9 @@ val dataModule = module {
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .build()
+    }
+    single<SharedPreferences> {
+        get<Context>().getSharedPreferences("LocalStorage", Context.MODE_PRIVATE)
     }
 
     single {

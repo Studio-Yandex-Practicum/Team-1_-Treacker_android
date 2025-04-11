@@ -1,5 +1,6 @@
 package com.example.tracker.authorization.ui
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,7 +13,9 @@ import com.example.tracker.util.AuthorizationState
 import com.example.tracker.util.LoginState
 import com.example.tracker.util.RefreshState
 import com.example.tracker.util.Resource
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class AuthorizationViewModel(
     private val authorizationInteractor: AuthorizationInteractor
@@ -104,6 +107,17 @@ class AuthorizationViewModel(
         }
     }
 
+    fun fetchRefreshToken() {
+        viewModelScope.launch {
+            try {
+                val refreshToken = getRefreshToken()
+                refresh(refreshToken)
+            } catch (e: Exception) {
+                Log.e("MyViewModel", "Ошибка при получении refresh token: ${e.message}")
+            }
+        }
+    }
+
     private fun processRefresh(data: Refresh?) {
         if (data == null) {
             refreshState.postValue(RefreshState.Error("Получены пустые данные"))
@@ -116,4 +130,15 @@ class AuthorizationViewModel(
         refreshState.postValue(RefreshState.Error(message))
     }
 
+    suspend fun getAccessToken(): String {
+        return withContext(Dispatchers.IO) {
+            authorizationInteractor.getAccessToken()
+        }
+    }
+
+    suspend fun getRefreshToken(): String {
+        return withContext(Dispatchers.IO) {
+            authorizationInteractor.getRefreshToken()
+        }
+    }
 }

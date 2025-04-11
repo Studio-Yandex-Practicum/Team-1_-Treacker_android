@@ -8,8 +8,9 @@ import com.example.tracker.authorization.data.dto.RefreshRequest
 import com.example.tracker.authorization.data.dto.RefreshResponse
 import retrofit2.Response
 
-class RetrofitClientAuthorization(private val apiClientAuthorization: ApiClientAuthorization) :
-    NetworkClientAuthorization {
+class RetrofitClientAuthorization(
+    private val apiClientAuthorization: ApiClientAuthorization
+) : NetworkClientAuthorization {
     override suspend fun doRequest(
         request: AuthorizationRequest
     ): Response<AuthorizationResponse> {

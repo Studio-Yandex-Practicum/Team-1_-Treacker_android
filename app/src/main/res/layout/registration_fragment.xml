@@ -11,7 +11,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/back_arrow"
-        android:layout_marginTop="@dimen/dim78"
+        android:layout_marginTop="@dimen/dim54"
         android:layout_marginStart="@dimen/dim20"
         android:paddingVertical="@dimen/dim12"
         android:paddingEnd="@dimen/dim32"
@@ -50,7 +50,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_email"
             android:layout_width="match_parent"
-            android:layout_height="57dp"
+            android:layout_height="@dimen/dim60"
             android:hint="@string/Email"
             android:textColorHint="@color/secondary"
             android:gravity="center_vertical"
@@ -63,20 +63,32 @@
             android:fontFamily="@font/medium"
             />
     </com.google.android.material.textfield.TextInputLayout>
-
+    <TextView
+        android:id="@+id/error_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/title_email"
+        app:layout_constraintTop_toBottomOf="@id/title_email"
+        android:layout_marginTop="@dimen/dim4"
+        android:layout_marginStart="@dimen/dim8"
+        android:textColor="@color/error"
+        android:textSize="@dimen/text10"
+        android:fontFamily="@font/regular"
+        android:visibility="gone"
+        />
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/title_pass"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_email"
+        app:layout_constraintTop_toBottomOf="@id/error_email"
         android:layout_marginHorizontal="@dimen/dim20"
-        android:layout_marginTop="@dimen/dim26"
+        android:layout_marginTop="@dimen/dim12"
         android:paddingTop="0dp"
         android:paddingBottom="0dp"
         android:paddingHorizontal="@dimen/dim16"
-        app:endIconDrawable="@drawable/icon_eye"
+        app:endIconDrawable="@drawable/icon_pass_close"
         app:endIconMode="password_toggle"
         app:endIconScaleType="center"
         app:hintTextColor="@color/color_et"
@@ -87,7 +99,7 @@
         <EditText
             android:id="@+id/et_pass"
             android:layout_width="match_parent"
-            android:layout_height="57dp"
+            android:layout_height="@dimen/dim60"
             android:hint="@string/Pass"
             android:textColorHint="@color/secondary"
             android:gravity="center_vertical"
@@ -101,56 +113,6 @@
             app:errorEnabled="false"
             style="@style/MyEditTextStyle"/>
     </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/title_pass_2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_pass"
-        android:layout_marginHorizontal="@dimen/dim24"
-        android:layout_marginTop="@dimen/dim26"
-        android:paddingTop="0dp"
-        android:paddingBottom="0dp"
-        android:paddingHorizontal="@dimen/dim20"
-        app:endIconDrawable="@drawable/icon_eye"
-        app:endIconMode="password_toggle"
-        app:endIconScaleType="center"
-        app:hintTextColor="@color/color_et"
-        app:endIconTint="@color/secondary"
-        android:gravity="center_vertical"
-        style="@style/MyEditTextStyle"
-        >
-        <EditText
-            android:id="@+id/et_pass_2"
-            android:layout_width="match_parent"
-            android:layout_height="57dp"
-            android:hint="@string/Pass_2"
-            android:textColorHint="@color/secondary"
-            android:gravity="center_vertical"
-            android:textColor="@color/primaryDark"
-            android:imeOptions="actionDone"
-            android:singleLine="true"
-            android:inputType="textPassword"
-            android:background="@drawable/et_shape"
-            android:textSize="@dimen/text14"
-            android:fontFamily="@font/medium"
-            app:errorEnabled="false"
-            style="@style/MyEditTextStyle"/>
-    </com.google.android.material.textfield.TextInputLayout>
-    <TextView
-        android:id="@+id/error_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/title_email"
-        app:layout_constraintTop_toBottomOf="@id/title_email"
-        android:paddingTop="@dimen/dim4"
-        android:paddingBottom="@dimen/dim4"
-        android:textColor="@color/error"
-        android:textSize="@dimen/text10"
-        android:fontFamily="@font/regular"
-        android:visibility="gone"
-        />
     <TextView
         android:id="@+id/error_pass"
         android:layout_width="wrap_content"
@@ -164,29 +126,15 @@
         android:fontFamily="@font/regular"
         android:visibility="gone"
         />
-    <TextView
-        android:id="@+id/error_pass2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/title_pass_2"
-        app:layout_constraintTop_toBottomOf="@id/title_pass_2"
-        android:layout_marginTop="@dimen/dim4"
-        android:layout_marginBottom="@dimen/dim4"
-        android:textColor="@color/error"
-        android:textSize="@dimen/text10"
-        android:fontFamily="@font/regular"
-        android:visibility="gone"
-        />
-
     <android.widget.Button
         android:id="@+id/bt_apply"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_pass_2"
+        app:layout_constraintTop_toBottomOf="@id/error_pass"
         android:layout_marginHorizontal="@dimen/dim20"
-        android:layout_marginTop="@dimen/dim38"
+        android:layout_marginTop="@dimen/dim24"
         android:background="@drawable/b_apply_shape"
         android:enabled="false"
         android:textColor="@color/white"
@@ -195,5 +143,4 @@
         android:textSize="@dimen/text14"
         android:fontFamily="@font/medium"
         />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

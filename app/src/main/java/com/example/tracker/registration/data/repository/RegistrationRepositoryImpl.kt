@@ -1,5 +1,6 @@
 package com.example.tracker.registration.data.repository
 
+import android.content.SharedPreferences
 import android.util.Log
 import com.example.tracker.registration.data.dto.RegistrationRequest
 import com.example.tracker.registration.data.dto.RegistrationResponse
@@ -11,9 +12,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class RegistrationRepositoryImpl(
-    private val networkClient: NetworkClient
+    private val networkClient: NetworkClient,
+    sharedPreferences: SharedPreferences
 ) : RegistrationRepository {
-    override suspend fun registration(email: String, password: String): Flow<Resource<Registration>> = flow {
+    val editor = sharedPreferences.edit()
+    override fun registration(
+        email: String,
+        password: String
+    ): Flow<Resource<Registration>> = flow {
         try {
             if (email.isEmpty() || password.isEmpty()) {
                 emit(Resource.Error("Email или пароль не могут быть пустыми"))
@@ -26,7 +32,6 @@ class RegistrationRepositoryImpl(
                 val loginResponse = response.body()
                 Log.d("123", "$loginResponse")
                 if (loginResponse != null) {
-                    // Измените на одиночный объект
                     val registration = loginResponse.toRegistration()
                     emit(Resource.Success(registration))
                 } else {
@@ -39,6 +44,21 @@ class RegistrationRepositoryImpl(
             Log.e("Registration", "Ошибка при выполнении запроса: ${e.message}", e)
             emit(Resource.Error("Сетевая ошибка: ${e.message}"))
         }
+    }
+
+    override suspend fun setAccessToken(accessToken: String) {
+        editor.putString("access_token", accessToken)
+        editor.apply()
+    }
+
+    override suspend fun setRefreshToken(refreshToken: String) {
+        editor.putString("refresh_token", refreshToken)
+        editor.apply()
+    }
+
+    override suspend fun setIdToken(idToken: Int) {
+        editor.putString("user_id", idToken.toString())
+        editor.apply()
     }
 
     private fun RegistrationResponse.toRegistration(): Registration {
