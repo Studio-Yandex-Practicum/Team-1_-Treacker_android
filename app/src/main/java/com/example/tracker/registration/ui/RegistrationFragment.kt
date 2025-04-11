@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.tracker.R
 import com.example.tracker.databinding.RegistrationFragmentBinding
 
 import com.example.tracker.util.RegistrationState
@@ -26,7 +28,6 @@ class RegistrationFragment : Fragment() {
     private val viewModel by viewModel<RegistrationViewModel>()
     private var emal = ""
     private var passFirst = ""
-    private var passSecond = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,12 +50,26 @@ class RegistrationFragment : Fragment() {
         binding.btApply.setOnClickListener {
             viewModel.loadData(emal, passFirst)
         }
+        binding.titlePass.setEndIconOnClickListener {
+            val isPasswordVisible =
+                binding.titlePass.editText?.inputType == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+
+            if (isPasswordVisible) {
+                binding.titlePass.editText?.inputType =
+                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                binding.titlePass.setEndIconDrawable(R.drawable.icon_pass_close)
+            } else {
+                binding.titlePass.editText?.inputType =
+                    InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                binding.titlePass.setEndIconDrawable(R.drawable.icon_pass_open)
+            }
+            binding.titlePass.editText?.setSelection(binding.titlePass.editText?.text?.length ?: 0)
+        }
     }
 
     private fun setupTextWatcher() {
         val emailErrorMessage = "Пожалуйста, введите корректный Email"
         val passwordLengthErrorMessage = "Пароль должен содержать не менее 7 символов"
-        val passwordMismatchErrorMessage = "Пароли не совпадают"
 
         binding.etEmail.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -79,26 +94,6 @@ class RegistrationFragment : Fragment() {
                 passFirst = s.toString()
                 if (passFirst.length < 7) {
                     showError(binding.errorPass, passwordLengthErrorMessage)
-                } else {
-                    hideError(binding.errorPass)
-                }
-                checkingInput()
-            }
-
-            override fun afterTextChanged(s: Editable?) {}
-        })
-
-        binding.etPass2.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                passSecond = s.toString()
-                if (passSecond.length < 7) {
-                    showError(binding.errorPass2, passwordLengthErrorMessage)
-                } else if (passSecond != passFirst) {
-                    showError(binding.errorPass2, passwordMismatchErrorMessage)
-                } else {
-                    hideError(binding.errorPass2)
                 }
                 checkingInput()
             }
@@ -118,7 +113,7 @@ class RegistrationFragment : Fragment() {
 
     private fun checkingInput() {
         binding.btApply.isEnabled =
-            emal.isNotBlank() && passFirst.length >= 7 && passSecond.length >= 7 && passFirst == passSecond
+            emal.isNotBlank() && passFirst.length >= 7
     }
 
     private fun setupObservers() {

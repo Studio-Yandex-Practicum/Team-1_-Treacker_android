@@ -2,6 +2,7 @@ package com.example.tracker.authorization.ui
 
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
@@ -53,6 +54,21 @@ class AuthorizationFragment : Fragment() {
         }
         binding.btApply.setOnClickListener {
             viewModel.loadData(emal, pass)
+        }
+        binding.titlePass.setEndIconOnClickListener {
+            val isPasswordVisible =
+                binding.titlePass.editText?.inputType == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+
+            if (isPasswordVisible) {
+                binding.titlePass.editText?.inputType =
+                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                binding.titlePass.setEndIconDrawable(R.drawable.icon_pass_close)
+            } else {
+                binding.titlePass.editText?.inputType =
+                    InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                binding.titlePass.setEndIconDrawable(R.drawable.icon_pass_open)
+            }
+            binding.titlePass.editText?.setSelection(binding.titlePass.editText?.text?.length ?: 0)
         }
     }
 
