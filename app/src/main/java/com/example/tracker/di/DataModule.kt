@@ -56,7 +56,7 @@ val dataModule = module {
             .build()
     }
     single<SharedPreferences> {
-        get<Context>().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+        get<Context>().getSharedPreferences("LocalStorage", Context.MODE_PRIVATE)
     }
 
     single {
