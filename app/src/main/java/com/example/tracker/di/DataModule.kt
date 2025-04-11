@@ -65,6 +65,10 @@ val dataModule = module {
     }
 
     single<SharedPreferences> {
+        androidContext().getSharedPreferences("LocalStorage", MODE_PRIVATE)
+    }
+
+    single<SharedPreferences> {
         androidContext().getSharedPreferences("SettingsStorage", MODE_PRIVATE)
     }
 
