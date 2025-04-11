@@ -7,10 +7,26 @@ import com.example.tracker.util.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class RegistrationInteractorImpl(private val repository: RegistrationRepository) : RegistrationInteractor {
-    override suspend fun registration(email: String, password: String): Flow<Resource<Registration>> = flow {
+class RegistrationInteractorImpl(private val repository: RegistrationRepository) :
+    RegistrationInteractor {
+    override fun registration(
+        email: String,
+        password: String
+    ): Flow<Resource<Registration>> = flow {
         repository.registration(email, password).collect { result ->
             emit(result)
         }
+    }
+
+    override suspend fun setAccessToken(accessToken: String) {
+        repository.setAccessToken(accessToken)
+    }
+
+    override suspend fun setRefreshToken(refreshToken: String) {
+        repository.setRefreshToken(refreshToken)
+    }
+
+    override suspend fun setIdToken(idToken: Int) {
+        repository.setIdToken(idToken)
     }
 }

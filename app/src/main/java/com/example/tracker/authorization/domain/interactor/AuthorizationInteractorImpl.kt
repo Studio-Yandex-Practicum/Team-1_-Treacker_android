@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.flow
 class AuthorizationInteractorImpl(
     private val repository: AuthorizationRepository
 ) : AuthorizationInteractor {
-    override suspend fun authorization(
+    override fun authorization(
         email: String,
         password: String
     ): Flow<Resource<Authorization>> = flow {
@@ -22,13 +22,13 @@ class AuthorizationInteractorImpl(
         }
     }
 
-    override suspend fun refresh(refreshToken: String): Flow<Resource<Refresh>> = flow {
+    override fun refresh(refreshToken: String): Flow<Resource<Refresh>> = flow {
         repository.refresh(refreshToken).collect { result ->
             emit(result)
         }
     }
 
-    override suspend fun login(accessToken: String): Flow<Resource<Login>> = flow {
+    override fun login(accessToken: String): Flow<Resource<Login>> = flow {
         try {
             val request = LoginRequest(accessToken)
             repository.login(request.accessToken).collect { result ->
@@ -38,5 +38,13 @@ class AuthorizationInteractorImpl(
         } catch (e: Exception) {
             emit(Resource.Error(e.localizedMessage ?: "Unknown error"))
         }
+    }
+
+    override suspend fun getAccessToken(): String {
+        return repository.getAccessToken()
+    }
+
+    override suspend fun getRefreshToken(): String {
+        return repository.getRefreshToken()
     }
 }

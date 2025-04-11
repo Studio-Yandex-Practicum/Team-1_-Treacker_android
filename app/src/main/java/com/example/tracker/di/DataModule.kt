@@ -57,7 +57,7 @@ val dataModule = module {
             .readTimeout(30, TimeUnit.SECONDS)
             .build()
     }
-
+    
     single {
         Room
             .databaseBuilder(androidContext(), AppDatabase::class.java, "tracker.db")

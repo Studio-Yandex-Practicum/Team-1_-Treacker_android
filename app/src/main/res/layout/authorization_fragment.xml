@@ -15,7 +15,7 @@
         android:textSize="@dimen/text24"
         android:fontFamily="@font/bold"
         android:textColor="@color/primaryDark"
-        android:layout_marginTop="@dimen/dim64"
+        android:layout_marginTop="@dimen/dim60"
         android:layout_marginHorizontal="@dimen/dim20"
         />
     <TextView
@@ -53,7 +53,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_email"
             android:layout_width="match_parent"
-            android:layout_height="57dp"
+            android:layout_height="@dimen/dim60"
             android:hint="@string/Email"
             android:textColorHint="@color/secondary"
             android:gravity="center_vertical"
@@ -73,7 +73,7 @@
         app:layout_constraintStart_toStartOf="@id/title_email"
         app:layout_constraintTop_toBottomOf="@id/title_email"
         android:layout_marginTop="@dimen/dim4"
-        android:layout_marginBottom="@dimen/dim4"
+        android:layout_marginStart="@dimen/dim8"
         android:textColor="@color/error"
         android:textSize="@dimen/text10"
         android:fontFamily="@font/medium"
@@ -85,13 +85,13 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_email"
+        app:layout_constraintTop_toBottomOf="@id/error_email"
         android:layout_marginHorizontal="@dimen/dim20"
-        android:layout_marginTop="@dimen/dim26"
+        android:layout_marginTop="@dimen/dim12"
         android:paddingTop="0dp"
         android:paddingBottom="0dp"
         android:paddingHorizontal="@dimen/dim16"
-        app:endIconDrawable="@drawable/icon_eye"
+        app:endIconDrawable="@drawable/icon_pass_close"
         app:endIconMode="password_toggle"
         app:endIconScaleType="center"
         app:errorTextColor="@color/error"
@@ -103,7 +103,7 @@
         <EditText
             android:id="@+id/et_pass"
             android:layout_width="match_parent"
-            android:layout_height="57dp"
+            android:layout_height="@dimen/dim60"
             android:hint="@string/Pass"
             android:textColorHint="@color/secondary"
             android:gravity="center_vertical"
@@ -123,8 +123,9 @@
         app:layout_constraintStart_toStartOf="@id/title_pass"
         app:layout_constraintTop_toBottomOf="@id/title_pass"
         android:layout_marginTop="@dimen/dim4"
+        android:layout_marginStart="@dimen/dim8"
         android:textColor="@color/error"
-        android:textSize="@dimen/text12"
+        android:textSize="@dimen/text10"
         android:fontFamily="@font/medium"
         android:visibility="gone"/>
     <TextView
@@ -132,12 +133,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_pass"
+        app:layout_constraintTop_toBottomOf="@id/error_pass"
         android:text="@string/forgot"
         android:textSize="@dimen/text14"
         android:fontFamily="@font/regular"
         android:textColor="@color/accent"
-        android:layout_marginTop="@dimen/dim26"
+        android:layout_marginTop="@dimen/dim16"
         android:layout_marginStart="@dimen/dim20"
         />
     <android.widget.Button
@@ -223,7 +224,7 @@
         app:layout_constraintStart_toEndOf="@id/b_registration_google"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/line_end"
-        android:layout_marginTop="@dimen/dim20"
+        android:layout_marginTop="@dimen/dim24"
         android:layout_marginStart="@dimen/dim8"
         android:layout_marginEnd="@dimen/dim20"
         android:background="@drawable/et_shape"
@@ -234,7 +235,7 @@
         android:paddingVertical="@dimen/dim12"
         android:drawableStart="@drawable/icon_apple"
         android:gravity="start"
-        android:paddingLeft="@dimen/dim55"
+        android:paddingLeft="52dp"
         android:drawablePadding= "@dimen/dim8"
         android:fontFamily="@font/medium"
         />
@@ -245,24 +246,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="@string/register"
-        android:textSize="@dimen/text14"
-        android:textColor="@color/accent"
-        android:layout_marginBottom="@dimen/dim50"
-        android:fontFamily="@font/regular"
-        />
-    <TextView
-        android:id="@+id/noAccount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/registration"
-        app:layout_constraintEnd_toEndOf="@id/registration"
-        app:layout_constraintBottom_toTopOf="@id/registration"
+        android:layout_marginBottom="@dimen/dim54"
         android:text="@string/noAccount"
-        android:textColor="@color/secondary"
+        android:textColor="@color/accent"
         android:textSize="@dimen/text14"
         android:fontFamily="@font/regular"
         />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

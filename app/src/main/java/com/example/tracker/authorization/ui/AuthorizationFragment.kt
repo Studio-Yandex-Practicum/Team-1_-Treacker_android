@@ -1,9 +1,8 @@
 package com.example.tracker.authorization.ui
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,12 +11,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.tracker.R
 import com.example.tracker.databinding.AuthorizationFragmentBinding
 import com.example.tracker.util.AuthorizationState
 import com.example.tracker.util.LoginState
 import com.example.tracker.util.RefreshState
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AuthorizationFragment : Fragment() {
@@ -27,9 +28,6 @@ class AuthorizationFragment : Fragment() {
     private val viewModel by viewModel<AuthorizationViewModel>()
     private var emal = ""
     private var pass = ""
-    private var refreshToken = ""
-    lateinit var sharedPreferences: SharedPreferences
-    lateinit var editor: SharedPreferences.Editor
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,9 +40,6 @@ class AuthorizationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sharedPreferences =
-            requireContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
-        editor = sharedPreferences.edit()
         setupObserveCheck()
         setupTextWatcher()
         setupObservers()
@@ -59,6 +54,21 @@ class AuthorizationFragment : Fragment() {
         }
         binding.btApply.setOnClickListener {
             viewModel.loadData(emal, pass)
+        }
+        binding.titlePass.setEndIconOnClickListener {
+            val isPasswordVisible =
+                binding.titlePass.editText?.inputType == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+
+            if (isPasswordVisible) {
+                binding.titlePass.editText?.inputType =
+                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                binding.titlePass.setEndIconDrawable(R.drawable.icon_pass_close)
+            } else {
+                binding.titlePass.editText?.inputType =
+                    InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                binding.titlePass.setEndIconDrawable(R.drawable.icon_pass_open)
+            }
+            binding.titlePass.editText?.setSelection(binding.titlePass.editText?.text?.length ?: 0)
         }
     }
 
@@ -121,9 +131,13 @@ class AuthorizationFragment : Fragment() {
                 }
 
                 is AuthorizationState.Error -> {
-                    Log.e("authorization", "Ошибка: ${state.message}")
-                    if (state.message.equals(" 401 - ")) {
-                        viewModel.refresh(refreshToken)
+                    Log.e("authorization", "${state.message}")
+                    if (state.message.equals("Ошибка: 401 - ")) {
+                        try {
+                            viewModel.fetchRefreshToken()
+                        } catch (e: Exception) {
+                            Log.e("authorization", "Не удалось обновить токен: ${e.message}")
+                        }
                     }
                 }
 
@@ -145,7 +159,7 @@ class AuthorizationFragment : Fragment() {
                 }
 
                 is RefreshState.Error -> {
-                    if (state.message.equals("401 - ")) {
+                    if (state.message.equals("Ошибка: 401 - ")) {
                         Log.d("refresh", "Авторизуйтесь")
                     }
                 }
@@ -169,10 +183,13 @@ class AuthorizationFragment : Fragment() {
                 }
 
                 is LoginState.Error -> {
-                    Log.e("login", "Ошибка: ${state.message}")
-                    if (state.message.equals("401")) {
-                        viewModel.refresh(refreshToken)
+                    Log.e("login", "${state.message}")
+                    if (state.message.equals("Ошибка: 401 - ")) {
+                        viewModel.fetchRefreshToken()
+                    } else if (state.message.equals("Сетевая ошибка: Failed to connect to /130.193.44.66:8080")) {
+                        Log.e("login", "вход без проверки")
                     }
+
                 }
 
                 is LoginState.Content -> {
@@ -185,12 +202,15 @@ class AuthorizationFragment : Fragment() {
     }
 
     private fun checkLogin() {
-        val accessToken = sharedPreferences.getString("access_token", null) ?: ""
-        Log.e("check", "token= $accessToken")
-        if (!accessToken.isNullOrBlank()) {
-            viewModel.login(accessToken)
-        } else {
-            Log.d("checkLogin", "Токен отсутствует. Требуется авторизация.")
+        lifecycleScope.launch {
+            val accessToken = viewModel.getAccessToken()
+            Log.e("check", "token= $accessToken")
+
+            if (!accessToken.isNullOrBlank()) {
+                viewModel.login(accessToken)
+            } else {
+                Log.d("checkLogin", "Токен отсутствует. Требуется авторизация.")
+            }
         }
     }
 

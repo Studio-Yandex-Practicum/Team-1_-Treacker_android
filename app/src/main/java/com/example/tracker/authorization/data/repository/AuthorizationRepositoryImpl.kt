@@ -1,5 +1,6 @@
 package com.example.tracker.authorization.data.repository
 
+import android.content.SharedPreferences
 import android.util.Log
 import com.example.tracker.authorization.data.dto.AuthorizationRequest
 import com.example.tracker.authorization.data.dto.AuthorizationResponse
@@ -15,11 +16,13 @@ import com.example.tracker.authorization.domain.repository.AuthorizationReposito
 import com.example.tracker.util.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import retrofit2.Response
 
 class AuthorizationRepositoryImpl(
-    private val networkClientAuthorization: NetworkClientAuthorization
+    private val networkClientAuthorization: NetworkClientAuthorization,
+    private var sharedPreferences: SharedPreferences
 ) : AuthorizationRepository {
-    override suspend fun authorization(
+    override fun authorization(
         email: String,
         password: String
     ): Flow<Resource<Authorization>> = flow {
@@ -30,6 +33,7 @@ class AuthorizationRepositoryImpl(
             }
             val request = AuthorizationRequest(email, password)
             val response = networkClientAuthorization.doRequest(request)
+            val editor = sharedPreferences.edit()
 
             if (response.isSuccessful) {
                 val loginResponse = response.body()
@@ -37,6 +41,10 @@ class AuthorizationRepositoryImpl(
                 if (loginResponse != null) {
                     val authorization = loginResponse.toAuthorization()
                     emit(Resource.Success(authorization))
+                    editor.putString("access_token", authorization.accessToken)
+                    editor.putString("refresh_token", authorization.refreshToken)
+                    editor.putString("user_id", authorization.userId.toString())
+                    editor.apply()
                 } else {
                     emit(Resource.Error("Пустое тело ответа"))
                 }
@@ -49,7 +57,7 @@ class AuthorizationRepositoryImpl(
         }
     }
 
-    override suspend fun refresh(refreshToken: String): Flow<Resource<Refresh>> = flow {
+    override fun refresh(refreshToken: String): Flow<Resource<Refresh>> = flow {
         try {
             if (refreshToken.isEmpty()) {
                 emit(Resource.Error("Token обновления не может быть пустым"))
@@ -76,31 +84,64 @@ class AuthorizationRepositoryImpl(
         }
     }
 
-    override suspend fun login(accessToken: String): Flow<Resource<Login>> = flow {
+    override fun login(accessToken: String): Flow<Resource<Login>> = flow {
         try {
             if (accessToken.isEmpty()) {
                 emit(Resource.Error("Токен не может быть пустым"))
                 return@flow
             }
-            val request = LoginRequest(accessToken)
-            val response = networkClientAuthorization.login(request)
 
-            if (response.isSuccessful) {
-                val loginResponse = response.body()
-                Log.d("123", "$loginResponse")
-                if (loginResponse != null) {
-                    val login = loginResponse.toLogin()
-                    emit(Resource.Success(login))
-                } else {
-                    emit(Resource.Error("Пустое тело ответа"))
-                }
-            } else {
-                emit(Resource.Error("Ошибка: ${response.code()} - ${response.message()}"))
-            }
+            emit(handleLoginRequest(accessToken))
+
         } catch (e: Exception) {
             Log.e("Registration", "Ошибка при выполнении запроса: ${e.message}", e)
             emit(Resource.Error("Сетевая ошибка: ${e.message}"))
         }
+    }
+
+    private suspend fun handleLoginRequest(token: String): Resource<Login> {
+        val request = LoginRequest(token)
+        val response = networkClientAuthorization.login(request)
+
+        return if (response.isSuccessful) {
+            response.body()?.let { loginResponse ->
+                Resource.Success(loginResponse.toLogin())
+            } ?: Resource.Error("Пустое тело ответа")
+        } else {
+            handleLoginError(response)
+        }
+    }
+
+    private suspend fun handleLoginError(response: Response<LoginResponse>): Resource<Login> {
+        return when (response.code()) {
+            401 -> {
+                val refreshToken = sharedPreferences.getString("refresh_token", null)
+                if (refreshToken != null) {
+                    val newRequest = LoginRequest(refreshToken)
+                    val newResponse = networkClientAuthorization.login(newRequest)
+                    if (newResponse.isSuccessful) {
+                        newResponse.body()?.let { newLoginResponse ->
+                            Resource.Success(newLoginResponse.toLogin())
+                        } ?: Resource.Error("Пустое тело ответа")
+                    } else {
+                        Resource.Error("Ошибка: ${newResponse.code()} - ${newResponse.message()}")
+                    }
+                } else {
+                    Resource.Error("Не удалось обновить токен")
+                }
+            }
+            else -> Resource.Error("Ошибка: ${response.code()} - ${response.message()}")
+        }
+    }
+
+    override suspend fun getAccessToken(): String {
+        val accessToken = sharedPreferences.getString("access_token", "") ?: ""
+        return accessToken
+    }
+
+    override suspend fun getRefreshToken(): String {
+        val refreshToken = sharedPreferences.getString("refresh_token", "") ?: ""
+        return refreshToken
     }
 
     private fun AuthorizationResponse.toAuthorization(): Authorization {

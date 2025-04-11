@@ -5,5 +5,8 @@ import com.example.tracker.util.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface RegistrationInteractor {
-    suspend fun registration(email: String, password: String): Flow<Resource<Registration>>
+    fun registration(email: String, password: String): Flow<Resource<Registration>>
+    suspend fun setAccessToken(accessToken: String)
+    suspend fun setRefreshToken(refreshToken: String)
+    suspend fun setIdToken(idToken: Int)
 }
