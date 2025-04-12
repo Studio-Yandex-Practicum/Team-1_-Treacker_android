@@ -145,7 +145,7 @@
 
     <!-- Валюта -->
     <LinearLayout
-        android:id="@+id/exchangeCard"
+        android:id="@+id/currencyCard"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dim60"
         android:layout_marginTop="@dimen/dim8"
@@ -193,7 +193,7 @@
         android:paddingHorizontal="@dimen/dim12"
         android:background="@drawable/bg_rounded_primary"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/exchangeCard" >
+        app:layout_constraintTop_toBottomOf="@id/currencyCard" >
 
         <TextView
             android:layout_width="0dp"
