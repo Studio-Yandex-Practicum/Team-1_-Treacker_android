@@ -7,7 +7,7 @@ import com.example.tracker.settings.domain.model.Currency
 
 class CurrencyViewModel(private val settingsInteractor: SettingsInteractor) : ViewModel() {
 
-    fun getCheckedId() : Int {
+    fun getCheckedId(): Int {
         val currency = settingsInteractor.getCurrency()
         var id = -1
 
