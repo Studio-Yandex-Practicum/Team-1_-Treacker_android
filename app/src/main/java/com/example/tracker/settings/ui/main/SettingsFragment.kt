@@ -31,7 +31,6 @@ class SettingsFragment : Fragment() {
         setupViews()
         setupObservers()
         setupListeners()
-
     }
 
     private fun setupViews() {
@@ -44,7 +43,6 @@ class SettingsFragment : Fragment() {
         }
     }
     private fun setupListeners() {
-
         binding.themeSwitch.setOnCheckedChangeListener { _, checked ->
             settingsViewModel.switchTheme(checked)
         }
