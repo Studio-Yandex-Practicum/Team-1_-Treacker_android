@@ -26,7 +26,6 @@
         android:text="@string/settings"
         android:textSize="@dimen/text16"
         android:fontFamily="@font/bold"
-        android:textFontWeight="500"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -48,7 +47,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Тёмная тема"
+                android:text="@string/dark_theme"
                 android:textSize="@dimen/text14"
                 android:fontFamily="@font/bold" />
 
@@ -83,22 +82,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Напоминания"
+                android:text="@string/notifications"
                 android:textSize="@dimen/text14"
-                android:fontFamily="@font/bold"
-                android:textFontWeight="500" />
+                android:fontFamily="@font/bold" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Будем напоминать фиксировать расходы"
+                android:hint="@string/notification_hint"
                 android:textSize="@dimen/text12"
-                android:fontFamily="@font/regular"
-                android:textFontWeight="400" />
+                android:fontFamily="@font/regular" />
         </LinearLayout>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/notifications"
             android:src="@drawable/ic_arrow_forward"
             app:tint="?attr/colorPrimary" />
     </LinearLayout>
@@ -123,22 +121,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Экспорт расходов"
+                android:text="@string/export"
                 android:textSize="@dimen/text14"
-                android:fontFamily="@font/bold"
-                android:textFontWeight="500" />
+                android:fontFamily="@font/bold" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="CSV"
+                android:hint="@string/export_type"
                 android:textSize="@dimen/text12"
-                android:fontFamily="@font/regular"
-                android:textFontWeight="400" />
+                android:fontFamily="@font/regular" />
         </LinearLayout>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/export"
             android:src="@drawable/ic_download"
             app:tint="?attr/colorPrimary" />
     </LinearLayout>
@@ -163,22 +160,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Валюта"
+                android:text="@string/currency"
                 android:textSize="@dimen/text14"
-                android:fontFamily="@font/bold"
-                android:textFontWeight="500" />
+                android:fontFamily="@font/bold" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="RUB"
+                android:hint="@string/rub"
                 android:textSize="@dimen/text12"
-                android:fontFamily="@font/regular"
-                android:textFontWeight="400" />
+                android:fontFamily="@font/regular" />
         </LinearLayout>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/currency_title"
             android:src="@drawable/ic_arrow_forward"
             app:tint="?attr/colorPrimary" />
     </LinearLayout>
@@ -199,15 +195,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Выйти из аккаунта"
+            android:text="@string/exit"
             android:textSize="@dimen/text14"
             android:fontFamily="@font/bold"
-            android:textColor="@color/error"
-            android:textFontWeight="500" />
+            android:textColor="@color/error" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/exit"
             android:src="@drawable/ic_exit" />
     </LinearLayout>
 
