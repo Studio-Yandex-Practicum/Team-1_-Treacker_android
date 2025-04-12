@@ -28,7 +28,6 @@
             android:text="Выбор валюты"
             android:textSize="@dimen/text16"
             android:fontFamily="@font/bold"
-            android:textFontWeight="500"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -38,7 +37,50 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dim20"
+        android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/backButton">
+
+        <RadioButton
+            android:id="@+id/rubOpt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/dim12"
+            android:text="Российский рубль, ₽"
+            android:fontFamily="@font/bold"
+            android:textSize="@dimen/text14"
+            android:background="@null"
+            android:button="@null"
+            android:drawableEnd="@drawable/bg_radio_btn" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim2"
+            android:background="?attr/colorOnPrimary" />
+        <RadioButton
+            android:id="@+id/usdOpt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/dim12"
+            android:text="Доллар США, $"
+            android:fontFamily="@font/bold"
+            android:textSize="@dimen/text14"
+            android:background="@null"
+            android:button="@null"
+            android:drawableEnd="@drawable/bg_radio_btn" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim2"
+            android:background="?attr/colorOnPrimary" />
+        <RadioButton
+            android:id="@+id/eurOpt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/dim12"
+            android:text="Евро, €"
+            android:fontFamily="@font/bold"
+            android:textSize="@dimen/text14"
+            android:background="@null"
+            android:button="@null"
+            android:drawableEnd="@drawable/bg_radio_btn" />
 
     </RadioGroup>
 

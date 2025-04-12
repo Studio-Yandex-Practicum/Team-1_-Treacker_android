@@ -1,11 +1,12 @@
 package com.example.tracker.settings.ui.currency
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioButton
+import com.example.tracker.R
 import com.example.tracker.databinding.FragmentCurrencyBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -30,13 +31,13 @@ class CurrencyFragment : Fragment() {
 
     private fun setupViews() {
 
-//        val rub = binding.currencyGroup.getChildAt(0) as RadioButton
-//        val usd = binding.currencyGroup.getChildAt(2) as RadioButton
-//        val eur = binding.currencyGroup.getChildAt(4) as RadioButton
-//
-//        rub.text = "Российский рубль, ₽"
-//        usd.text = "Доллар США, $"
-//        eur.text = "Евро, €"
+        binding.currencyGroup.setOnCheckedChangeListener { group, checkedId ->
+            when (binding.currencyGroup.checkedRadioButtonId) {
+                R.id.rubOpt -> Log.d("CHECKED", "RUB")
+                R.id.usdOpt -> Log.d("CHECKED", "USD")
+                R.id.eurOpt -> Log.d("CHECKED", "EUR")
+            }
+        }
 
     }
 }
