@@ -1,13 +1,14 @@
 package com.example.tracker.settings.ui.currency
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.tracker.R
 import com.example.tracker.databinding.FragmentCurrencyBinding
+import com.example.tracker.settings.domain.model.Currency
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CurrencyFragment : Fragment() {
@@ -28,15 +29,29 @@ class CurrencyFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupViews()
+        setupListeners()
     }
 
     private fun setupViews() {
+        val chekedId = currencyViewModel.getCheckedId()
+
+        when (chekedId) {
+            R.id.rubOpt -> binding.rubOpt.isChecked = true
+            R.id.usdOpt -> binding.usdOpt.isChecked = true
+            R.id.eurOpt -> binding.eurOpt.isChecked = true
+        }
+    }
+
+    private fun setupListeners() {
         binding.currencyGroup.setOnCheckedChangeListener { group, checkedId ->
             when (binding.currencyGroup.checkedRadioButtonId) {
-                R.id.rubOpt -> Log.d("CHECKED", "RUB")
-                R.id.usdOpt -> Log.d("CHECKED", "USD")
-                R.id.eurOpt -> Log.d("CHECKED", "EUR")
+                R.id.rubOpt -> currencyViewModel.setCurrency(Currency.RUB)
+                R.id.usdOpt -> currencyViewModel.setCurrency(Currency.USD)
+                R.id.eurOpt -> currencyViewModel.setCurrency(Currency.EUR)
             }
+        }
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 }
