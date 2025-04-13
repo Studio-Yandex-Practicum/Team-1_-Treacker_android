@@ -9,12 +9,11 @@ class CurrencyViewModel(private val settingsInteractor: SettingsInteractor) : Vi
 
     fun getCheckedId(): Int {
         val currency = settingsInteractor.getCurrency()
-        var id = -1
 
-        when (currency) {
-            Currency.RUB -> id = R.id.rubOpt
-            Currency.USD -> id = R.id.usdOpt
-            Currency.EUR -> id = R.id.eurOpt
+        val id = when (currency) {
+            Currency.RUB -> R.id.rubOpt
+            Currency.USD -> R.id.usdOpt
+            Currency.EUR -> R.id.eurOpt
         }
         return id
     }
