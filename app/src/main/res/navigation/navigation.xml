@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_authorizationFragment_to_registrationFragment"
             app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_authorizationFragment_to_analyticsFragment"
+            app:destination="@id/analyticsFragment" />
     </fragment>
     <fragment
         android:id="@+id/recoveryFragment"
@@ -29,4 +32,8 @@
         android:name="com.example.tracker.settings.ui.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/analyticsFragment"
+        android:name="com.example.tracker.viewingAnalyticsCategories.ui.AnalyticsFragment"
+        android:label="AnalyticsFragment" />
 </navigation>
