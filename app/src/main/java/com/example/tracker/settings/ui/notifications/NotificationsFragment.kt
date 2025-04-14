@@ -8,6 +8,7 @@ import android.widget.NumberPicker
 import androidx.fragment.app.Fragment
 import com.example.tracker.databinding.FragmentNotificationsBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.Locale
 
 class NotificationsFragment : Fragment() {
 
@@ -15,7 +16,8 @@ class NotificationsFragment : Fragment() {
     private val viewModel: NotificationsViewModel by viewModel<NotificationsViewModel>()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentNotificationsBinding.inflate(inflater, container, false)
@@ -32,8 +34,8 @@ class NotificationsFragment : Fragment() {
         val hourPicker: NumberPicker = binding.hourPicker
         val minutePicker: NumberPicker = binding.minutePicker
 
-        hourPicker.setFormatter { i -> String.format("%02d", i) }
-        minutePicker.setFormatter { i -> String.format("%02d", i) }
+        hourPicker.setFormatter { i -> String.format(Locale.getDefault(), "%02d", i) }
+        minutePicker.setFormatter { i -> String.format(Locale.getDefault(), "%02d", i) }
 
         hourPicker.minValue = 0
         hourPicker.maxValue = 23
