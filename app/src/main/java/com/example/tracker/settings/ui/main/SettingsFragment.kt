@@ -50,5 +50,9 @@ class SettingsFragment : Fragment() {
         binding.currencyCard.setOnClickListener {
             findNavController().navigate(R.id.action_settingsFragment_to_currencyFragment)
         }
+
+        binding.reminderCard.setOnClickListener {
+            findNavController().navigate(R.id.action_settingsFragment_to_notificationsFragment)
+        }
     }
 }
