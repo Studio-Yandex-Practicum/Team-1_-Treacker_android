@@ -39,6 +39,13 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
         super.onViewCreated(view, savedInstanceState)
         val indicatorLayout: LinearLayout = binding.indicatorLayout
         onDataChange(emptyList())
+
+        setupViewPager()
+        setupIndicators(indicatorLayout)
+        setupTabLayout()
+    }
+
+    private fun setupViewPager() {
         binding.viewPager.adapter = ViewPagerAdapter(childFragmentManager, lifecycle, this)
         tabMediator = TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = when (position) {
@@ -51,8 +58,12 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
             }
         }
         tabMediator.attach()
+    }
+
+    private fun setupIndicators(indicatorLayout: LinearLayout) {
         val numberOfIndicators = 5
         val indicators = mutableListOf<View>()
+
         for (i in 0 until numberOfIndicators) {
             val indicator = View(requireContext()).apply {
                 layoutParams = LinearLayout.LayoutParams(20, 20).apply {
@@ -62,26 +73,13 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
             }
             indicators.add(indicator)
             indicatorLayout.addView(indicator)
-            indicators[0].setBackgroundResource(R.drawable.analytics_tab_indicator_enable)
-
-            binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-                override fun onTabSelected(tab: TabLayout.Tab) {
-                    indicators.forEach {
-                        it.setBackgroundResource(R.drawable.analytics_shape_indicator)
-                    }
-                    val selectedIndicator = indicators[tab.position]
-                    selectedIndicator.setBackgroundResource(R.drawable.analytics_tab_indicator_enable)
-                }
-
-                override fun onTabUnselected(tab: TabLayout.Tab) {
-                }
-
-                override fun onTabReselected(tab: TabLayout.Tab) {
-                }
-            })
         }
+        indicators[0].setBackgroundResource(R.drawable.analytics_tab_indicator_enable)
+
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
+                indicators.forEach { it.setBackgroundResource(R.drawable.analytics_shape_indicator) }
+                indicators[tab.position].setBackgroundResource(R.drawable.analytics_tab_indicator_enable)
                 tab.view.setBackgroundResource(R.drawable.analytics_tab_selector)
             }
 
@@ -92,6 +90,9 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
             override fun onTabReselected(tab: TabLayout.Tab) {
             }
         })
+    }
+
+    private fun setupTabLayout() {
         binding.tabLayout.getTabAt(0)?.view?.setBackgroundResource(R.drawable.analytics_tab_selector)
     }
 

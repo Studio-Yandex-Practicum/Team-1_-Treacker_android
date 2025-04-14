@@ -76,5 +76,5 @@ dependencies {
     implementation("androidx.room:room-ktx:2.6.1")
     implementation("com.squareup.okhttp3:logging-interceptor:3.9.0")
     // ChartPie
-    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 }

@@ -1,14 +1,10 @@
 package com.example.tracker.viewingAnalyticsCategories.ui
 
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.tracker.authorization.ui.AuthorizationFragment
-import com.example.tracker.passwordRecovery.ui.RecoveryFragment
 import com.example.tracker.viewingAnalyticsCategories.domain.Categories
-import core.db.entity.CategoryEntity
 
 class ViewPagerAdapter(
     fragmentManager: FragmentManager,
