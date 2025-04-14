@@ -23,5 +23,21 @@
     <string name="apple">Apple</string>
     <string name="noAccount">Нет аккаунта?</string>
     <string name="back">Назад</string>
+
+    <!-- Настройки -->
     <string name="settings">Настройки</string>
+    <string name="dark_theme">Тёмная тема</string>
+    <string name="notifications">Напоминания</string>
+    <string name="notification_hint">Будем напоминать фиксировать расходы</string>
+    <string name="export">Экспорт расходов</string>
+    <string name="export_type">CSV</string>
+    <string name="currency">Валюта</string>
+    <string name="rub">RUB</string>
+    <string name="usd">USD</string>
+    <string name="eur">EUR</string>
+    <string name="exit">Выйти из аккаунта</string>
+    <string name="currency_title">Выбор валюты</string>
+    <string name="rub_opt">Российский рубль, ₽</string>
+    <string name="usd_opt">Доллар США, $</string>
+    <string name="eur_opt">Евро, €</string>
 </resources>
