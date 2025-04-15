@@ -55,7 +55,7 @@
             android:fontFamily="@font/bold" />
 
         <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/themeSwitch"
+            android:id="@+id/notificationSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:thumb="@drawable/sw_thumb"
@@ -78,7 +78,7 @@
         app:layout_constraintTop_toBottomOf="@id/notificationCard" >
 
         <TextView
-            android:id="@+id/darkThemeText"
+            android:id="@+id/timeTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -87,16 +87,31 @@
             android:fontFamily="@font/bold" />
 
         <TextView
+            android:id="@+id/hours"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/default_time"
+            android:text="12"
             android:textColor="@color/accent"
             android:textSize="@dimen/text14"
-            android:fontFamily="@font/regular"
-            />
+            android:fontFamily="@font/regular" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":"
+            android:textColor="@color/accent"
+            android:textSize="@dimen/text14"
+            android:fontFamily="@font/regular" />
+        <TextView
+            android:id="@+id/minutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00"
+            android:textColor="@color/accent"
+            android:textSize="@dimen/text14"
+            android:fontFamily="@font/regular" />
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/pickNumberCard"
+        android:id="@+id/numberPickerCard"
         android:layout_width="match_parent"
         android:layout_height="148dp"
         app:layout_constraintTop_toBottomOf="@id/timeCard"
@@ -135,10 +150,10 @@
         app:endIconTint="@color/accent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pickNumberCard">
+        app:layout_constraintTop_toBottomOf="@id/numberPickerCard">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/choose_country_textInputEditText"
+            android:id="@+id/notificationMessageEditText"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dim60"
 
