@@ -4,8 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridView
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
+import com.example.tracker.databinding.ItemGridCardBinding
 import com.example.tracker.expense.domain.models.Category
 
 class PagerAdapter(categories: List<Category>) : RecyclerView.Adapter<PagerViewHolder>() {
@@ -13,9 +15,11 @@ class PagerAdapter(categories: List<Category>) : RecyclerView.Adapter<PagerViewH
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerViewHolder {
         return PagerViewHolder(
-            LayoutInflater
-                .from(parent.context)
-                .inflate(R.layout.item_grid_card, parent, false)
+            ItemGridCardBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         )
     }
 
@@ -28,10 +32,13 @@ class PagerAdapter(categories: List<Category>) : RecyclerView.Adapter<PagerViewH
     }
 }
 
-class PagerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private val gridView = itemView.findViewById<GridView>(R.id.grid_view)
+class PagerViewHolder(private val binding: ItemGridCardBinding) :
+    RecyclerView.ViewHolder(binding.root) {
+
     fun bind(categories: List<Category>) {
-        val adapter = CardAdapter(categories, itemView.context)
-        gridView.adapter = adapter
+        val adapter = CardAdapter(categories)
+        val gridLayoutManager = GridLayoutManager(binding.root.context, 5)
+        binding.recycler.layoutManager = gridLayoutManager
+        binding.recycler.adapter = adapter
     }
 }

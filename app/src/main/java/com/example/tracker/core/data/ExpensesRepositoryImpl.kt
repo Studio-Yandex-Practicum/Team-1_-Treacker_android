@@ -14,7 +14,9 @@ class ExpensesRepositoryImpl(
 ) : ExpensesRepository {
 
     override suspend fun getAllCategory(): Flow<List<Category>> = flow {
-        db.categoryDao().getAllCategories()
+        emit(
+            convertToCategories(db.categoryDao().getAllCategories())
+        )
     }
 
     override suspend fun checkCategoryEmpty(): Boolean {
@@ -31,6 +33,10 @@ class ExpensesRepositoryImpl(
 
     private fun convertToCategoryEntities(categories: List<Category>): List<CategoryEntity> {
         return categories.map { converter.map(it) }
+    }
+
+    private fun convertToCategories(categoryEntities: List<CategoryEntity>): List<Category> {
+        return categoryEntities.map { converter.map(it) }
     }
 
 }
