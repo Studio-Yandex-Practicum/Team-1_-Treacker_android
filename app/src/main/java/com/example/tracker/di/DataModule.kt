@@ -12,7 +12,6 @@ import com.example.tracker.registration.data.network.RetrofitClient
 import com.example.tracker.core.db.AppDatabase
 import com.example.tracker.settings.data.api.SettingsStorage
 import com.google.gson.Gson
-import core.db.AppDatabase
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext

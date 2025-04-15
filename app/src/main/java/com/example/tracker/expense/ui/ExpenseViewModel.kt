@@ -5,7 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.tracker.R
 import com.example.tracker.expense.domain.GetAllCategoriesUseCase
+import com.example.tracker.expense.domain.models.Category
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -26,9 +28,20 @@ class ExpenseViewModel(
                 .execute()
                 .collect { categories ->
                     _state.postValue(
-                        ExpenseScreenState.AddExpenseState(categories)
+                        ExpenseScreenState.AddExpenseState(categories +categories + createAddItem())
                     )
                 }
         }
+    }
+
+    private fun createAddItem(): List<Category> {
+        return listOf(
+            Category(
+                title = "Добавить",
+                icon = R.drawable.category_icon_add,
+                iconColor = R.color.ic_gray_bg,
+                iconTint = R.color.ic_gray_primary
+            )
+        )
     }
 }

@@ -50,5 +50,6 @@ class ExpenseFragment : Fragment() {
         val pagerAdapter = PagerAdapter(categories)
         binding.viewPager.adapter = pagerAdapter
 
+
     }
 }

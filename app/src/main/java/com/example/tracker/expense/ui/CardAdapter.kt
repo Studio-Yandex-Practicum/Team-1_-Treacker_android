@@ -29,9 +29,12 @@ class CardAdapter(
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
         val category = categories[position]
+        val itemResource = holder.binding.root.resources
         holder.binding.apply {
             title.text = category.title
             icon.setImageResource(category.icon)
+            icon.setColorFilter(itemResource.getColor(category.iconTint))
+            iconCard.setCardBackgroundColor(itemResource.getColor(category.iconColor))
         }
     }
 }
