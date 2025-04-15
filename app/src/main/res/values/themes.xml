@@ -8,12 +8,16 @@
 
         <!-- Цвета фонов -->
         <item name="colorOnPrimary">@color/bg_primary_light</item>
+        <item name="colorOnSecondary">@color/bg_secondary_light</item>
         <item name="android:windowBackground">@color/bg_secondary_light</item>
         <item name="android:statusBarColor">@color/bg_secondary_light</item>
 
         <!-- Цвет текста по-умолчанию -->
         <item name="android:textColor">@color/text_primary_light</item>
         <item name="android:textColorHint">@color/text_secondary_light_dark</item>
+
+        <!-- Делает цвет разделителя в NumberPicker прозрачным -->
+        <item name="colorControlNormal">@android:color/transparent</item>
 
     </style>
     <style name="Theme.Team1TrackerAndroid" parent="Base.Theme.Team1TrackerAndroid" />
