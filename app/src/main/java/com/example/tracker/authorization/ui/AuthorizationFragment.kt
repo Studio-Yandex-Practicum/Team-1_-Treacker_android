@@ -145,6 +145,7 @@ class AuthorizationFragment : Fragment() {
                     state.data?.let {
                         Log.e("authorization", "успех: ${it}")
                         viewModel.login(state.data.accessToken)
+                        findNavController().navigate(R.id.action_authorizationFragment_to_analyticsFragment)
                     }
                 }
             }
@@ -188,6 +189,7 @@ class AuthorizationFragment : Fragment() {
                         viewModel.fetchRefreshToken()
                     } else if (state.message.equals("Сетевая ошибка: Failed to connect to /130.193.44.66:8080")) {
                         Log.e("login", "вход без проверки")
+                        findNavController().navigate(R.id.action_authorizationFragment_to_analyticsFragment)
                     }
 
                 }
@@ -195,6 +197,7 @@ class AuthorizationFragment : Fragment() {
                 is LoginState.Content -> {
                     state.data?.let {
                         Log.e("login", "успех: ${it}")
+                        findNavController().navigate(R.id.action_authorizationFragment_to_analyticsFragment)
                     }
                 }
             }
