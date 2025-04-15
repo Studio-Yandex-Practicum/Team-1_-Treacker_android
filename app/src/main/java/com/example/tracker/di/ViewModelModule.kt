@@ -13,5 +13,5 @@ val viewModelModule = module {
     viewModel { AuthorizationViewModel(get()) }
     viewModel { SettingsViewModel(get()) }
     viewModel { CurrencyViewModel(get()) }
-    viewModel { NotificationsViewModel() }
+    viewModel { NotificationsViewModel(get()) }
 }
