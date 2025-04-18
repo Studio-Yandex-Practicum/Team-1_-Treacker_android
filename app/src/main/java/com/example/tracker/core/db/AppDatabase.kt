@@ -1,11 +1,11 @@
-package core.db
+package com.example.tracker.core.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import core.db.dao.CategoryDao
-import core.db.dao.OperationDao
-import core.db.entity.CategoryEntity
-import core.db.entity.OperationEntity
+import com.example.tracker.core.db.dao.CategoryDao
+import com.example.tracker.core.db.dao.OperationDao
+import com.example.tracker.core.db.entity.CategoryEntity
+import com.example.tracker.core.db.entity.OperationEntity
 
 @Database(
     version = 1,

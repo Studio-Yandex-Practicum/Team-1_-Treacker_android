@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".expense.ui.ExpenseFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dim20"
+            android:layout_marginBottom="@dimen/dim22"
+            app:backgroundTint="@color/accent"
+            app:srcCompat="@drawable/ic_add"
+            app:tint="@color/backgroud"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:shapeAppearance="@drawable/b_floating_shape" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/add_expense_bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroud"
+        app:behavior_hideable="true"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:title="@string/add_expense"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/close_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="24dp"
+                android:src="@drawable/icon_close" />
+        </Toolbar>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/amount_input_layout"
+                    style="@style/MyEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dim20"
+                    android:layout_marginTop="@dimen/dim20"
+                    android:gravity="center_vertical"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp"
+                    app:errorTextColor="@color/error"
+                    app:hintTextColor="@color/color_et"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/amount_edit_text"
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="57dp"
+                        android:background="@drawable/et_shape"
+                        android:fontFamily="@font/medium"
+                        android:gravity="center_vertical"
+                        android:hint="@string/sum"
+                        android:imeOptions="actionDone"
+                        android:inputType="textEmailAddress"
+                        android:singleLine="true"
+                        android:textColor="@color/primaryDark"
+                        android:textColorHint="@color/secondary"
+                        android:textSize="@dimen/text14" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/view_pager"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dim20"
+                    android:layout_marginTop="@dimen/dim16"
+                    android:layout_marginEnd="@dimen/dim20"
+                    app:layout_constraintBottom_toTopOf="@id/date_edit_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/amount_input_layout" />
+
+                <EditText
+                    android:id="@+id/date_edit_text"
+                    style="@style/MyEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="57dp"
+                    android:layout_marginHorizontal="@dimen/dim16"
+                    android:layout_marginTop="@dimen/dim20"
+                    android:enabled="false"
+                    android:fontFamily="@font/medium"
+                    android:maxLines="1"
+                    android:paddingHorizontal="@dimen/dim16"
+                    android:singleLine="true"
+                    android:textColor="@color/primary_dark"
+                    app:layout_constraintTop_toBottomOf="@id/view_pager" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dim20"
+                    android:src="@drawable/icon_calendar"
+                    app:layout_constraintBottom_toBottomOf="@id/date_edit_text"
+                    app:layout_constraintEnd_toEndOf="@id/date_edit_text"
+                    app:layout_constraintTop_toTopOf="@id/date_edit_text"
+                    app:tint="@color/accent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/comment_input_layout"
+                    style="@style/MyEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dim20"
+                    android:layout_marginTop="@dimen/dim20"
+                    android:gravity="center_vertical"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp"
+                    app:errorTextColor="@color/error"
+                    app:hintTextColor="@color/color_et"
+                    app:layout_constraintTop_toBottomOf="@id/date_edit_text">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/comment_edit_text"
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="57dp"
+                        android:background="@drawable/et_shape"
+                        android:fontFamily="@font/medium"
+                        android:gravity="center_vertical"
+                        android:hint="@string/comment_in_edit_text"
+                        android:imeOptions="actionDone"
+                        android:inputType="textEmailAddress"
+                        android:singleLine="true"
+                        android:textColor="@color/primaryDark"
+                        android:textColorHint="@color/secondary"
+                        android:textSize="@dimen/text14" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <android.widget.Button
+                    android:id="@+id/bt_apply"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dim20"
+                    android:layout_marginTop="@dimen/dim24"
+                    android:layout_marginBottom="@dimen/dim4"
+                    android:background="@drawable/b_shape"
+                    android:enabled="false"
+                    android:fontFamily="@font/medium"
+                    android:text="@string/add"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text14"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

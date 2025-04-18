@@ -1,8 +1,8 @@
-package core.db.dao
+package com.example.tracker.core.db.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
-import core.db.entity.OperationEntity
+import com.example.tracker.core.db.entity.OperationEntity
 
 @Dao
 interface OperationDao {
