@@ -14,11 +14,14 @@
             android:id="@+id/add_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_add_button"
-            android:layout_marginBottom="@dimen/dim22"
             android:layout_marginEnd="@dimen/dim20"
+            android:layout_marginBottom="@dimen/dim22"
+            app:backgroundTint="@color/accent"
+            app:srcCompat="@drawable/ic_add"
+            app:tint="@color/backgroud"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:shapeAppearance="@drawable/b_floating_shape" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
