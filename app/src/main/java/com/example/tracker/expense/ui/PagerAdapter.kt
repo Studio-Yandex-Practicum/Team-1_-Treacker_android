@@ -31,11 +31,10 @@ class PagerAdapter(categories: List<Category>) : RecyclerView.Adapter<PagerViewH
     }
 }
 
-class PagerViewHolder(private val binding: ItemGridCardBinding) :
-    RecyclerView.ViewHolder(binding.root) {
-
+class PagerViewHolder(
+    private val binding: ItemGridCardBinding
+) : RecyclerView.ViewHolder(binding.root) {
     fun bind(categories: List<Category>) {
-
         val itemResource = binding.root.resources
 
         val adapter = CardAdapter(categories)

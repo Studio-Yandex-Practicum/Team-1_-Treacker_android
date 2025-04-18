@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.tracker.databinding.FragmentExpenseBinding
-import com.example.tracker.expense.domain.models.Category
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ExpenseFragment : Fragment() {
@@ -16,8 +16,13 @@ class ExpenseFragment : Fragment() {
     private var _binding: FragmentExpenseBinding? = null
     private val binding get() = _binding!!
 
+    private val bottomSheetBehavior by lazy {
+        BottomSheetBehavior.from(binding.addExpenseBottomSheet)
+    }
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentExpenseBinding.inflate(inflater)
@@ -28,7 +33,19 @@ class ExpenseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.state.observe(viewLifecycleOwner) { state ->
-                  renderState(state)
+            renderState(state)
+        }
+
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+        bottomSheetBehavior.isDraggable = false
+
+
+        binding.addButton.setOnClickListener {
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        }
+
+        binding.closeAdd.setOnClickListener {
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         }
     }
 

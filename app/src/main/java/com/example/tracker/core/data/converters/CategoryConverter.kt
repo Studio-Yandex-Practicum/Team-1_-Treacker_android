@@ -1,7 +1,7 @@
 package com.example.tracker.core.data.converters
 
-import com.example.tracker.expense.domain.models.Category
 import com.example.tracker.core.db.entity.CategoryEntity
+import com.example.tracker.expense.domain.models.Category
 
 class CategoryConverter {
     fun map(category: Category): CategoryEntity {
