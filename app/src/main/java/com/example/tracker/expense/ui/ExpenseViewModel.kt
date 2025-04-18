@@ -8,8 +8,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.tracker.R
 import com.example.tracker.expense.domain.GetAllCategoriesUseCase
 import com.example.tracker.expense.domain.models.Category
+import com.example.tracker.util.toAppDateFormat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.Date
 
 class ExpenseViewModel(
     private val getAllCategoriesUseCase: GetAllCategoriesUseCase
@@ -28,7 +30,10 @@ class ExpenseViewModel(
                 .execute()
                 .collect { categories ->
                     _state.postValue(
-                        ExpenseScreenState.AddExpenseState(categories +categories + createAddItem())
+                        ExpenseScreenState.AddExpenseState(
+                            categories = categories + createAddItem(),
+                            date = Date().toAppDateFormat()
+                        )
                     )
                 }
         }

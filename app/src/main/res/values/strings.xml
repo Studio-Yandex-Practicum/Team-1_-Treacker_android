@@ -50,4 +50,6 @@
     <!--  Добавить расход  -->
     <string name="sum">Сумма, ₽</string>
     <string name="add">Добавить</string>
+    <string name="comment_in_edit_text">Примечание (необязательно)</string>
+    <string name="today">Сегодня</string>
 </resources>

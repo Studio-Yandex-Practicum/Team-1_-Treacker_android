@@ -49,6 +49,5 @@ class PagerViewHolder(private val binding: ItemGridCardBinding) :
             itemResource.getDimension(R.dimen.dim12),
             itemResource.displayMetrics
         ).toInt()
-        binding.recycler.addItemDecoration(GridSpacingItemDecoration(5, dp, false))
     }
 }
