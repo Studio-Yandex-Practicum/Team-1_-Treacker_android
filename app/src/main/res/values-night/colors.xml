@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="ic_yellow_primary">#E0AF00</color>
+    <color name="ic_yellow_bg">#FFF4D0</color>
+    <color name="ic_light_green_primary">#4C7F00</color>
+    <color name="ic_light_green_bg">#BCE185</color>
+    <color name="ic_red_primary">#EC3B3B</color>
+    <color name="ic_red_bg">#FFB9B9</color>
+    <color name="ic_green_primary">#007E27</color>27
+    <color name="ic_green_bg">#90E1A9</color>
+    <color name="ic_purple_primary">#C6166E</color>
+    <color name="ic_purple_bg">#FFADD4</color>
+    <color name="ic_violet_primary">#8706F9</color>
+    <color name="ic_violet_bg">#D2ACFE</color>
+    <color name="ic_dark_blue_primary">#0171F1</color>
+    <color name="ic_dark_blue_bg">#9BC8FF</color>
+    <color name="ic_orange_primary">#D47E04</color>
+    <color name="ic_orange_bg">#FFDDA4</color>
+    <color name="ic_light_blue_primary">#00799B</color>
+    <color name="ic_light_blue_bg">#8DD8D8</color>
+    <color name="ic_blue_primary">#006BAD</color>
+    <color name="ic_blue_bg">#9BC4EC</color>
+    <color name="ic_gray_primary">#A4A4A4</color>
+    <color name="ic_gray_bg">#535353</color>
+
+</resources>
