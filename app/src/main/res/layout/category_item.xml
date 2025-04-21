@@ -5,21 +5,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools">
     <ImageView
-        android:id="@+id/category_image"
+        android:id="@+id/bg_image"
         android:layout_width="52dp"
         android:layout_height="52dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/analytics_bg_icon_shape"
         android:layout_marginTop="@dimen/dim16"
         />
+    <ImageView
+        android:id="@+id/category_image"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        app:layout_constraintStart_toStartOf="@id/bg_image"
+        app:layout_constraintTop_toTopOf="@id/bg_image"
+        app:layout_constraintEnd_toEndOf="@id/bg_image"
+        app:layout_constraintBottom_toBottomOf="@id/bg_image"
+        />
+
     <TextView
         android:id="@+id/category_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/category_image"
-        app:layout_constraintTop_toTopOf="@id/category_image"
+        app:layout_constraintStart_toEndOf="@id/bg_image"
+        app:layout_constraintTop_toTopOf="@id/bg_image"
         tool:text="Покупки"
         android:paddingTop="6dp"
+        android:layout_marginStart="@dimen/dim8"
         android:textSize="@dimen/text14"
         android:fontFamily="@font/medium"
         android:textColor="@color/primary_dark"
@@ -41,9 +53,10 @@
         android:id="@+id/count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/category_image"
+        app:layout_constraintStart_toEndOf="@id/bg_image"
         app:layout_constraintTop_toBottomOf="@id/category_name"
         tool:text="32 000 ₽"
+        android:layout_marginStart="@dimen/dim8"
         android:paddingBottom="6dp"
         android:textSize="@dimen/text12"
         android:fontFamily="@font/regular"
