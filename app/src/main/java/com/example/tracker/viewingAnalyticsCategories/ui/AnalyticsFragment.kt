@@ -212,10 +212,10 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
     private fun showData(data: List<Category>?) {
         binding.rvAnalytics.isVisible = true
         binding.emptyList.isVisible = false
-        adapter.updateItems(data!!)
         binding.rvAnalytics.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.rvAnalytics.adapter = adapter
-        adapter.notifyDataSetChanged()
+        adapter.updateItems(data!!)
+
     }
     private fun showEmpty(){
         binding.rvAnalytics.isVisible = false
