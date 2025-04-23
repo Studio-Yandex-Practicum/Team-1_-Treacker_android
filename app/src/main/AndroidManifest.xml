@@ -32,20 +32,20 @@
             </intent-filter>
         </activity>
 
-<!--        &lt;!&ndash; Приёмник сигнала от AlarmManager &ndash;&gt;-->
-<!--        <receiver-->
-<!--            android:name=".receiver.AlarmReceiver"-->
-<!--            android:exported="true" />-->
+        <!-- Приёмник сигнала от AlarmManager -->
+        <receiver
+            android:name=".settings.common.AlarmReceiver"
+            android:exported="true" />
 
-<!--        &lt;!&ndash; Приёмник на перезагрузку устройства &ndash;&gt;-->
-<!--        <receiver-->
-<!--            android:name=".receiver.BootReceiver"-->
-<!--            android:enabled="true"-->
-<!--            android:exported="true">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.BOOT_COMPLETED" />-->
-<!--            </intent-filter>-->
-<!--        </receiver>-->
+        <!-- Приёмник на перезагрузку устройства -->
+        <receiver
+            android:name=".settings.common.BootReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

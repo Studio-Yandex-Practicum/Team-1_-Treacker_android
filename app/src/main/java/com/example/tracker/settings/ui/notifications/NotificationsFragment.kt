@@ -96,23 +96,13 @@ class NotificationsFragment : Fragment() {
     private fun setupHourPickerListeners() {
         binding.hourPicker.setOnValueChangedListener { _, _, newVal ->
             binding.hours.text = TimeFormatterUtil.formatTwoDigits(newVal)
-        }
-        binding.hourPicker.setOnScrollListener { _, scrollState ->
-            if (scrollState == NumberPicker.OnScrollListener.SCROLL_STATE_IDLE) {
-                val hours = binding.hourPicker.value
-                viewModel.setHours(TimeFormatterUtil.formatTwoDigits(hours))
-            }
+            viewModel.setHours(TimeFormatterUtil.formatTwoDigits(newVal))
         }
     }
     private fun setupMinutePickerListeners() {
         binding.minutePicker.setOnValueChangedListener { _, _, newVal ->
             binding.minutes.text = TimeFormatterUtil.formatTwoDigits(newVal)
-        }
-        binding.minutePicker.setOnScrollListener { _, scrollState ->
-            if (scrollState == NumberPicker.OnScrollListener.SCROLL_STATE_IDLE) {
-                val minutes = binding.minutePicker.value
-                viewModel.setMinutes(TimeFormatterUtil.formatTwoDigits(minutes))
-            }
+            viewModel.setMinutes(TimeFormatterUtil.formatTwoDigits(newVal))
         }
     }
 
@@ -150,11 +140,15 @@ class NotificationsFragment : Fragment() {
     private fun requestNotificationPermissionIfNeeded(isChecked: Boolean) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             val permission = Manifest.permission.POST_NOTIFICATIONS
-            if (ContextCompat.checkSelfPermission(requireContext(), permission) != PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(requireContext(), permission)
+                != PackageManager.PERMISSION_GRANTED
+            ) {
                 requestNotificationPermissionLauncher.launch(permission)
             } else {
                 viewModel.toggleNotifications(isChecked)
             }
+        } else {
+            viewModel.toggleNotifications(isChecked)
         }
     }
 

@@ -5,6 +5,7 @@ import com.example.tracker.registration.ui.RegistrationViewModel
 import com.example.tracker.settings.ui.currency.CurrencyViewModel
 import com.example.tracker.settings.ui.main.SettingsViewModel
 import com.example.tracker.settings.ui.notifications.NotificationsViewModel
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -13,5 +14,5 @@ val viewModelModule = module {
     viewModel { AuthorizationViewModel(get()) }
     viewModel { SettingsViewModel(get()) }
     viewModel { CurrencyViewModel(get()) }
-    viewModel { NotificationsViewModel(get()) }
+    viewModel { NotificationsViewModel(get(), get(), androidContext()) }
 }
