@@ -25,16 +25,28 @@
     <color name="bg_secondary_dark">#1C1C1D</color>
 
     <!--    category icon color-->
-    <color name="ic_blue_primary">#0083D4</color>
-    <color name="ic_dark_blue_primary">#1676E4</color>
-    <color name="ic_purple_primary">#EB2688</color>
-    <color name="ic_violet_primary">#9440DE</color>
     <color name="ic_yellow_primary">#E0AF00</color>
-    <color name="ic_green_primary">#009F31</color>
+    <color name="ic_yellow_bg">#FFF4D0</color>
     <color name="ic_light_green_primary">#5B9800</color>
-    <color name="ic_orange_primary">#E88800</color>
+    <color name="ic_light_green_bg">#E6F5D0</color>
     <color name="ic_red_primary">#EC3B3B</color>
+    <color name="ic_red_bg">#FEE2E2</color>
+    <color name="ic_green_primary">#009F31</color>
+    <color name="ic_green_bg">#DAF4E2</color>
+    <color name="ic_purple_primary">#EB2688</color>
+    <color name="ic_purple_bg">#FADFEC</color>
+    <color name="ic_violet_primary">#9440DE</color>
+    <color name="ic_violet_bg">#E1D0F5</color>
+    <color name="ic_dark_blue_primary">#1676E4</color>07
+    <color name="ic_dark_blue_bg">#CCE3FF</color>
+    <color name="ic_orange_primary">#E88800</color>
+    <color name="ic_orange_bg">#FFF0D7</color>
     <color name="ic_light_blue_primary">#0395BE</color>
-    <color name="ic_gray_primary">#626262</color>
+    <color name="ic_light_blue_bg">#D7FFFF</color>
+    <color name="ic_blue_primary">#0083D4</color>
+    <color name="ic_blue_bg">#D7EBFF</color>
+    <color name="ic_gray_primary">#7D7C7C</color>
+    <color name="ic_gray_bg">#EFF1F4</color>
+
 
 </resources>

@@ -49,4 +49,11 @@
     <string name="permission_denied_message">Вы можете предоставить разрешения в настройках приложения.</string>
     <string name="open_settings">Открыть настройки</string>
     <string name="cancel">Отмена</string>
+
+    <!--  Добавить расход  -->
+    <string name="add_expense">Добавление расхода</string>
+    <string name="sum">Сумма, ₽</string>
+    <string name="add">Добавить</string>
+    <string name="comment_in_edit_text">Примечание (необязательно)</string>
+    <string name="today">Сегодня</string>
 </resources>

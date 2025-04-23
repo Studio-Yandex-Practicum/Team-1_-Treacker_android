@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:width="60dp"
+        android:height="60dp"
+        android:drawable="@drawable/b_floating_shape" />
+    <item
+        android:width="14dp"
+        android:height="14dp"
+        android:drawable="@drawable/ic_add"
+        android:gravity="center" />
+</layer-list>
