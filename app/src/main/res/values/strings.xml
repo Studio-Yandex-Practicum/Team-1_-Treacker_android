@@ -45,4 +45,11 @@
     <string name="default_time">12:00</string>
     <string name="message_hint">Сообщение</string>
     <string name="message">Не забудьте внести расходы</string>
+    <string name="add_expense">Добавление расхода</string>
+
+    <!--  Добавить расход  -->
+    <string name="sum">Сумма, ₽</string>
+    <string name="add">Добавить</string>
+    <string name="comment_in_edit_text">Примечание (необязательно)</string>
+    <string name="today">Сегодня</string>
 </resources>
