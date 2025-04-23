@@ -29,7 +29,7 @@ class NotificationsFragment : Fragment() {
     private lateinit var binding: FragmentNotificationsBinding
     private val viewModel: NotificationsViewModel by viewModel<NotificationsViewModel>()
 
-    private lateinit var requestNotificationPermissionLauncher : ActivityResultLauncher<String>
+    private lateinit var requestNotificationPermissionLauncher: ActivityResultLauncher<String>
 
     override fun onCreateView(
         inflater: LayoutInflater,

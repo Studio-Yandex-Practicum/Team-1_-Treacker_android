@@ -21,6 +21,8 @@ object NotificationScheduler : KoinComponent {
     private const val REQUEST_CODE = 1001
     private val settingsInteractor: SettingsInteractor by inject()
 
+    private lateinit var alarmManager: AlarmManager
+
     /**
      * Читает текущие настройки и запускает или отменяет ежедневное напоминание.
      */
@@ -39,7 +41,7 @@ object NotificationScheduler : KoinComponent {
      * затем планирует следующий будильник.
      */
     private fun scheduleExactAlarm(context: Context, hour: Int, minute: Int) {
-        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
             !alarmManager.canScheduleExactAlarms()) {
@@ -54,23 +56,33 @@ object NotificationScheduler : KoinComponent {
         }
 
         val alarmIntent = Intent(context, AlarmReceiver::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(
-            context,
-            REQUEST_CODE,
-            alarmIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        )
+        val pendingIntent = setupPendingIntent(context, alarmIntent)
+        val calendar = setupCalendar(hour, minute)
 
-        val calendar = Calendar.getInstance().apply {
+        if (calendar.timeInMillis <= System.currentTimeMillis()) {
+            calendar.add(Calendar.DAY_OF_MONTH, 1)
+        }
+
+        checkVersionAndSetupAlarm(calendar, pendingIntent)
+    }
+
+    private fun setupCalendar(hour: Int, minute: Int): Calendar {
+        return Calendar.getInstance().apply {
             timeInMillis = System.currentTimeMillis()
             set(Calendar.HOUR_OF_DAY, hour)
             set(Calendar.MINUTE, minute)
             set(Calendar.SECOND, 0)
         }
-        if (calendar.timeInMillis <= System.currentTimeMillis()) {
-            calendar.add(Calendar.DAY_OF_MONTH, 1)
-        }
-
+    }
+    private fun setupPendingIntent(context: Context, alarmIntent: Intent): PendingIntent {
+        return PendingIntent.getBroadcast(
+            context,
+            REQUEST_CODE,
+            alarmIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+    }
+    private fun checkVersionAndSetupAlarm(calendar: Calendar, pendingIntent: PendingIntent) {
         when {
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ->
                 alarmManager.setExactAndAllowWhileIdle(
