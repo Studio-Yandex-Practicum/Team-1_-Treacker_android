@@ -9,6 +9,7 @@ import com.example.tracker.authorization.data.network.RetrofitClientAuthorizatio
 import com.example.tracker.registration.data.network.ApiClient
 import com.example.tracker.registration.data.network.NetworkClient
 import com.example.tracker.registration.data.network.RetrofitClient
+import com.example.tracker.settings.common.NotificationScheduler
 import com.example.tracker.core.db.AppDatabase
 import com.example.tracker.settings.data.api.SettingsStorage
 import com.google.gson.Gson
@@ -73,5 +74,7 @@ val dataModule = module {
     single {
         SettingsStorage(androidContext().getSharedPreferences("SettingsStorage", MODE_PRIVATE))
     }
+
+    single { NotificationScheduler }
 
 }

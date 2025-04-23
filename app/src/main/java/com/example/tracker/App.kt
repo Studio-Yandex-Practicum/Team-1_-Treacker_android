@@ -28,7 +28,7 @@ class App : Application() {
             modules(dataModule, interactorModule,repositoryModule, viewModelModule)
         }
 
-        settingsInteractor = SettingsInteractorImpl(getSettingsRepository(this.applicationContext))
+        settingsInteractor = SettingsInteractorImpl(getSettingsRepository(this))
         darkTheme = settingsInteractor.getThemeSettings()
 
         if (darkTheme) {
