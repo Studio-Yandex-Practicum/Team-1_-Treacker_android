@@ -6,11 +6,11 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.provider.Settings
+import androidx.core.net.toUri
 import com.example.tracker.settings.domain.api.SettingsInteractor
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import java.util.Calendar
-import androidx.core.net.toUri
 
 /**
  * Планировщик для ежедневных точных уведомлений в заданное пользователем время,
