@@ -16,6 +16,6 @@ val viewModelModule = module {
     viewModel { ExpenseViewModel(get()) }
     viewModel { SettingsViewModel(get()) }
     viewModel { CurrencyViewModel(get()) }
-    viewModel { NotificationsViewModel() }
+    viewModel { NotificationsViewModel(get()) }
     viewModel { AnalyticsViewModel(get()) }
 }
