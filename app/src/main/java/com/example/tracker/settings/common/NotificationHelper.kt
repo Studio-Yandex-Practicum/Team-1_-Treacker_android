@@ -44,7 +44,7 @@ object NotificationHelper {
 
         val pendingIntent = NavDeepLinkBuilder(context)
             .setGraph(R.navigation.navigation)
-            .setDestination(R.id.settingsFragment)
+            .setDestination(R.id.analyticsFragment)
             .createPendingIntent()
 
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
