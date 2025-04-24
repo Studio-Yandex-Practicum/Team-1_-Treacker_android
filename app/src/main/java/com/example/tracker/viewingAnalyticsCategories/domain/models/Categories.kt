@@ -1,4 +1,4 @@
-package com.example.tracker.viewingAnalyticsCategories.domain
+package com.example.tracker.viewingAnalyticsCategories.domain.models
 
 data class Categories(
     val name: String,

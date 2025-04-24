@@ -8,8 +8,8 @@ import com.example.tracker.settings.domain.api.SettingsInteractor
 import com.example.tracker.settings.domain.impl.SettingsInteractorImpl
 import com.example.tracker.core.domain.PrepopulateCategoryUseCase
 import com.example.tracker.core.domain.PrepopulateCategoryUseCaseImpl
-import com.example.tracker.expense.domain.GetAllCategoriesUseCase
-import com.example.tracker.expense.domain.GetAllCategoriesUseCaseImpl
+import com.example.tracker.viewingAnalyticsCategories.domain.GetAllCategoriesUseCase
+import com.example.tracker.viewingAnalyticsCategories.domain.GetAllCategoriesUseCaseImpl
 import org.koin.dsl.module
 
 val interactorModule = module {

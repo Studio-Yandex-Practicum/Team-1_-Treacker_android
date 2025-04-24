@@ -1,10 +1,11 @@
-package com.example.tracker.expense.ui
+package com.example.tracker.viewingAnalyticsCategories.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.databinding.ItemAddCategoryBinding
-import com.example.tracker.expense.domain.models.Category
+import com.example.tracker.viewingAnalyticsCategories.domain.models.Category
+
 
 class CardAdapter(
     private val categories: List<Category>

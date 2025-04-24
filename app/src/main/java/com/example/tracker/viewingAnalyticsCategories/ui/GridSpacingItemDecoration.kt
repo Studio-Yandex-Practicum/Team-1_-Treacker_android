@@ -1,4 +1,4 @@
-package com.example.tracker.expense.ui
+package com.example.tracker.viewingAnalyticsCategories.ui
 
 import android.graphics.Rect
 import android.view.View
