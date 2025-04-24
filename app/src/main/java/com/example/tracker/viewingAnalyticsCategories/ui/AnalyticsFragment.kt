@@ -39,6 +39,7 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
     private val bottomSheetBehavior by lazy {
         BottomSheetBehavior.from(binding.addExpenseBottomSheet)
     }
+    private val filterList = mutableListOf<Category>()
     var sum = 0.0
 
     override fun onCreateView(
@@ -218,8 +219,14 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
                 is CategoryState.Content -> {
                     state.data?.let {
                         Log.d("pspsp", "${state.data}")
-                        addCategory(state.data)
-                        showData(state.data)
+                        filterList.addAll(state.data)
+                       if(filterList.filter { i-> i.operationSum > 0 }.isEmpty()){
+                           onDataChange(emptyList())
+                           showEmpty()
+                       } else {
+                           addCategory(state.data)
+                           showData(filterList.filter { i-> i.operationSum > 0 })
+                       }
                     }
                 }
             }
