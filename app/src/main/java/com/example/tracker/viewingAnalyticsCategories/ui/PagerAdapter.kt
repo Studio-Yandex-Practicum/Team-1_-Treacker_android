@@ -1,4 +1,4 @@
-package com.example.tracker.expense.ui
+package com.example.tracker.viewingAnalyticsCategories.ui
 
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
 import com.example.tracker.databinding.ItemGridCardBinding
-import com.example.tracker.expense.domain.models.Category
+import com.example.tracker.viewingAnalyticsCategories.domain.models.Category
+
 
 class PagerAdapter(categories: List<Category>) : RecyclerView.Adapter<PagerViewHolder>() {
     private val gridCategories = categories.chunked(10)
