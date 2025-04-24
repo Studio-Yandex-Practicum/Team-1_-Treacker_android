@@ -13,11 +13,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tracker.R
 import com.example.tracker.databinding.AnalyticsFragmentBinding
-import com.example.tracker.viewingAnalyticsCategories.domain.models.Category
-import com.example.tracker.viewingAnalyticsCategories.ui.ExpenseScreenState
-import com.example.tracker.viewingAnalyticsCategories.ui.PagerAdapter
 import com.example.tracker.util.CategoryState
 import com.example.tracker.viewingAnalyticsCategories.domain.models.Categories
+import com.example.tracker.viewingAnalyticsCategories.domain.models.Category
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
@@ -66,7 +64,7 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
 
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         bottomSheetBehavior.isDraggable = false
-        binding.addButton.setOnClickListener{
+        binding.addButton.setOnClickListener {
             binding.addExpenseBottomSheet.isVisible = true
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         }
@@ -220,13 +218,13 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
                     state.data?.let {
                         Log.d("pspsp", "${state.data}")
                         filterList.addAll(state.data)
-                       if(filterList.filter { i-> i.operationSum > 0 }.isEmpty()){
-                           onDataChange(emptyList())
-                           showEmpty()
-                       } else {
-                           addCategory(state.data)
-                           showData(filterList.filter { i-> i.operationSum > 0 })
-                       }
+                        if (filterList.filter { i -> i.operationSum > 0 }.isEmpty()) {
+                            onDataChange(emptyList())
+                            showEmpty()
+                        } else {
+                            addCategory(state.data)
+                            showData(filterList.filter { i -> i.operationSum > 0 })
+                        }
                     }
                 }
             }

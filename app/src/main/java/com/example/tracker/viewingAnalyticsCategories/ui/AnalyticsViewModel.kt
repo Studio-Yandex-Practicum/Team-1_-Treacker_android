@@ -13,12 +13,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.Date
 
-
 class AnalyticsViewModel(private val getAllCategoriesUseCase: GetAllCategoriesUseCase) :
     ViewModel() {
     init {
         getCategories()
     }
+
     private val categoryState = MutableLiveData<CategoryState>()
     fun getCategoryState(): LiveData<CategoryState> = categoryState
 
