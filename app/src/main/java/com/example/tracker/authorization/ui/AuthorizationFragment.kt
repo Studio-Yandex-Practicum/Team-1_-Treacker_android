@@ -26,9 +26,9 @@ class AuthorizationFragment : Fragment() {
     val binding: AuthorizationFragmentBinding
         get() = _binding!!
     private val viewModel by viewModel<AuthorizationViewModel>()
-    private var emal = ""
+    private var email = ""
     private var pass = ""
-    val validDomains = listOf("@email.ru", "@gmail.com", "@yandex.ru")
+    val validDomains = listOf("@mail.ru", "@gmail.com", "@yandex.ru")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,7 +54,7 @@ class AuthorizationFragment : Fragment() {
             findNavController().navigate(R.id.action_authorizationFragment_to_registrationFragment)
         }
         binding.btApply.setOnClickListener {
-            viewModel.loadData(emal, pass)
+            viewModel.loadData(email, pass)
         }
         binding.titlePass.setEndIconOnClickListener {
             val isPasswordVisible =
@@ -81,8 +81,8 @@ class AuthorizationFragment : Fragment() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                emal = s.toString()
-                if (emal.isBlank() || validDomains.any { emal.endsWith(it) }) {
+                email = s.toString()
+                if (email.isBlank() || validDomains.none { email.endsWith(it) }) {
                     showError(binding.errorEmail, emailErrorMessage)
                 } else {
                     hideError(binding.errorEmail)
@@ -121,7 +121,7 @@ class AuthorizationFragment : Fragment() {
 
     private fun checkingInput() {
         binding.btApply.isEnabled =
-            emal.isNotBlank() && pass.length >= 7
+            email.isNotBlank() && pass.length >= 7
     }
 
     private fun setupObservers() {
