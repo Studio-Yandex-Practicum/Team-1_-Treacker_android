@@ -28,6 +28,8 @@ class RegistrationFragment : Fragment() {
     private val viewModel by viewModel<RegistrationViewModel>()
     private var emal = ""
     private var passFirst = ""
+    val validDomains = listOf("@email.ru", "@gmail.com", "@yandex.ru")
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -76,7 +78,7 @@ class RegistrationFragment : Fragment() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 emal = s.toString()
-                if (emal.isBlank() && emal.equals("@email.ru") || emal.equals("@gmail.com") || emal.equals("@yandex.ru")) {
+                if (emal.isBlank() || validDomains.any { emal.endsWith(it) }) {
                     showError(binding.errorEmail, emailErrorMessage)
                 } else {
                     hideError(binding.errorEmail)

@@ -28,6 +28,7 @@ class AuthorizationFragment : Fragment() {
     private val viewModel by viewModel<AuthorizationViewModel>()
     private var emal = ""
     private var pass = ""
+    val validDomains = listOf("@email.ru", "@gmail.com", "@yandex.ru")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -81,7 +82,7 @@ class AuthorizationFragment : Fragment() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 emal = s.toString()
-                if (emal.isBlank()) {
+                if (emal.isBlank() || validDomains.any { emal.endsWith(it) }) {
                     showError(binding.errorEmail, emailErrorMessage)
                 } else {
                     hideError(binding.errorEmail)

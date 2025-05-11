@@ -108,20 +108,24 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
 
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-                when(tab.position){
+                when (tab.position) {
                     0 -> {
                         binding.tabTitle.text = "${getSelectedDay()}"
                     }
-                    1-> {
+
+                    1 -> {
                         binding.tabTitle.text = "${getSelectedWeek()}"
                     }
+
                     2 -> {
                         binding.tabTitle.text = "${getSelectedMonth()}"
                     }
+
                     3 -> {
                         binding.tabTitle.text = "${getSelectedYear()}"
                     }
-                    4->{
+
+                    4 -> {
                         binding.tabTitle.text = "${getSelectedPeriod()}"
                     }
                 }
@@ -256,18 +260,23 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
             binding.dateEditText.setText(dateText)
         }
     }
+
     private fun getSelectedDay(): String {
         return "20.04" // Заменить
     }
+
     private fun getSelectedWeek(): String {
         return "20.04 -27.04" // Заменить
     }
+
     private fun getSelectedMonth(): String {
         return "Апрель" // Заменить
     }
+
     private fun getSelectedYear(): String {
         return "2025" // Заменить
     }
+
     private fun getSelectedPeriod(): String {
         return "1.04-5.04" // Заменить
     }
