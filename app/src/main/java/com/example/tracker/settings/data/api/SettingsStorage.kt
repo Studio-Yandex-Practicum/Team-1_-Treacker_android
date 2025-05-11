@@ -5,7 +5,8 @@ import androidx.core.content.edit
 
 class SettingsStorage(
     private val sharedPreferences: SharedPreferences,
-    private val sharedPreferencesLocal: SharedPreferences) {
+    private val sharedPreferencesLocal: SharedPreferences
+) {
 
     private companion object {
         const val SETTINGS = "settings"
@@ -19,6 +20,7 @@ class SettingsStorage(
     fun getSavedSettings(): String? {
         return sharedPreferences.getString(SETTINGS, "")
     }
+
     fun updateSettingsLocal(settingsJson: String) {
         sharedPreferencesLocal.edit {
             putString(LOCAL, settingsJson)
