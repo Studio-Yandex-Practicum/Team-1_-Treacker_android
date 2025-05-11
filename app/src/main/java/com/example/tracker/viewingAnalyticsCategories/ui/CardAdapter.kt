@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.databinding.ItemAddCategoryBinding
 import com.example.tracker.viewingAnalyticsCategories.domain.models.Category
 
-
 class CardAdapter(
     private val categories: List<Category>
 ) : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {

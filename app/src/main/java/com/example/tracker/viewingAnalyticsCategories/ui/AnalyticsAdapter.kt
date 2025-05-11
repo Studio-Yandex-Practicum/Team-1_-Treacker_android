@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
 import com.example.tracker.viewingAnalyticsCategories.domain.models.Category
 
-
 class AnalyticsAdapter : RecyclerView.Adapter<AnalyticsViewHolder>() {
 
     var onItemClickListener: AnalyticsViewHolder.OnItemClickListener? = null

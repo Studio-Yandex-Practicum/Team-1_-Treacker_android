@@ -9,7 +9,6 @@ import com.example.tracker.R
 import com.example.tracker.databinding.ItemGridCardBinding
 import com.example.tracker.viewingAnalyticsCategories.domain.models.Category
 
-
 class PagerAdapter(categories: List<Category>) : RecyclerView.Adapter<PagerViewHolder>() {
     private val gridCategories = categories.chunked(10)
 
