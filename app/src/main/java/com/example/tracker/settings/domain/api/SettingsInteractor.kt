@@ -19,4 +19,8 @@ interface SettingsInteractor {
     fun setNotificationToggle(active: Boolean)
     fun setNotificationTime(time: String)
     fun setNotificationMessage(message: String)
+
+    suspend fun setAccessToken(accessToken: String)
+    suspend fun setRefreshToken(refreshToken: String)
+    suspend fun setIdToken(idToken: Int)
 }

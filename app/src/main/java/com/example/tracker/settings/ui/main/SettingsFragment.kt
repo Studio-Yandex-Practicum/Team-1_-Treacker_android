@@ -5,10 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.tracker.App
 import com.example.tracker.R
 import com.example.tracker.databinding.FragmentSettingsBinding
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SettingsFragment : Fragment() {
@@ -35,8 +38,10 @@ class SettingsFragment : Fragment() {
             findNavController().popBackStack()
         }
         binding.exitCard.setOnClickListener {
+            viewLifecycleOwner.lifecycleScope.launch {
+                settingsViewModel.clearToken()
+            }
             findNavController().navigate(R.id.action_settingsFragment_to_authorizationFragment)
-            // Добавить очистку токенов для отлючения автоматической авторизации
         }
     }
 

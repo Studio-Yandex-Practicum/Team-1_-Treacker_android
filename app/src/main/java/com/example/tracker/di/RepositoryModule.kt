@@ -20,7 +20,7 @@ val repositoryModule = module {
     }
 
     single<SettingsRepository> {
-        SettingsRepositoryImpl(get(), get())
+        SettingsRepositoryImpl(get(), get(), get())
     }
     single<ExpensesRepository> {
         ExpensesRepositoryImpl(get(), get())

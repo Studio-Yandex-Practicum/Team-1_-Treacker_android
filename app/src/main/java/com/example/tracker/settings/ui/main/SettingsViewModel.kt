@@ -17,5 +17,10 @@ class SettingsViewModel(private val settingsInteractor: SettingsInteractor) : Vi
         settingsInteractor.setThemeSettings(darkTheme)
         _themeSettings.value = settingsInteractor.getThemeSettings()
     }
+    suspend fun clearToken(){
+        settingsInteractor.setAccessToken("")
+        settingsInteractor.setIdToken(0)
+        settingsInteractor.setRefreshToken("")
+    }
 
 }
