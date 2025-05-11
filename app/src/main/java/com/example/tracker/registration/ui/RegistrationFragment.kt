@@ -92,6 +92,8 @@ class RegistrationFragment : Fragment() {
                 passFirst = s.toString()
                 if (passFirst.length < 7) {
                     showError(binding.errorPass, passwordLengthErrorMessage)
+                } else {
+                    hideError(binding.errorPass)
                 }
                 checkingInput()
             }
