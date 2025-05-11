@@ -1,7 +1,5 @@
 package com.example.tracker.registration.ui
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
@@ -13,21 +11,21 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.tracker.R
 import com.example.tracker.databinding.RegistrationFragmentBinding
 
 import com.example.tracker.util.RegistrationState
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegistrationFragment : Fragment() {
     private var _binding: RegistrationFragmentBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModel<RegistrationViewModel>()
-    private var emal = ""
+    private var email = ""
     private var passFirst = ""
+    val validDomains = listOf("@mail.ru", "@gmail.com", "@yandex.ru")
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,7 +46,7 @@ class RegistrationFragment : Fragment() {
             findNavController().popBackStack()
         }
         binding.btApply.setOnClickListener {
-            viewModel.loadData(emal, passFirst)
+            viewModel.loadData(email, passFirst)
         }
         binding.titlePass.setEndIconOnClickListener {
             val isPasswordVisible =
@@ -75,8 +73,8 @@ class RegistrationFragment : Fragment() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                emal = s.toString()
-                if (emal.isBlank()) {
+                email = s.toString()
+                if (email.isBlank() || validDomains.none { email.endsWith(it) }) {
                     showError(binding.errorEmail, emailErrorMessage)
                 } else {
                     hideError(binding.errorEmail)
@@ -113,7 +111,7 @@ class RegistrationFragment : Fragment() {
 
     private fun checkingInput() {
         binding.btApply.isEnabled =
-            emal.isNotBlank() && passFirst.length >= 7
+            email.isNotBlank() && passFirst.length >= 7
     }
 
     private fun setupObservers() {

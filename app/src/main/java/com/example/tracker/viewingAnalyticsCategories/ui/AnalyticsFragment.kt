@@ -1,36 +1,33 @@
 package com.example.tracker.viewingAnalyticsCategories.ui
 
-import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tracker.R
-import com.example.tracker.authorization.ui.AuthorizationViewModel
 import com.example.tracker.databinding.AnalyticsFragmentBinding
-import com.example.tracker.expense.domain.models.Category
 import com.example.tracker.util.CategoryState
-import com.example.tracker.util.LoginState
-import com.example.tracker.viewingAnalyticsCategories.domain.Categories
+import com.example.tracker.viewingAnalyticsCategories.domain.models.Categories
+import com.example.tracker.viewingAnalyticsCategories.domain.models.Category
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.Locale
-import kotlin.math.log
 
 class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
     private var _binding: AnalyticsFragmentBinding? = null
@@ -38,6 +35,10 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
     private val binding get() = _binding!!
     private val viewModel by viewModel<AnalyticsViewModel>()
     private var adapter = AnalyticsAdapter()
+    private val bottomSheetBehavior by lazy {
+        BottomSheetBehavior.from(binding.addExpenseBottomSheet)
+    }
+    private val filterList = mutableListOf<Category>()
     var sum = 0.0
 
     override fun onCreateView(
@@ -57,6 +58,21 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
         setupTabLayout()
         setupObserveLogin()
         viewModel.loadData()
+
+        viewModel.state.observe(viewLifecycleOwner) { state ->
+            renderState(state)
+        }
+
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+        bottomSheetBehavior.isDraggable = false
+        binding.addButton.setOnClickListener {
+            binding.addExpenseBottomSheet.isVisible = true
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        }
+
+        binding.closeAdd.setOnClickListener {
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+        }
     }
 
     private fun setupViewPager() {
@@ -92,6 +108,27 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
 
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
+                when (tab.position) {
+                    0 -> {
+                        binding.tabTitle.text = "${getSelectedDay()}"
+                    }
+
+                    1 -> {
+                        binding.tabTitle.text = "${getSelectedWeek()}"
+                    }
+
+                    2 -> {
+                        binding.tabTitle.text = "${getSelectedMonth()}"
+                    }
+
+                    3 -> {
+                        binding.tabTitle.text = "${getSelectedYear()}"
+                    }
+
+                    4 -> {
+                        binding.tabTitle.text = "${getSelectedPeriod()}"
+                    }
+                }
                 indicators.forEach { it.setBackgroundResource(R.drawable.analytics_shape_indicator) }
                 indicators[tab.position].setBackgroundResource(R.drawable.analytics_tab_indicator_enable)
                 tab.view.setBackgroundResource(R.drawable.analytics_tab_selector)
@@ -146,45 +183,7 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
             pieChart.setDrawEntryLabels(false)
             pieChart.invalidate()
         } else {
-            val pieChart: PieChart = binding.pieChart
-            pieChart.holeRadius = 85f
-            pieChart.description.isEnabled = false
-            val sum = 0
-            val pieList = mutableListOf<PieEntry>()
-            val colors = mutableListOf<Int>()
-            for (categories in data){
-
-            }
-            val pieDataSet = PieDataSet(pieList, "")
-            pieDataSet.colors = colors
-            val data = PieData(pieDataSet)
-            pieChart.data = data
-            pieChart.rotationAngle = 175f
-            pieChart.isRotationEnabled = true
-            pieChart.setDrawCenterText(true)
-            pieDataSet.setDrawValues(false)
-            pieChart.legend.isEnabled = false
-
-            val decimalFormatSymbols = DecimalFormatSymbols(Locale.getDefault()).apply {
-                groupingSeparator = ' '
-            }
-            val decimalFormat = DecimalFormat("#,###", decimalFormatSymbols)
-            val formattedSum = decimalFormat.format(sum)
-
-            pieChart.centerText = "$formattedSum ₽"
-
-            val scaledDensity = resources.displayMetrics.scaledDensity
-            val textSizeInSp = 5f
-            val textSizeInDp = textSizeInSp * scaledDensity
-            pieChart.setCenterTextSize(textSizeInDp)
-
-            val typeface = ResourcesCompat.getFont(requireContext(), R.font.bold)
-            pieChart.setCenterTextTypeface(typeface)
-            pieChart.setDrawEntryLabels(false)
-            // Refresh the chart
-            pieChart.invalidate()
-
-
+            // toDo
         }
     }
 
@@ -201,26 +200,36 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
 
                 is CategoryState.Content -> {
                     state.data?.let {
-                        Log.d("pspsp","${state.data}")
+                        Log.d("pspsp", "${state.data}")
+                        filterList.addAll(state.data)
+                        if (filterList.filter { i -> i.operationSum > 0 }.isEmpty()) {
+                            onDataChange(emptyList())
+                            showEmpty()
+                        } else {
                             addCategory(state.data)
-                            showData(state.data)
+                            showData(filterList.filter { i -> i.operationSum > 0 })
+                        }
                     }
                 }
             }
         }
     }
+
     private fun showData(data: List<Category>?) {
         binding.rvAnalytics.isVisible = true
         binding.emptyList.isVisible = false
-        binding.rvAnalytics.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.rvAnalytics.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.rvAnalytics.adapter = adapter
         adapter.updateItems(data!!)
 
     }
-    private fun showEmpty(){
+
+    private fun showEmpty() {
         binding.rvAnalytics.isVisible = false
         binding.emptyList.isVisible = true
     }
+
     private fun addCategory(data: List<Category>) {
         val categoriesList = mutableListOf<Categories>()
         for (i in data) {
@@ -232,4 +241,43 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
             categoriesList.add(category)
         }
     }
+
+    private fun renderState(state: ExpenseScreenState) {
+        when (state) {
+            is ExpenseScreenState.AddExpenseState -> addExpenseUiState(state)
+            ExpenseScreenState.CreateCategory -> TODO()
+        }
     }
+
+    private fun addExpenseUiState(state: ExpenseScreenState.AddExpenseState) {
+        val pagerAdapter = PagerAdapter(state.categories)
+        binding.viewPager.adapter = pagerAdapter
+
+        val dateText = state.date.toIntOrNull()
+        if (dateText == null) {
+            binding.dateEditText.setText(state.date)
+        } else {
+            binding.dateEditText.setText(dateText)
+        }
+    }
+
+    private fun getSelectedDay(): String {
+        return "20.04" // Заменить
+    }
+
+    private fun getSelectedWeek(): String {
+        return "20.04 -27.04" // Заменить
+    }
+
+    private fun getSelectedMonth(): String {
+        return "Апрель" // Заменить
+    }
+
+    private fun getSelectedYear(): String {
+        return "2025" // Заменить
+    }
+
+    private fun getSelectedPeriod(): String {
+        return "1.04-5.04" // Заменить
+    }
+}

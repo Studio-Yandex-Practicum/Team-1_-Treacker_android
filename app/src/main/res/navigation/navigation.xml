@@ -28,11 +28,6 @@
         android:name="com.example.tracker.registration.ui.RegistrationFragment"
         android:label="RegistrationFragment" />
     <fragment
-        android:id="@+id/expenseFragment"
-        android:name="com.example.tracker.expense.ui.ExpenseFragment"
-        android:label="fragment_expense"
-        tools:layout="@layout/fragment_expense" />
-    <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.tracker.settings.ui.main.SettingsFragment"
         android:label="fragment_settings"

@@ -1,4 +1,4 @@
-package com.example.tracker.expense.domain.models
+package com.example.tracker.viewingAnalyticsCategories.domain.models
 
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes

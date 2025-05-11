@@ -1,7 +1,7 @@
 package com.example.tracker.util
 
 import com.example.tracker.R
-import com.example.tracker.expense.domain.models.Category
+import com.example.tracker.viewingAnalyticsCategories.domain.models.Category
 
 object AssetDatabase {
     val prepopulateCategories = listOf(

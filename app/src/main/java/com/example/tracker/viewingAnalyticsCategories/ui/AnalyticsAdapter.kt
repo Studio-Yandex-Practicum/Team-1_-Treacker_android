@@ -1,12 +1,11 @@
 package com.example.tracker.viewingAnalyticsCategories.ui
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
-import com.example.tracker.expense.domain.models.Category
+import com.example.tracker.viewingAnalyticsCategories.domain.models.Category
 
 class AnalyticsAdapter : RecyclerView.Adapter<AnalyticsViewHolder>() {
 
@@ -38,7 +37,8 @@ class AnalyticsAdapter : RecyclerView.Adapter<AnalyticsViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnalyticsViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.category_item, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.category_item, parent, false)
         return AnalyticsViewHolder(view)
     }
 

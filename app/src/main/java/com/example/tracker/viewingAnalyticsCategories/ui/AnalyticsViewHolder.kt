@@ -8,7 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.tracker.R
-import com.example.tracker.expense.domain.models.Category
+import com.example.tracker.viewingAnalyticsCategories.domain.models.Category
 import com.google.android.material.shape.MaterialShapeDrawable
 
 class AnalyticsViewHolder(itemView: View) :
