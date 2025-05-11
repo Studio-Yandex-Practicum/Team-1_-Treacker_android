@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/backgroud">
+    android:background="?attr/colorOnSecondary">
     <TextView
         android:id="@+id/hello"
         android:layout_width="0dp"
@@ -14,7 +14,6 @@
         android:text="@string/Welcome"
         android:textSize="@dimen/text24"
         android:fontFamily="@font/bold"
-        android:textColor="@color/primaryDark"
         android:layout_marginTop="@dimen/dim60"
         android:layout_marginHorizontal="@dimen/dim20"
         />
