@@ -38,11 +38,18 @@
         <action
             android:id="@+id/action_settingsFragment_to_notificationsFragment"
             app:destination="@id/notificationsFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_authorizationFragment"
+            app:destination="@id/authorizationFragment" />
     </fragment>
     <fragment
         android:id="@+id/analyticsFragment"
         android:name="com.example.tracker.viewingAnalyticsCategories.ui.AnalyticsFragment"
-        android:label="AnalyticsFragment" />
+        android:label="AnalyticsFragment" >
+        <action
+            android:id="@+id/action_analyticsFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/currencyFragment"
         android:name="com.example.tracker.settings.ui.currency.CurrencyFragment"

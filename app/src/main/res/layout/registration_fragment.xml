@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/backgroud">
+    android:background="?attr/colorOnSecondary">
     <ImageView
         android:id="@+id/back_arrow"
         android:layout_width="40dp"
@@ -11,6 +11,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/back_arrow"
+        app:tint="?attr/colorPrimary"
         android:layout_marginTop="@dimen/dim54"
         android:layout_marginStart="@dimen/dim20"
         android:paddingVertical="@dimen/dim12"
@@ -26,7 +27,6 @@
         android:text="@string/registration"
         android:textSize="@dimen/text24"
         android:fontFamily="@font/bold"
-        android:textColor="@color/primaryDark"
         android:layout_marginTop="@dimen/dim20"
         android:layout_marginHorizontal="@dimen/dim20"
         />

@@ -31,6 +31,13 @@ class SettingsFragment : Fragment() {
         setupViews()
         setupObservers()
         setupListeners()
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
+        binding.exitCard.setOnClickListener {
+            findNavController().navigate(R.id.action_settingsFragment_to_authorizationFragment)
+            // Добавить очистку токенов для отлючения автоматической авторизации
+        }
     }
 
     private fun setupViews() {

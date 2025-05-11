@@ -1,7 +1,9 @@
 package com.example.tracker.viewingAnalyticsCategories.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tracker.R
 import com.example.tracker.databinding.AnalyticsFragmentBinding
@@ -62,6 +65,9 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
         viewModel.state.observe(viewLifecycleOwner) { state ->
             renderState(state)
         }
+       binding.btSetting.setOnClickListener {
+           findNavController().navigate(R.id.action_analyticsFragment_to_settingsFragment)
+       }
 
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         bottomSheetBehavior.isDraggable = false
@@ -165,7 +171,15 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
             val pieDataSet = PieDataSet(pieList, "")
             pieDataSet.colors = colors
             val data = PieData(pieDataSet)
+            pieChart.setHoleColor(Color.TRANSPARENT)
             pieChart.data = data
+
+            val typedValue = TypedValue()
+            val theme = requireContext().theme
+            theme.resolveAttribute(R.attr.colorOnPrimaryContainer, typedValue, true)
+            val centerTextColor = typedValue.data
+            pieChart.setCenterTextColor(centerTextColor)
+
             pieChart.rotationAngle = 175f
             pieChart.isRotationEnabled = true
             pieChart.setDrawCenterText(true)

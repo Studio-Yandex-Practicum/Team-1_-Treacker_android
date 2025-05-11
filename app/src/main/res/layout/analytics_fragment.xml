@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroud">
+    android:background="?attr/colorOnSecondary">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,7 +19,6 @@
             android:layout_marginTop="@dimen/dim20"
             android:fontFamily="@font/bold"
             android:text="Аналитика"
-            android:textColor="@color/primaryDark"
             android:textSize="@dimen/text24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -91,6 +90,7 @@
             android:id="@+id/pieChart"
             android:layout_width="210dp"
             android:layout_height="201dp"
+            android:background="?attr/colorOnSecondary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tab_title" />
@@ -179,7 +179,7 @@
         android:id="@+id/add_expense_bottom_sheet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/backgroud"
+        android:background="?attr/colorOnSecondary"
         app:behavior_hideable="true"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
@@ -196,7 +196,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center_vertical"
                 android:layout_marginEnd="24dp"
-                android:src="@drawable/icon_close" />
+                android:src="@drawable/icon_close"
+                app:tint="?attr/colorPrimary"/>
         </Toolbar>
 
         <androidx.core.widget.NestedScrollView
@@ -268,7 +269,7 @@
                     android:maxLines="1"
                     android:paddingHorizontal="@dimen/dim16"
                     android:singleLine="true"
-                    android:textColor="@color/primary_dark"
+                    android:textColor="?attr/colorOnPrimaryContainer"
                     app:layout_constraintTop_toBottomOf="@id/view_pager" />
 
                 <ImageView
