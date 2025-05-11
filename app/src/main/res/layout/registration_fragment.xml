@@ -43,7 +43,6 @@
         android:paddingTop="0dp"
         android:paddingBottom="0dp"
         android:paddingHorizontal="@dimen/dim16"
-        app:hintTextColor="@color/color_et"
         app:errorEnabled="false"
         style="@style/MyEditTextStyle"
         >
@@ -54,7 +53,6 @@
             android:hint="@string/Email"
             android:textColorHint="@color/secondary"
             android:gravity="center_vertical"
-            android:textColor="@color/primaryDark"
             android:imeOptions="actionDone"
             android:singleLine="true"
             android:inputType="textEmailAddress"
@@ -103,7 +101,6 @@
             android:hint="@string/Pass"
             android:textColorHint="@color/secondary"
             android:gravity="center_vertical"
-            android:textColor="@color/primaryDark"
             android:imeOptions="actionDone"
             android:singleLine="true"
             android:inputType="textPassword"

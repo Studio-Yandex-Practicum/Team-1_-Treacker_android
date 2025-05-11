@@ -72,9 +72,12 @@ val dataModule = module {
     factory { Gson() }
 
     single {
-        SettingsStorage(androidContext().getSharedPreferences("SettingsStorage", MODE_PRIVATE))
+        val context = androidContext()
+        val settingsPrefs = context.getSharedPreferences("SettingsStorage", MODE_PRIVATE)
+        val localPrefs = context.getSharedPreferences("LocalStorage", MODE_PRIVATE)
+        SettingsStorage(settingsPrefs, localPrefs)
     }
 
-    single { NotificationScheduler }
+        single { NotificationScheduler }
 
 }

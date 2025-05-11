@@ -55,4 +55,15 @@ class SettingsInteractorImpl(
         val notificationSettings = getNotificationSettings()
         setNotificationSettings(notificationSettings.copy(message = message))
     }
+    override suspend fun setAccessToken(accessToken: String) {
+        settingsRepository.setAccessToken(accessToken)
+    }
+
+    override suspend fun setRefreshToken(refreshToken: String) {
+        settingsRepository.setRefreshToken(refreshToken)
+    }
+
+    override suspend fun setIdToken(idToken: Int) {
+        settingsRepository.setIdToken(idToken)
+    }
 }

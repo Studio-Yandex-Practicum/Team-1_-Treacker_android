@@ -49,9 +49,14 @@ class App : Application() {
     }
 
     private fun getSettingsRepository(context: Context): SettingsRepository {
+        val settingsPrefs = context.getSharedPreferences("SettingsStorage", Context.MODE_PRIVATE)
+        val localPrefs = context.getSharedPreferences("LocalStorage", Context.MODE_PRIVATE)
+        val settingsStorage = SettingsStorage(settingsPrefs, localPrefs)
+        val gson = Gson()
         return SettingsRepositoryImpl(
-            SettingsStorage(context.getSharedPreferences("SettingsStorage", MODE_PRIVATE)),
-            Gson()
+            settingsStorage,
+            gson,
+            settingsPrefs
         )
     }
 }
