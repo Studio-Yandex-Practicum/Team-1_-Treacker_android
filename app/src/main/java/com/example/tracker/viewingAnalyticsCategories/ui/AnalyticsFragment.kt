@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -107,6 +108,23 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
 
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
+                when(tab.position){
+                    0 -> {
+                        binding.tabTitle.text = "${getSelectedDay()}"
+                    }
+                    1-> {
+                        binding.tabTitle.text = "${getSelectedWeek()}"
+                    }
+                    2 -> {
+                        binding.tabTitle.text = "${getSelectedMonth()}"
+                    }
+                    3 -> {
+                        binding.tabTitle.text = "${getSelectedYear()}"
+                    }
+                    4->{
+                        binding.tabTitle.text = "${getSelectedPeriod()}"
+                    }
+                }
                 indicators.forEach { it.setBackgroundResource(R.drawable.analytics_shape_indicator) }
                 indicators[tab.position].setBackgroundResource(R.drawable.analytics_tab_indicator_enable)
                 tab.view.setBackgroundResource(R.drawable.analytics_tab_selector)
@@ -161,45 +179,7 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
             pieChart.setDrawEntryLabels(false)
             pieChart.invalidate()
         } else {
-            val pieChart: PieChart = binding.pieChart
-            pieChart.holeRadius = 85f
-            pieChart.description.isEnabled = false
-            val sum = 0
-            val pieList = mutableListOf<PieEntry>()
-            val colors = mutableListOf<Int>()
-            for (categories in data) {
-
-            }
-            val pieDataSet = PieDataSet(pieList, "")
-            pieDataSet.colors = colors
-            val data = PieData(pieDataSet)
-            pieChart.data = data
-            pieChart.rotationAngle = 175f
-            pieChart.isRotationEnabled = true
-            pieChart.setDrawCenterText(true)
-            pieDataSet.setDrawValues(false)
-            pieChart.legend.isEnabled = false
-
-            val decimalFormatSymbols = DecimalFormatSymbols(Locale.getDefault()).apply {
-                groupingSeparator = ' '
-            }
-            val decimalFormat = DecimalFormat("#,###", decimalFormatSymbols)
-            val formattedSum = decimalFormat.format(sum)
-
-            pieChart.centerText = "$formattedSum ₽"
-
-            val scaledDensity = resources.displayMetrics.scaledDensity
-            val textSizeInSp = 5f
-            val textSizeInDp = textSizeInSp * scaledDensity
-            pieChart.setCenterTextSize(textSizeInDp)
-
-            val typeface = ResourcesCompat.getFont(requireContext(), R.font.bold)
-            pieChart.setCenterTextTypeface(typeface)
-            pieChart.setDrawEntryLabels(false)
-            // Refresh the chart
-            pieChart.invalidate()
-
-
+            // toDo
         }
     }
 
@@ -275,5 +255,20 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
         } else {
             binding.dateEditText.setText(dateText)
         }
+    }
+    private fun getSelectedDay(): String {
+        return "20.04" // Заменить
+    }
+    private fun getSelectedWeek(): String {
+        return "20.04 -27.04" // Заменить
+    }
+    private fun getSelectedMonth(): String {
+        return "Апрель" // Заменить
+    }
+    private fun getSelectedYear(): String {
+        return "2025" // Заменить
+    }
+    private fun getSelectedPeriod(): String {
+        return "1.04-5.04" // Заменить
     }
 }

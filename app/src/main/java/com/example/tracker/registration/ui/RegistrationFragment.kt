@@ -76,7 +76,7 @@ class RegistrationFragment : Fragment() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 emal = s.toString()
-                if (emal.isBlank()) {
+                if (emal.isBlank() && emal.equals("@email.ru") || emal.equals("@gmail.com") || emal.equals("@yandex.ru")) {
                     showError(binding.errorEmail, emailErrorMessage)
                 } else {
                     hideError(binding.errorEmail)
