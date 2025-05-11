@@ -65,9 +65,9 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
         viewModel.state.observe(viewLifecycleOwner) { state ->
             renderState(state)
         }
-       binding.btSetting.setOnClickListener {
-           findNavController().navigate(R.id.action_analyticsFragment_to_settingsFragment)
-       }
+        binding.btSetting.setOnClickListener {
+            findNavController().navigate(R.id.action_analyticsFragment_to_settingsFragment)
+        }
 
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         bottomSheetBehavior.isDraggable = false
