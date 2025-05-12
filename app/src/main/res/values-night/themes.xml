@@ -2,6 +2,23 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Team1TrackerAndroid" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+
+        <!-- Цвет кнопок -->
+        <item name="colorPrimary">@color/text_primary_dark</item>
+
+        <!-- Цвета фонов -->
+        <item name="colorOnPrimary">@color/bg_primary_dark</item>
+        <item name="colorOnSecondary">@color/bg_secondary_dark</item>
+        <item name="android:windowBackground">@color/bg_secondary_dark</item>
+        <item name="android:statusBarColor">@color/bg_secondary_dark</item>
+
+        <!-- Цвет текста по-умолчанию -->
+        <item name="colorOnPrimaryContainer">@color/text_primary_dark</item>
+        <item name="android:textColor">@color/text_primary_dark</item>
+        <item name="android:textColorHint">@color/text_secondary_light_dark</item>
+
+        <!-- Делает цвет разделителя в NumberPicker прозрачным -->
+        <item name="colorControlNormal">@android:color/transparent</item>
+
     </style>
 </resources>
