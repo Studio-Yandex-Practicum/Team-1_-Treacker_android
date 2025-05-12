@@ -181,11 +181,7 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
             pieChart.setDrawCenterText(true)
             pieDataSet.setDrawValues(false)
             pieChart.legend.isEnabled = false
-            val decimalFormatSymbols = DecimalFormatSymbols(Locale.getDefault()).apply {
-                groupingSeparator = ' '
-            }
-            val decimalFormat = DecimalFormat("#,###", decimalFormatSymbols)
-            val formattedSum = decimalFormat.format(sum)
+            val formattedSum = formatNumberWithSpaceGrouping(sum)
             pieChart.centerText = "$formattedSum ₽"
             pieChart.setCenterTextSize(20f)
             val typeface = ResourcesCompat.getFont(requireContext(), R.font.bold)
@@ -193,6 +189,14 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
             pieChart.setDrawEntryLabels(false)
             pieChart.invalidate()
         }
+    }
+
+    private fun formatNumberWithSpaceGrouping(number: Number): String {
+        val decimalFormatSymbols = DecimalFormatSymbols(Locale.getDefault()).apply {
+            groupingSeparator = ' '
+        }
+        val decimalFormat = DecimalFormat("#,###", decimalFormatSymbols)
+        return decimalFormat.format(number)
     }
 
     private fun setupObserveLogin() {
