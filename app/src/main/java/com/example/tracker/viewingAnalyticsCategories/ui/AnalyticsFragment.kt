@@ -7,7 +7,6 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filter
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -173,13 +172,11 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
             val data = PieData(pieDataSet)
             pieChart.setHoleColor(Color.TRANSPARENT)
             pieChart.data = data
-
             val typedValue = TypedValue()
             val theme = requireContext().theme
             theme.resolveAttribute(R.attr.colorOnPrimaryContainer, typedValue, true)
             val centerTextColor = typedValue.data
             pieChart.setCenterTextColor(centerTextColor)
-
             pieChart.rotationAngle = 175f
             pieChart.isRotationEnabled = true
             pieChart.setDrawCenterText(true)
@@ -196,8 +193,6 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
             pieChart.setCenterTextTypeface(typeface)
             pieChart.setDrawEntryLabels(false)
             pieChart.invalidate()
-        } else {
-            // toDo
         }
     }
 

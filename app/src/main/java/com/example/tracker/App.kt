@@ -25,7 +25,7 @@ class App : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@App)
-            modules(dataModule, interactorModule,repositoryModule, viewModelModule)
+            modules(dataModule, interactorModule, repositoryModule, viewModelModule)
         }
 
         settingsInteractor = SettingsInteractorImpl(getSettingsRepository(this))

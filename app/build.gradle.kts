@@ -61,7 +61,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
     // Glide for image loading
     implementation("com.github.bumptech.glide:glide:4.14.2")
-    annotationProcessor ("com.github.bumptech.glide:compiler:4.13.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.13.0")
     ksp("com.github.bumptech.glide:compiler:4.14.2")
     // Gson for JSON parsing
     implementation("com.google.code.gson:gson:2.10.1")

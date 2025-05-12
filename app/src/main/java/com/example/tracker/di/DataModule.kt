@@ -78,6 +78,6 @@ val dataModule = module {
         SettingsStorage(settingsPrefs, localPrefs)
     }
 
-        single { NotificationScheduler }
+    single { NotificationScheduler }
 
 }

@@ -1,6 +1,5 @@
 package com.example.tracker.core.domain
 
-
 import com.example.tracker.viewingAnalyticsCategories.domain.models.Category
 import kotlinx.coroutines.flow.Flow
 

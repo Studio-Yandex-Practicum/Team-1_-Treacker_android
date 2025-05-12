@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.tracker.App
 import com.example.tracker.R
 import com.example.tracker.databinding.FragmentSettingsBinding
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
