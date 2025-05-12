@@ -163,7 +163,6 @@ class AnalyticsFragment : Fragment(), ViewPagerAdapter.OnDataChangeListener {
             val pieChart: PieChart = binding.pieChart
             pieChart.holeRadius = 85f
             pieChart.description.isEnabled = false
-            val sum = 0
             val pieList = mutableListOf<PieEntry>()
             pieList.add(PieEntry(1f, "No Data"))
             val colors = listOf(ContextCompat.getColor(requireContext(), R.color.ic_gray_primary))
