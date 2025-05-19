@@ -1,5 +1,6 @@
 package com.example.tracker.authorization.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
@@ -221,5 +222,11 @@ class AuthorizationFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.errorEmail.isVisible = false
+        binding.errorPass.isVisible = false
     }
 }
