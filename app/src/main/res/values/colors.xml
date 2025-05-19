@@ -2,4 +2,51 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="error">#FF4F4F</color>
+    <color name="primaryDark">#1B1B1B</color>
+    <color name="secondary">#898989</color>
+    <color name="accent">#2B61EC</color>
+    <color name="accent_disabled">#802B61EC</color>
+    <color name="secondaryLight">#F4F4F5</color>
+    <color name="backgroud">#FFFFFF</color>
+    <color name="backgroud_tv">#EBEBEB</color>
+    <color name="backgroud_et">#FEFEFE</color>
+    <color name="extended">#64748B</color>
+
+    <!-- Цвета темы из макета -->
+    <color name="text_primary_light">#1B1B1B</color>
+    <color name="text_primary_dark">#FFFFFF</color>
+    <color name="text_secondary_light_dark">#898989</color>
+    <color name="primary_light">#FFFFFF</color>
+    <color name="primary_dark">#1B1B1B</color>
+    <color name="bg_primary_light">#F4F4F4</color>
+    <color name="bg_secondary_light">#FFFFFF</color>
+    <color name="bg_primary_dark">#2C2C2C</color>
+    <color name="bg_secondary_dark">#1C1C1D</color>
+
+    <!--    category icon color-->
+    <color name="ic_yellow_primary">#E0AF00</color>
+    <color name="ic_yellow_bg">#FFF4D0</color>
+    <color name="ic_light_green_primary">#5B9800</color>
+    <color name="ic_light_green_bg">#E6F5D0</color>
+    <color name="ic_red_primary">#EC3B3B</color>
+    <color name="ic_red_bg">#FEE2E2</color>
+    <color name="ic_green_primary">#009F31</color>
+    <color name="ic_green_bg">#DAF4E2</color>
+    <color name="ic_purple_primary">#EB2688</color>
+    <color name="ic_purple_bg">#FADFEC</color>
+    <color name="ic_violet_primary">#9440DE</color>
+    <color name="ic_violet_bg">#E1D0F5</color>
+    <color name="ic_dark_blue_primary">#1676E4</color>07
+    <color name="ic_dark_blue_bg">#CCE3FF</color>
+    <color name="ic_orange_primary">#E88800</color>
+    <color name="ic_orange_bg">#FFF0D7</color>
+    <color name="ic_light_blue_primary">#0395BE</color>
+    <color name="ic_light_blue_bg">#D7FFFF</color>
+    <color name="ic_blue_primary">#0083D4</color>
+    <color name="ic_blue_bg">#D7EBFF</color>
+    <color name="ic_gray_primary">#7D7C7C</color>
+    <color name="ic_gray_bg">#EFF1F4</color>
+
+
 </resources>
