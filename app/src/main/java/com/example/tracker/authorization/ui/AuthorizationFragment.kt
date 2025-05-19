@@ -1,6 +1,5 @@
 package com.example.tracker.authorization.ui
 
-import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
